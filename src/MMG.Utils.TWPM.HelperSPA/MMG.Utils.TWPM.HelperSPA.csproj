@@ -81,8 +81,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\main.js" />
+    <Content Include="config.js" />
     <Content Include="Index.html" />
+    <Content Include="jspm_packages\system.js" />
+    <Content Include="jspm_packages\system.src.js" />
     <Content Include="packages.config" />
+    <Content Include="package.json" />
+    <Content Include="jspm_packages\system.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
