@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\main.js" />
+    <Content Include="app\twpm-svc.js" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
     <Content Include="jspm_packages\system.js" />
