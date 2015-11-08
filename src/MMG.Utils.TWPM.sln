@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMG.Utils.TWPM.HelperSPA", 
 		SccProvider = Plastic SCM
 	EndGlobalSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1E7CCF43-3240-4FCB-90CD-79BF8681D65E}"
+	GlobalSection(PlasticSccProperties) = preSolution
+		ControlledByPlastic = True
+		SccProvider = Plastic SCM
+	EndGlobalSection
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = 9e7b390a-9a08-4606-ac77-3e61f44b424a
