@@ -3,13 +3,14 @@
 export class TWPMService {
 
     constructor () {
+        this.BaseURL = "https://mmgct.teamwork.com";
         this.httpClient = new HttpClient();
         
         var apiToken = "horse965dry:password";
         var base64auth = btoa(apiToken);
 
         this.httpClient.configure(config => {
-            config.withBaseUrl("https://mmgct.teamwork.com/");
+            config.withBaseUrl(this.BaseURL);
             config.withHeader("Authorization", "BASIC " + base64auth)
                 .withHeader("Accept", "application/json");
 
