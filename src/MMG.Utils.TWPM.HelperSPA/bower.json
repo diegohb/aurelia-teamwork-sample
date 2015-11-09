@@ -1,0 +1,15 @@
+{
+  "name": "MMG.Utils.TWPM.HelperSPA",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Diego Bustamante <dbustamante@mmgct.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

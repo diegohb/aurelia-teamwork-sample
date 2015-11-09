@@ -85,6 +85,16 @@
     <Content Include="app.js">
       <DependentUpon>app.html</DependentUpon>
     </Content>
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bower_components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="bower_components\bootstrap\dist\js\npm.js" />
+    <Content Include="bower_components\jquery\dist\jquery.js" />
+    <Content Include="bower_components\jquery\dist\jquery.min.js" />
     <Content Include="main\twpm-svc.js" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
@@ -98,6 +108,14 @@
       <DependentUpon>system.js</DependentUpon>
     </Content>
     <Content Include="data\tasks.json" />
+    <Content Include="bower.json" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="bower_components\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower_components\jquery\dist\jquery.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
