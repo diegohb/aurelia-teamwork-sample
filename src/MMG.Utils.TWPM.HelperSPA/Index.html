@@ -2,15 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 </head>
-<body aurelia-app>
-
+<body>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
     <script>
         System.import("aurelia-bootstrapper");
     </script>
 
-    <p>I wish TeamworkPM did that...</p>
+    <h1>I wish TeamworkPM did that...</h1>
+    <div aurelia-app="aurelia-config"></div>
+    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>Doing complicated things to prepare your Wish-Teamwork-Did-That application...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
