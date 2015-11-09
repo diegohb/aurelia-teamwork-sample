@@ -19,10 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1E7CCF
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Global
-	GlobalSection(CodealikeProperties) = postSolution
-		SolutionGuid = 9e7b390a-9a08-4606-ac77-3e61f44b424a
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevEnvSettings", "DevEnvSettings", "{B028EF31-5C40-43C8-BF17-626F638E3FEE}"
+	GlobalSection(PlasticSccProperties) = preSolution
+		ControlledByPlastic = True
+		SccProvider = Plastic SCM
 	EndGlobalSection
+	ProjectSection(SolutionItems) = preProject
+		MMG.Utils.TWPM.sln.DotSettings = MMG.Utils.TWPM.sln.DotSettings
+		MMG.Utils.TWPM.HelperSPA\override.jshintrc = MMG.Utils.TWPM.HelperSPA\override.jshintrc
+	EndProjectSection
+EndProject
+Global
 	GlobalSection(PlasticSccProperties) = preSolution
 		ControlledByPlastic = True
 		SccProvider = Plastic SCM
@@ -39,5 +46,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 9e7b390a-9a08-4606-ac77-3e61f44b424a
 	EndGlobalSection
 EndGlobal
