@@ -1,15 +1,17 @@
-﻿import {sayHello} from "main/twpm-svc";
+﻿import {TWPMService} from "main/twpm-svc";
 
 export class App {
     constructor() {
-        this.name = "Diego";
+        this.twpmService = new TWPMService();
+        this.myTasks = [];
     }
 
     activate() {
-        sayHello();
-    }
+        return this.twpmService.fetchTasks().then(response => {
+            if (!response.isSuccess)
+                throw new Error("Bad request from TeamworkPM.");
 
-    changeName() {
-        this.name = "Bill";
+            this.myTasks = response.content["todo-items"];
+        });
     }
 }

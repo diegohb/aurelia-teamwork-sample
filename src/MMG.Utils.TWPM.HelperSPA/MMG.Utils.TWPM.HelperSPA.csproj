@@ -93,6 +93,7 @@
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="jspm_packages\system.js.map" />
+    <Content Include="data\tasks.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

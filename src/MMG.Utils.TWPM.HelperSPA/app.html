@@ -1,7 +1,15 @@
 ﻿<template>
     <div>
-        hello ${name}!
-
-        <button click.trigger="changeName()">Change Name!</button>
+        <p>There are ${myTasks.length} tasks!</p>
+        <table>
+            <tr>
+                <th>TaskID</th>
+                <th>Status</th>
+            </tr>
+            <tr repeat.for="task of myTasks">
+                <td>${task.id}</td>
+                <td>${task.status}</td>
+            </tr>
+        </table>
     </div>
 </template>
