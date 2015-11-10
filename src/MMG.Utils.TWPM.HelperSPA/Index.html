@@ -5,8 +5,10 @@
 
     <link href="jspm_packages/github/twbs/bootstrap@3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="jspm_packages/github/twbs/bootstrap@3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body aurelia-app="aurelia-config">
 
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
@@ -14,8 +16,8 @@
         System.import("aurelia-bootstrapper");
     </script>
 
-    <h1>I wish TeamworkPM did that...</h1>
-    <div aurelia-app="aurelia-config"></div>
+    <h1>Loading...</h1>
+
     <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-header">
             <h1>Doing complicated things to prepare your Wish-Teamwork-Did-That application...</h1>
