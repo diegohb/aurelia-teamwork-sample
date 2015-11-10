@@ -4,12 +4,14 @@
         <table>
             <tr>
                 <th>Project</th>
+                <th>Task List</th>
                 <th>Task Name</th>
                 <th>Status</th>
             </tr>
             <tr repeat.for="task of myTasks">
                 <td><a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task["project-name"]}</a></td>
-                <td><a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task["todo-list-name"]}</a> </td>
+                <td><a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task["todo-list-name"]}</a></td>
+                <td><a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.content}</a> </td>
                 <td>${task.status}</td>
             </tr>
         </table>
