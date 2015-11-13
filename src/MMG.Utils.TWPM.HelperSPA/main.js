@@ -17,6 +17,5 @@ export function configure(aurelia) {
         .eventAggregator();
       /*.plugin("custom-plugin");*/
 
-    aurelia.start().then(a => a.setRoot("app/app", document.body))
-        .then(p => { $("#pleaseWaitDialog").modal("hide"); });
+    aurelia.start().then(app => app.setRoot("app/app"));
 }

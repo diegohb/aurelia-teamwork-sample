@@ -107,6 +107,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="styles\app.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
