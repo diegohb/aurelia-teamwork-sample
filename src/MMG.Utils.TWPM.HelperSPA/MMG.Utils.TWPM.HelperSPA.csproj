@@ -85,8 +85,8 @@
     <Content Include="app.js">
       <DependentUpon>app.html</DependentUpon>
     </Content>
-    <Content Include="aurelia-config.js" />
-    <Content Include="main\twpm-svc.js" />
+    <Content Include="main.js" />
+    <Content Include="app\twpm-svc.js" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
     <Content Include="jspm_packages\system.js" />
