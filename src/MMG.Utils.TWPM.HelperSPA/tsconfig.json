@@ -2,9 +2,9 @@
     "compilerOptions": {
         "target": "es6",
         "outDir": "dist",
-        "module": "es6",
+        "module": "amd",
         "declaration": true,
-        "noImplicitAny": true,
+        "noImplicitAny": true, //?
         "removeComments": true,
         "sourceMap": true,
         "emitDecoratorMetadata": true,
@@ -12,9 +12,10 @@
         "outFile": "dist/app.js"
     },
     "files": [
-        "src/tsconfig.ts",
-        "src/tsconfig.spec.ts",
-        "typings/main.d.ts"
+        "./**/*.ts",
+        "!./node_modules/**/*.ts",
+        "typings/tsd.d.ts"
     ]
     // https://raw.githubusercontent.com/TypeStrong/tsconfig/master/tsconfig.json
+    //http://www.cmichaelgraham.io/aurelia-typescript-samples/overview/type-definitions.html
 }
