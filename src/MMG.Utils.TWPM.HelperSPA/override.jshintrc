@@ -8,6 +8,6 @@
   
     "es5"           : true,    // true: Allow ES5 syntax (ex: getters and setters)
     "esnext"        : true,    // true: Allow ES.next (ES6) syntax (ex: `const`)
-    "moz"           : false,    // true: Allow Mozilla specific syntax (extends and overrides esnext features)
+    "moz"           : false    // true: Allow Mozilla specific syntax (extends and overrides esnext features)
                                 // (ex: `for each`, multiple try/catch, function expression…
 }
