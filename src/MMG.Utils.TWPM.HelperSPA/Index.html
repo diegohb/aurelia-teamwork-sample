@@ -10,12 +10,6 @@
 </head>
 <body aurelia-app="main">
 
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-        System.import("aurelia-bootstrapper");
-    </script>
-
     <h1>Loading...</h1>
 
     <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
@@ -28,5 +22,13 @@
             </div>
         </div>
     </div>
+
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+        System.import("aurelia-bootstrapper");
+    </script>
+
+
 </body>
 </html>

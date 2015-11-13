@@ -81,8 +81,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.html" />
-    <Content Include="app.js">
+    <Content Include="app\app.html" />
+    <Content Include="app\app.js">
       <DependentUpon>app.html</DependentUpon>
     </Content>
     <Content Include="main.js" />

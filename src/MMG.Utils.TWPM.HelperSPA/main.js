@@ -10,12 +10,13 @@ export function configure(aurelia) {
 
     aurelia.use
         .defaultBindingLanguage()
+        .developmentLogging()
         .defaultResources()
         .history()
         .router()
         .eventAggregator();
       /*.plugin("custom-plugin");*/
 
-    aurelia.start().then(a => a.setRoot("app", document.body))
+    aurelia.start().then(a => a.setRoot("app/app", document.body))
         .then(p => { $("#pleaseWaitDialog").modal("hide"); });
 }
