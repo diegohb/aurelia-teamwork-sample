@@ -102,6 +102,7 @@
     </Content>
     <Content Include="data\tasks.json" />
     <Content Include="tsd.json" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
