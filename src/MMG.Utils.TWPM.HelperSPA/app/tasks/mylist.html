@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="container-fluid">
+    <div class="container">
         <div show.bind="!isAuthenticated" class="row">
             <div class="col-sm-12">
                 <form role="form" submit.delegate="authenticate()">
@@ -9,15 +9,15 @@
                             <label for="apiTokenInput">API Token</label>
                             <input id="apiTokenInput" type="text" class="form-control" value.bind="apiToken" placeholder="e.g. summer50now" />
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </fieldset>
                 </form>
             </div>
         </div>
-        <div class="row">
+        <div class="row" show.bind="isAuthenticated">
             <div class="col-sm-12">
-                <button show.bind="isAuthenticated" click.trigger="loadTasks()" type="button" class="btn btn-primary"> Load Tasks</button>
                 <h1>My Actionables</h1>
+                <button click.trigger="loadTasks()" type="button" class="btn btn-primary">Load Tasks</button>
                 <table class="table table-striped table-hover table-bordered">
                     <caption>There are ${myTasks.length} tasks!</caption>
                     <tr>

@@ -20,7 +20,8 @@ export class TWPMService {
         return 22762;
     }
     fetchTasks() {
-        return this.httpClient.get("tasks.json?responsible-party-ids=22762&filter=today&sort=duedate");
+        let requestURL = `tasks.json?responsible-party-ids=${this.PartyID}&filter=today&sort=duedate`;
+        return this.httpClient.get(requestURL);
     }
 }
 //# sourceMappingURL=twpm-svc.js.map
