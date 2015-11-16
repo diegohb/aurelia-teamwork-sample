@@ -1,10 +1,14 @@
-///<reference path="typings/aurelia/framework@0.17.0/aurelia-framework.d.ts"/>
-import { LogManager } from "aurelia-framework";
-import { ConsoleAppender } from "aurelia-logging-console";
+﻿///<reference path="typings/aurelia/framework@0.17.0/aurelia-framework.d.ts"/>
+
+import {LogManager} from "aurelia-framework";
+import {ConsoleAppender} from "aurelia-logging-console";
+
 LogManager.addAppender(new ConsoleAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
+
 export function configure(aurelia) {
     //$("#pleaseWaitDialog").modal();
+
     aurelia.use
         .defaultBindingLanguage()
         .developmentLogging()
@@ -12,7 +16,7 @@ export function configure(aurelia) {
         .history()
         .router()
         .eventAggregator();
-    /*.plugin("custom-plugin");*/
+      /*.plugin("custom-plugin");*/
+
     aurelia.start().then(app => app.setRoot("app/app"));
 }
-//# sourceMappingURL=main.js.map

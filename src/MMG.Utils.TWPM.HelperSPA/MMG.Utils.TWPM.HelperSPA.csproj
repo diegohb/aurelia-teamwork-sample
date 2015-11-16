@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -24,6 +25,8 @@
     <SccAuxPath>Plastic SCM</SccAuxPath>
     <SccProvider>Plastic SCM Source Control Service:{774e58ba-f1b9-40a7-b676-834fa2c220fe}</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,23 +85,43 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.html" />
+    <TypeScriptCompile Include="app\app.ts" />
     <Content Include="app\app.js">
-      <DependentUpon>app.html</DependentUpon>
+      <DependentUpon>app.ts</DependentUpon>
     </Content>
-    <Content Include="main.js" />
-    <Content Include="app\twpm-svc.js" />
+    <Content Include="app\twpm-svc.js">
+      <DependentUpon>twpm-svc.ts</DependentUpon>
+    </Content>
+    <Content Include="gulpfile.js" />
+    <TypeScriptCompile Include="main.ts" />
+    <TypeScriptCompile Include="app\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
     <Content Include="jspm_packages\system.js" />
     <Content Include="jspm_packages\system.src.js">
       <DependentUpon>system.js</DependentUpon>
     </Content>
-    <Content Include="packages.config" />
+    <Content Include="main.js">
+      <DependentUpon>main.ts</DependentUpon>
+    </Content>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="jspm_packages\system.js.map">
       <DependentUpon>system.js</DependentUpon>
     </Content>
     <Content Include="data\tasks.json" />
+    <Content Include="tsd.json" />
+    <Content Include="main.js.map">
+      <DependentUpon>main.ts</DependentUpon>
+    </Content>
+    <Content Include="app\twpm-svc.js.map">
+      <DependentUpon>twpm-svc.ts</DependentUpon>
+    </Content>
+    <Content Include="app\app.js.map">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -115,12 +138,57 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\aurelia\binding%400.10.2\aurelia-binding.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\bootstrapper%400.18.0\aurelia-bootstrapper.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\dependency-injection%400.11.2\aurelia-dependency-injection.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\event-aggregator%400.9.0\aurelia-event-aggregator.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\framework%400.17.0\aurelia-framework.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\history%400.8.0\aurelia-history.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\history-browser%400.9.0\aurelia-history-browser.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\http-client%400.12.0\aurelia-http-client.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\loader%400.10.0\aurelia-loader.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\loader-default%400.11.2\aurelia-loader-default.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\logging%400.8.0\aurelia-logging.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\logging-console%400.8.0\aurelia-logging-console.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\metadata%400.9.0\aurelia-metadata.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\pal%400.2.0\aurelia-pal.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\pal-browser%400.2.0\aurelia-pal-browser.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\path%400.10.0\aurelia-path.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\route-recognizer%400.8.0\aurelia-route-recognizer.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\router%400.13.0\aurelia-router.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\task-queue%400.8.0\aurelia-task-queue.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\templating%400.16.0\aurelia-templating.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\templating-binding%400.16.1\aurelia-templating-binding.d.ts" />
+    <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="typings\gulp\gulp.d.ts" />
+    <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\node\node.d.ts" />
+    <TypeScriptCompile Include="typings\orchestrator\orchestrator.d.ts" />
+    <TypeScriptCompile Include="typings\q\Q.d.ts" />
+    <TypeScriptCompile Include="typings\tsd.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>None</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
@@ -139,7 +207,6 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties override_1jshintrc__JSONSchema="http://json.schemastore.org/jshintrc" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
