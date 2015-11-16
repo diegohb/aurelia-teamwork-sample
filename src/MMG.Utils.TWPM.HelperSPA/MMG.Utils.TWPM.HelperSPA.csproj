@@ -26,6 +26,7 @@
     <SccProvider>Plastic SCM Source Control Service:{774e58ba-f1b9-40a7-b676-834fa2c220fe}</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -121,6 +122,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\aurelia\binding%400.10.2\aurelia-binding.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\bootstrapper%400.18.0\aurelia-bootstrapper.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\dependency-injection%400.11.2\aurelia-dependency-injection.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\event-aggregator%400.9.0\aurelia-event-aggregator.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\framework%400.17.0\aurelia-framework.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\history%400.8.0\aurelia-history.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\history-browser%400.9.0\aurelia-history-browser.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\http-client%400.12.0\aurelia-http-client.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\loader%400.10.0\aurelia-loader.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\loader-default%400.11.2\aurelia-loader-default.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\logging%400.8.0\aurelia-logging.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\logging-console%400.8.0\aurelia-logging-console.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\metadata%400.9.0\aurelia-metadata.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\pal%400.2.0\aurelia-pal.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\pal-browser%400.2.0\aurelia-pal-browser.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\path%400.10.0\aurelia-path.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\route-recognizer%400.8.0\aurelia-route-recognizer.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\router%400.13.0\aurelia-router.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\task-queue%400.8.0\aurelia-task-queue.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\templating%400.16.0\aurelia-templating.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\templating-binding%400.16.1\aurelia-templating-binding.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\core-js\core-js.d.ts" />
     <TypeScriptCompile Include="typings\es6-promise\es6-promise.d.ts" />
@@ -155,7 +177,6 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties override_1jshintrc__JSONSchema="http://json.schemastore.org/jshintrc" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
