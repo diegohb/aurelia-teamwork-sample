@@ -26,14 +26,25 @@ export class TWPMService {
             config.withHeader("Authorization", "BASIC " + base64Auth);
         });
 
-        this.PartyID = this.getSelfPartyID();
+        this.setSelfPartyID();
     }
     
-    private getSelfPartyID () :number {
-        return 22762;
+    private setSelfPartyID () :Promise<void> {
+        return this.httpClient.get("authenticate.json").then(pResponse => {
+            if (!pResponse.isSuccess)
+                throw new Error("Bad request from TeamworkPM.");
+
+            var authInfo = pResponse.content.account;
+            console.log(authInfo);
+
+            this.PartyID = authInfo.userId;
+        }).catch(err=> { return -1; });
     }
 
     fetchTasks() {
+        if (!this.PartyID)
+            throw new Error("User ID is not set!");
+
         let requestURL = `tasks.json?responsible-party-ids=${this.PartyID}&filter=today&sort=duedate`;
         return this.httpClient.get(requestURL);
     }
