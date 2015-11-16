@@ -4,6 +4,8 @@ export class App {
     apiToken: string;
     twpmService: TWPMService;
     myTasks: typeof undefined[];
+    
+    isAuthenticated: boolean;
 
     constructor() {
         this.twpmService = new TWPMService();
@@ -16,6 +18,7 @@ export class App {
 
     authenticate () {
         this.twpmService.setApiToken(this.apiToken);
+        this.isAuthenticated = true;
     }
 
     loadTasks () {
