@@ -86,6 +86,12 @@
   <ItemGroup>
     <Content Include="app\app.html" />
     <TypeScriptCompile Include="app\app.ts" />
+    <Content Include="app\app.js">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
+    <Content Include="app\twpm-svc.js">
+      <DependentUpon>twpm-svc.ts</DependentUpon>
+    </Content>
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\twpm-svc.ts" />
@@ -95,13 +101,27 @@
     <Content Include="jspm_packages\system.src.js">
       <DependentUpon>system.js</DependentUpon>
     </Content>
-    <Content Include="packages.config" />
+    <Content Include="main.js">
+      <DependentUpon>main.ts</DependentUpon>
+    </Content>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="jspm_packages\system.js.map">
       <DependentUpon>system.js</DependentUpon>
     </Content>
     <Content Include="data\tasks.json" />
     <Content Include="tsd.json" />
+    <Content Include="main.js.map">
+      <DependentUpon>main.ts</DependentUpon>
+    </Content>
+    <Content Include="app\twpm-svc.js.map">
+      <DependentUpon>twpm-svc.ts</DependentUpon>
+    </Content>
+    <Content Include="app\app.js.map">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
