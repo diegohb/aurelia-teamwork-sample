@@ -1,4 +1,4 @@
-﻿import {TWPMService} from "./twpm-svc";
+﻿import {TWPMService} from "../services/twpm-svc";
 
 export class App {
     twpmService: TWPMService;

@@ -84,17 +84,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.html" />
-    <TypeScriptCompile Include="app\app.ts" />
-    <Content Include="app\app.js">
-      <DependentUpon>app.ts</DependentUpon>
+    <Content Include="app\tasks\mylist.html" />
+    <TypeScriptCompile Include="app\tasks\mylist.ts" />
+    <Content Include="app\tasks\app.js">
+      <DependentUpon>mylist.ts</DependentUpon>
     </Content>
-    <Content Include="app\twpm-svc.js">
+    <Content Include="app\services\twpm-svc.js">
       <DependentUpon>twpm-svc.ts</DependentUpon>
     </Content>
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
-    <TypeScriptCompile Include="app\twpm-svc.ts" />
+    <TypeScriptCompile Include="app\services\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
     <Content Include="jspm_packages\system.js" />
@@ -116,11 +116,11 @@
     <Content Include="main.js.map">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
-    <Content Include="app\twpm-svc.js.map">
+    <Content Include="app\services\twpm-svc.js.map">
       <DependentUpon>twpm-svc.ts</DependentUpon>
     </Content>
-    <Content Include="app\app.js.map">
-      <DependentUpon>app.ts</DependentUpon>
+    <Content Include="app\tasks\app.js.map">
+      <DependentUpon>mylist.ts</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
