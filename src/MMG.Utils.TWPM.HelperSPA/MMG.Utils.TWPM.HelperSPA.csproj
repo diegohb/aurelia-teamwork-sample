@@ -87,6 +87,7 @@
     <Content Include="app\app.js">
       <DependentUpon>app.html</DependentUpon>
     </Content>
+    <Content Include="gulpfile.js" />
     <Content Include="main.js" />
     <Content Include="app\twpm-svc.js" />
     <Content Include="config.js" />
