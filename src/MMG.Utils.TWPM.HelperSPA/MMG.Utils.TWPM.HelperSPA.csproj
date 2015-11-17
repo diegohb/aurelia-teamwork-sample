@@ -86,11 +86,11 @@
   <ItemGroup>
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
-    <Content Include="app\tasks\app.js">
-      <DependentUpon>mylist.ts</DependentUpon>
-    </Content>
     <Content Include="app\services\twpm-svc.js">
       <DependentUpon>twpm-svc.ts</DependentUpon>
+    </Content>
+    <Content Include="app\tasks\mylist.js">
+      <DependentUpon>mylist.ts</DependentUpon>
     </Content>
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
@@ -119,7 +119,7 @@
     <Content Include="app\services\twpm-svc.js.map">
       <DependentUpon>twpm-svc.ts</DependentUpon>
     </Content>
-    <Content Include="app\tasks\app.js.map">
+    <Content Include="app\tasks\mylist.js.map">
       <DependentUpon>mylist.ts</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">

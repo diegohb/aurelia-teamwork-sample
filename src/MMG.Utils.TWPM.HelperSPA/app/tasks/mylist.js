@@ -1,10 +1,16 @@
-import { TWPMService } from "./twpm-svc";
+import { TWPMService } from "../services/twpm-svc";
 export class App {
     constructor() {
         this.twpmService = new TWPMService();
         this.myTasks = [];
     }
     activate() {
+    }
+    authenticate() {
+        this.twpmService.setApiToken(this.apiToken);
+        this.isAuthenticated = true;
+    }
+    loadTasks() {
         return this.twpmService.fetchTasks().then(response => {
             if (!response.isSuccess)
                 throw new Error("Bad request from TeamworkPM.");
@@ -12,4 +18,4 @@ export class App {
         });
     }
 }
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=mylist.js.map
