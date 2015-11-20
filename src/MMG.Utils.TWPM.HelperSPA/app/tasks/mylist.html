@@ -1,5 +1,5 @@
 ﻿<template>
-    <div class="container">
+    <div>
         <div show.bind="!isAuthenticated" class="row">
             <div class="col-sm-12">
                 <form role="form" submit.delegate="authenticate()">
@@ -7,7 +7,7 @@
                         <legend>TeamworkPM Authenticate</legend>
                         <div class="form-group">
                             <label for="apiTokenInput">API Token</label>
-                            <input id="apiTokenInput" type="text" class="form-control" value.bind="apiToken" placeholder="e.g. summer50now" />
+                            <input id="apiTokenInput" type="text" class="form-control" value.bind="apiToken" placeholder="e.g. summer50now"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </fieldset>
@@ -27,9 +27,15 @@
                         <th>Status</th>
                     </tr>
                     <tr repeat.for="task of myTasks">
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task["project-name"]}</a></td>
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task["todo-list-name"]}</a></td>
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.content}</a> </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task["project-name"]}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task["todo-list-name"]}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.content}</a>
+                        </td>
                         <td>${task.status}</td>
                     </tr>
                 </table>
