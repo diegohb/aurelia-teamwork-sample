@@ -89,6 +89,7 @@
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\services\twpm-auth.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
