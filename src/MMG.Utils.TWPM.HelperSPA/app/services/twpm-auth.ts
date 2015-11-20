@@ -31,6 +31,14 @@ export module AuthState {
         if (!isAuthenticated())
             throw new Error("Not authenticated with TeamworkPM!");
     }
+
+    export function reset (): void {
+        if (!isAuthenticated())
+            return;
+
+        this.apiToken = "";
+        this.userID = -1;
+    }
 }
 
 export class TWPMAuthService {
@@ -74,5 +82,9 @@ export class TWPMAuthService {
         });
     }
 
+    logout () {
+        AuthState.reset();
 
+        console.log("Logged out and reset AuthState!");
+    }
 }

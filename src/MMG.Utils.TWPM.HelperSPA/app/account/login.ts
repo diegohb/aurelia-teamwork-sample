@@ -34,7 +34,15 @@ export class LoginVM {
             });
     }
 
-    reset (pEvent) {
+    logout () {
+        this.reset(null);
+        this.isAuthenticated = false;
+        this.hasLoginError = false;
+        this.apiToken = "";
+        this.twpmService.logout();
+    }
+
+    reset (pEvent): boolean {
         if (this.hasLoginError) {
             this.isAuthenticated = false;
             this.hasLoginError = false;
