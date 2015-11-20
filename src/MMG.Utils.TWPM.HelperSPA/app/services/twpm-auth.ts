@@ -28,7 +28,7 @@ export module AuthState {
     }
 
     export function ensureAuthenticated (): void {
-        if (isAuthenticated())
+        if (!isAuthenticated())
             throw new Error("Not authenticated with TeamworkPM!");
     }
 }
