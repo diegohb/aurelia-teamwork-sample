@@ -1,0 +1,16 @@
+﻿<template>
+    <div show.bind="!isAuthenticated" class="row">
+        <div class="col-sm-12">
+            <form role="form" submit.delegate="authenticate()">
+                <fieldset>
+                    <legend>TeamworkPM Authenticate</legend>
+                    <div class="form-group">
+                        <label for="apiTokenInput">API Token</label>
+                        <input id="apiTokenInput" type="text" class="form-control" value.bind="apiToken" placeholder="e.g. summer50now"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</template>
