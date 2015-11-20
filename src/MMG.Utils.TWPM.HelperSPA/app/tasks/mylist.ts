@@ -13,10 +13,11 @@ export class MyListVM {
     }
 
     activate () {
-        this.isAuthenticated = AuthState.ensureAuthenticated();
+
     }
 
     loadTasks () {
+        AuthState.ensureAuthenticated();
         return this.twpmService.fetchTasks().then(response => {
             if (!response.isSuccess)
                 throw new Error("Bad request from TeamworkPM.");

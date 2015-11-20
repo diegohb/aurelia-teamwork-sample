@@ -23,34 +23,54 @@ export module AuthState {
     export let apiToken: string = "";
     export let userID: number = -1;
 
-    export function ensureAuthenticated (): boolean {
-        if (AuthState.userID === -1)
-            throw new Error("Not authenticated with TeamworkPM!");
+    export function isAuthenticated (): boolean {
+        return AuthState.userID !== -1;
+    }
 
-        return true;
+    export function ensureAuthenticated (): void {
+        if (isAuthenticated())
+            throw new Error("Not authenticated with TeamworkPM!");
     }
 }
 
 export class TWPMAuthService {
     private httpClient: HttpClient;
 
-    public login (pApiToken: string) {
+    public login (pApiToken: string): Promise<any> {
         AuthState.apiToken = pApiToken;
-        var apiClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
-        this.setSelfPartyID(apiClient).then(pUserID => { AuthState.userID = pUserID; });
+        let apiClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
+        return this.setSelfPartyID(apiClient).then(pUserInfo => {
+            AuthState.userID = pUserInfo.userId;
+            return {
+                Success: true,
+                UserInfo: pUserInfo
+            };
+        }).catch(err => {
+            //encapsulate auth error and provide app-friendly error
+            return { Success: false, ErrorMessage: err.message };
+        });
     }
 
-    private setSelfPartyID (pApiClient: HttpClient): Promise<number> {
+    private setSelfPartyID (pApiClient: HttpClient): Promise<any> {
         return pApiClient.get("authenticate.json").then(pResponse => {
             if (!pResponse.isSuccess)
                 throw new Error("Bad request to TeamworkPM.");
 
-            var authInfo = pResponse.content.account;
-            console.log(authInfo);
+            let userInfo = pResponse.content.account;
+            console.log(userInfo);
+            return userInfo;
 
-            return authInfo.userId;
         }).catch(err => {
-            return Promise.reject(err.message || err.stringify);
+            let translatedError: any;
+            switch (err.statusCode) {
+            case 401:
+                translatedError = new Error("Invalid API Token!");
+                break;
+            default:
+                translatedError = new Error(`Unspecified error - ${err.statusText}`);
+                break;
+            }
+            return Promise.reject(translatedError);
         });
     }
 
