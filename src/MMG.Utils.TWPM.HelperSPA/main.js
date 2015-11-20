@@ -13,6 +13,6 @@ export function configure(aurelia) {
         .router()
         .eventAggregator();
     /*.plugin("custom-plugin");*/
-    aurelia.start().then(app => app.setRoot("app/tasks/mylist"));
+    aurelia.start().then(app => app.setRoot("app/app"));
 }
 //# sourceMappingURL=main.js.map

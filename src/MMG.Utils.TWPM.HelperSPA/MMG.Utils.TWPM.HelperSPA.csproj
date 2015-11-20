@@ -84,7 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.html" />
     <Content Include="app\tasks\mylist.html" />
+    <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="app\services\twpm-svc.js">
       <DependentUpon>twpm-svc.ts</DependentUpon>
