@@ -90,9 +90,6 @@
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
-    <Content Include="app\services\twpm-svc.js">
-      <DependentUpon>twpm-svc.ts</DependentUpon>
-    </Content>
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
@@ -109,9 +106,6 @@
     <Content Include="tsd.json" />
     <Content Include="main.js.map">
       <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\twpm-svc.js.map">
-      <DependentUpon>twpm-svc.ts</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
