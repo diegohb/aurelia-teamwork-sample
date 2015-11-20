@@ -50,7 +50,7 @@ export class TWPMAuthService {
 
             return authInfo.userId;
         }).catch(err => {
-            return Promise.reject(err.message != null ? err.message : err.stringify);
+            return Promise.reject(err.message || err.stringify);
         });
     }
 
