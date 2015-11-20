@@ -96,18 +96,12 @@
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
-    <Content Include="main.js">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="package.json" />
     <Content Include="data\tasks.json" />
     <Content Include="tsd.json" />
-    <Content Include="main.js.map">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
