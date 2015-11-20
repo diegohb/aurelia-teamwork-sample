@@ -97,10 +97,6 @@
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
-    <Content Include="jspm_packages\system.js" />
-    <Content Include="jspm_packages\system.src.js">
-      <DependentUpon>system.js</DependentUpon>
-    </Content>
     <Content Include="main.js">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
@@ -108,9 +104,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="package.json" />
-    <Content Include="jspm_packages\system.js.map">
-      <DependentUpon>system.js</DependentUpon>
-    </Content>
     <Content Include="data\tasks.json" />
     <Content Include="tsd.json" />
     <Content Include="main.js.map">
@@ -168,7 +161,9 @@
     <TypeScriptCompile Include="typings\q\Q.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="jspm_packages\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
