@@ -11,7 +11,7 @@ export module TWPMClientFactory {
         let base64Auth = btoa(authKey);
 
         return apiClient.configure(config => {
-            config.withBaseUrl(this.BaseURL);
+            config.withBaseUrl(baseURL);
             config.withHeader("Accept", "application/json");
             config.withHeader("Authorization", "BASIC " + base64Auth);
         });
@@ -22,6 +22,13 @@ export module AuthState {
     "use strict";
     export let apiToken: string = "";
     export let userID: number = -1;
+
+    export function ensureAuthenticated (): boolean {
+        if (AuthState.userID === -1)
+            throw new Error("Not authenticated with TeamworkPM!");
+
+        return true;
+    }
 }
 
 export class TWPMAuthService {
@@ -34,7 +41,7 @@ export class TWPMAuthService {
     }
 
     private setSelfPartyID (pApiClient: HttpClient): Promise<number> {
-        return this.httpClient.get("authenticate.json").then(pResponse => {
+        return pApiClient.get("authenticate.json").then(pResponse => {
             if (!pResponse.isSuccess)
                 throw new Error("Bad request to TeamworkPM.");
 
@@ -46,4 +53,6 @@ export class TWPMAuthService {
             return Promise.reject(err.message != null ? err.message : err.stringify);
         });
     }
+
+
 }

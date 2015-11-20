@@ -1,12 +1,12 @@
-﻿import {TWPMService} from "../services/twpm-svc";
+﻿import {TWPMAuthService} from "../services/twpm-auth";
 
 export class LoginVM {
     apiToken: string;
-    twpmService: TWPMService;
+    twpmService: TWPMAuthService;
     isAuthenticated: boolean;
 
     constructor () {
-        this.twpmService = new TWPMService();
+        this.twpmService = new TWPMAuthService();
     }
 
     activate () {
@@ -14,7 +14,7 @@ export class LoginVM {
     }
 
     authenticate () {
-        this.twpmService.setApiToken(this.apiToken);
+        this.twpmService.login(this.apiToken);
         this.isAuthenticated = true;
     }
 }

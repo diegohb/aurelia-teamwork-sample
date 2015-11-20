@@ -1,7 +1,7 @@
 ﻿import {TWPMService} from "../services/twpm-svc";
+import {AuthState} from "../services/twpm-auth";
 
 export class MyListVM {
-    apiToken: string;
     twpmService: TWPMService;
     myTasks: typeof undefined[];
 
@@ -13,12 +13,7 @@ export class MyListVM {
     }
 
     activate () {
-
-    }
-
-    authenticate () {
-        this.twpmService.setApiToken(this.apiToken);
-        this.isAuthenticated = true;
+        this.isAuthenticated = AuthState.ensureAuthenticated();
     }
 
     loadTasks () {
