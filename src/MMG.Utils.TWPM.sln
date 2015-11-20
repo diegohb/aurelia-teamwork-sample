@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevEnvSettings", "DevEnvSet
 		SccProvider = Plastic SCM
 	EndGlobalSection
 	ProjectSection(SolutionItems) = preProject
+		..\ignore.conf = ..\ignore.conf
 		MMG.Utils.TWPM.sln.DotSettings = MMG.Utils.TWPM.sln.DotSettings
 		MMG.Utils.TWPM.HelperSPA\override.jshintrc = MMG.Utils.TWPM.HelperSPA\override.jshintrc
 	EndProjectSection
