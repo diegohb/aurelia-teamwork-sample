@@ -53,7 +53,7 @@ export class LoginVM {
 
     //TODO: make this private
     private confirmLoggedIn (pUser: any): Promise<void> {
-        let displayName: string = `${pUser.firstName} ${pUser.lastName}`;
+        let displayName: string = `${pUser.firstname} ${pUser.lastname}`;
         let profilePicture: string = pUser["avatar-url"];
 
         this.UserDisplayName = displayName;
