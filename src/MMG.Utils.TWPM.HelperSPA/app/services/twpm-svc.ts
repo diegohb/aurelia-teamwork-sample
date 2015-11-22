@@ -8,7 +8,7 @@ export class TWPMService {
 
     fetchTasks () {
         AuthState.ensureAuthenticated();
-        let partyID = AuthState.UserInfo.userID;
+        let partyID = AuthState.UserInfo.UserID;
         let requestURL = `tasks.json?responsible-party-ids=${partyID}&filter=today&sort=duedate`;
         let apiClient = ApiClientFactory.createApiClient(AuthState.apiToken);
         return apiClient.get(requestURL);

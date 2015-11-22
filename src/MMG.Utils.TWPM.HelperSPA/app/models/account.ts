@@ -1,5 +1,5 @@
 ﻿
-module TWPM {
+export module TWPM {
     export class Account {
 
         requireHttps: boolean;
@@ -10,9 +10,9 @@ module TWPM {
         sslEnabled: boolean;
         createdAt: Date;
         cacheUUID: string;
-        accountHolderID: string;
+        accountHolderID: number;
         logo: string;
-        ID: string;
+        UserID: number;
         URL: string;
         emailNotificationEnabled: boolean;
         companyID: string;
@@ -30,7 +30,7 @@ module TWPM {
             this.cacheUUID = data["cacheUUID"];
             this.accountHolderID = data["account-holder-id"];
             this.logo = data["logo"];
-            this.ID = data["id"];
+            this.UserID = data["userId"];
             this.URL = data["URL"];
             this.emailNotificationEnabled = data["email-notification-enabled"];
             this.companyID = data["companyid"];
