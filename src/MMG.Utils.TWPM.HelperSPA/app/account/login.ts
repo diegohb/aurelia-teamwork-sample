@@ -14,6 +14,8 @@ export class LoginVM {
 
     activate () {
         this.isAuthenticated = AuthState.isAuthenticated();
+        if (this.isAuthenticated)
+            this.confirmLoggedIn(AuthState.UserInfo);
     }
 
     authenticate () {

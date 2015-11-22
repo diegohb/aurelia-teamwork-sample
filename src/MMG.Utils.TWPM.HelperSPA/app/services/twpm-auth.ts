@@ -21,10 +21,10 @@ export module TWPMClientFactory {
 export module AuthState {
     "use strict";
     export let apiToken: string = "";
-    export let userID: number = -1;
+    export let UserInfo;
 
     export function isAuthenticated (): boolean {
-        return AuthState.userID !== -1;
+        return AuthState.UserInfo != null;
     }
 
     export function ensureAuthenticated (): void {
@@ -37,8 +37,10 @@ export module AuthState {
             return;
 
         this.apiToken = "";
-        this.userID = -1;
+        this.UserInfo = null;
     }
+
+
 }
 
 export class TWPMAuthService {
@@ -48,7 +50,7 @@ export class TWPMAuthService {
         AuthState.apiToken = pApiToken;
         let apiClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
         return this.setSelfPartyID(apiClient).then(pUserInfo => {
-            AuthState.userID = pUserInfo.userId;
+            AuthState.UserInfo = pUserInfo;
             return {
                 Success: true,
                 UserInfo: pUserInfo
