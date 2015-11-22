@@ -1,4 +1,5 @@
 import {Priority} from "priority";
+import {Tag} from "../models/tag";
 
 export class Task {
 
@@ -43,6 +44,10 @@ export class Task {
         this.assigneeName = data["responsible-party-names"]; //e.g. "Daniel M.|Peter C.",
         this.assigneeSummary = data["responsible-party-summary"]; //e.g. "You & Peter C."
         this.startDate = data["start-date"]; //e.g. ""20140402"
+        if (data["tags"])
+            this.tags = data["tags"].map(tagData => new Tag(tagData));
+        else
+            this.tags = [];
     }
 
     //ref: http://developer.teamwork.com/datareference#todo_item
@@ -87,4 +92,5 @@ export class Task {
     creatorLastName: string;
     projectID: number;
     startDate: string;
+    tags: Array<Tag>;
 }

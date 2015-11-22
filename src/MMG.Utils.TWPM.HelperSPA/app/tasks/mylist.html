@@ -10,6 +10,7 @@
                         <th>Project</th>
                         <th>Task List</th>
                         <th>Task Name</th>
+                        <th>Tags</th>
                         <th>Status</th>
                     </tr>
                     <tr repeat.for="task of myTasks">
@@ -21,6 +22,14 @@
                         </td>
                         <td>
                             <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.title}</a>
+                        </td>
+                        <td>
+                            <ul if.bind="task.tags.length">
+                                <li repeat.for="tag of task.tags">
+                                    ${tag.name}
+                                </li>
+                            </ul>
+                            <span if.bind="task.tags.length === 0">None</span>
                         </td>
                         <td>${task.status}</td>
                     </tr>
