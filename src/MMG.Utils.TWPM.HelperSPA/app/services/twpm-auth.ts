@@ -1,5 +1,5 @@
 ﻿import {HttpClient} from "aurelia-http-client";
-import {TWPM} from "../models/account";
+import {Account} from "../models/account";
 
 export module TWPMClientFactory {
     "use strict";
@@ -23,7 +23,7 @@ export module AuthState {
 
     "use strict";
     export let apiToken: string = "";
-    export let UserInfo: TWPM.Account;
+    export let UserInfo: Account;
 
     export function isAuthenticated (): boolean {
         return AuthState.UserInfo != null;
@@ -52,7 +52,7 @@ export class TWPMAuthService {
         AuthState.apiToken = pApiToken;
         let apiClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
         return this.setSelfPartyID(apiClient).then(pUserInfo => {
-            AuthState.UserInfo = new TWPM.Account(pUserInfo);
+            AuthState.UserInfo = new Account(pUserInfo);
             return {
                 Success: true,
                 UserInfo: pUserInfo

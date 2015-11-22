@@ -14,13 +14,13 @@
                     </tr>
                     <tr repeat.for="task of myTasks">
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task["project-name"]}</a>
+                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task.projectName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task["todo-list-name"]}</a>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task.taskListName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.content}</a>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.title}</a>
                         </td>
                         <td>${task.status}</td>
                     </tr>
