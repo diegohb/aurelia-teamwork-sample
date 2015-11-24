@@ -1,4 +1,5 @@
 ﻿import {TWPMAuthService, AuthState } from "../services/twpm-auth";
+import {Person} from "../models/person";
 
 export class LoginVM {
     apiToken: string;
@@ -15,7 +16,7 @@ export class LoginVM {
     activate () {
         this.isAuthenticated = AuthState.isAuthenticated();
         if (this.isAuthenticated)
-            this.confirmLoggedIn(AuthState.UserInfo);
+            return this.confirmLoggedIn(AuthState.userInfo);
     }
 
     authenticate () {
@@ -54,14 +55,11 @@ export class LoginVM {
     }
 
     //TODO: make this private
-    private confirmLoggedIn (pUser: any): Promise<void> {
-        let displayName: string = `${pUser.firstname} ${pUser.lastname}`;
-        let profilePicture: string = pUser["avatar-url"];
+    private confirmLoggedIn (pUser: Person): Promise<void> {
+        this.UserDisplayName = `${pUser.firstName} ${pUser.lastName}`;
+        this.UserImageURL = pUser.avatarUrl;
 
-        this.UserDisplayName = displayName;
-        this.UserImageURL = profilePicture;
-
-        return Promise.resolve(pUser);
+        return Promise.resolve();
     }
 
 

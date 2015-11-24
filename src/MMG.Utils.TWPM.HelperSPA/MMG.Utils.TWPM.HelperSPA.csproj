@@ -90,6 +90,7 @@
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\models\account.ts" />
+    <TypeScriptCompile Include="app\models\person.ts" />
     <TypeScriptCompile Include="app\models\priority.ts" />
     <TypeScriptCompile Include="app\models\tag.ts" />
     <TypeScriptCompile Include="app\models\task.ts" />

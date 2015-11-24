@@ -1,5 +1,6 @@
 ﻿import {HttpClient} from "aurelia-http-client";
 import {Account} from "../models/account";
+import {Person} from "../models/person";
 
 export module TWPMClientFactory {
     "use strict";
@@ -23,10 +24,10 @@ export module AuthState {
 
     "use strict";
     export let apiToken: string = "";
-    export let UserInfo: Account;
+    export let userInfo: Person;
 
     export function isAuthenticated (): boolean {
-        return AuthState.UserInfo != null;
+        return AuthState.userInfo != null;
     }
 
     export function ensureAuthenticated (): void {
@@ -45,45 +46,109 @@ export module AuthState {
 
 }
 
+class AuthUserInfo {
+    installURL: string;
+    userID: number;
+    ID: number;
+    dateFormat: string;
+    companyName: string;
+    companyID: number;
+
+    constructor (data: any) {
+        this.installURL = data["URL"];
+        this.companyID = data["companyid"];
+        this.companyName = data["companyname"];
+        this.dateFormat = data["dateFormat"];
+        this.ID = data["id"];
+        this.userID = data["userId"];
+    }
+
+    /*
+     * 
+     * STATUS: "OK"
+account: {userIsMemberOfOwnerCompany: true, tagsLockedToAdmins: true, firstname: "Diego", dateSeperator: "/",…}
+URL: "https://mmgct.teamwork.com/"
+avatar-url: "https://tw-webserver1.teamworkpm.net/sites/mmgct/images/users/c07e4e246a3b4817706b440f8882dd84%2Ejpg"
+canManagePeople: "1"
+canaddprojects: "1"
+chatEnabled: true
+code: "mmgct"
+companyid: "12173"
+companyname: "MMG, Inc."
+dateFormat: "mm/dd/yyyy"
+dateSeperator: "/"
+deskEnabled: true
+firstname: "Diego"
+id: "69265"
+lang: "EN"
+lastname: "Bustamante"
+likesEnabled: true
+logo: "https://tw-webserver2.teamworkpm.net/sites/mmgct/images/54007%2D0%5Fmmg%5Flogo%2Ejpg"
+name: "MMG, Inc."
+plan-id: "1"
+projectsEnabled: true
+requirehttps: true
+ssl-enabled: true
+startonsundays: false
+tagsEnabled: true
+tagsLockedToAdmins: true
+timeFormat: "h:mmtt"
+userId: "22762"
+userIsAdmin: true
+userIsMemberOfOwnerCompany: true
+     */
+
+}
+
+
 export class TWPMAuthService {
     private httpClient: HttpClient;
 
     public login (pApiToken: string): Promise<any> {
         AuthState.apiToken = pApiToken;
-        let apiClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
-        return this.setSelfPartyID(apiClient).then(pUserInfo => {
-            AuthState.UserInfo = new Account(pUserInfo);
-            return {
-                Success: true,
-                UserInfo: pUserInfo
-            };
-        }).catch(err => {
-            //encapsulate auth error and provide app-friendly error
-            return { Success: false, ErrorMessage: err.message };
-        });
+        this.httpClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
+
+        return this.getAuthUserInfo()
+            .then(pAuthInfo => { return this.getPersonInfo(pAuthInfo); })
+            .then(pPersonInfo => {
+                AuthState.userInfo = <Person>pPersonInfo.valueOf();
+                return {
+                    Success: true,
+                    UserInfo: pPersonInfo
+                };
+            }).catch(err => {
+                //encapsulate auth error and provide app-friendly error
+                return { Success: false, ErrorMessage: err.message };
+            });
     }
 
-    private setSelfPartyID (pApiClient: HttpClient): Promise<any> {
-        return pApiClient.get("authenticate.json").then(pResponse => {
-            if (!pResponse.isSuccess)
-                throw new Error("Bad request to TeamworkPM.");
+    private getAuthUserInfo (): Promise<AuthUserInfo> {
+        return this.httpClient.get("authenticate.json")
+            .then(pResponse => {
+                if (!pResponse.isSuccess)
+                    throw new Error("Bad request to TeamworkPM.");
 
-            let userInfo = pResponse.content.account;
-            console.log(userInfo);
-            return userInfo;
+                return new AuthUserInfo(pResponse.content.account);
 
-        }).catch(err => {
-            let translatedError: any;
-            switch (err.statusCode) {
-            case 401:
-                translatedError = new Error("Invalid API Token!");
-                break;
-            default:
-                translatedError = new Error(`Unspecified error - ${err.statusText}`);
-                break;
-            }
-            return Promise.reject(translatedError);
-        });
+            }).catch(err => {
+                let translatedError: any;
+                switch (err.statusCode) {
+                case 401:
+                    translatedError = new Error("Invalid API Token!");
+                    break;
+                default:
+                    translatedError = new Error(`Unspecified error - ${err.statusText}`);
+                    break;
+                }
+                return Promise.reject(translatedError);
+            });
+    }
+
+    private getPersonInfo (pAuthInfo: AuthUserInfo): Promise<Person> {
+        return this.httpClient.get(`people/${pAuthInfo.userID}.json`)
+            .then(pResponse => {
+                return new Person(pResponse.content.person);
+            });
     }
 
     logout () {
