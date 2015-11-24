@@ -1,5 +1,5 @@
 ﻿<template>
-    <div show.bind="!isAuthenticated" class="row">
+    <div show.bind="!IsAuthenticated" class="row">
         <div class="col-sm-12">
             <form role="form" submit.delegate="authenticate()">
                 <fieldset>
@@ -17,7 +17,7 @@
             </form>
         </div>
     </div>
-    <div if.bind="isAuthenticated" class="row">
+    <div if.bind="IsAuthenticated" class="row">
         <div class="col-sm-12">
             <div class="alert alert-success" role="alert">
                 <h2>Welcome ${UserDisplayName}!</h2>

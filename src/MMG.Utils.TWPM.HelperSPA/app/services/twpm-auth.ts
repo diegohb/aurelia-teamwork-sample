@@ -40,7 +40,7 @@ export module AuthState {
             return;
 
         this.apiToken = "";
-        this.UserInfo = null;
+        this.userInfo = null;
     }
 
 
