@@ -1,5 +1,6 @@
 ﻿import {HttpClient} from "aurelia-http-client";
 import {TWPMClientFactory} from "../services/twpm-client-factory";
+import {TWPMService} from "../services/twpm-svc"
 import {AuthState} from "../services/auth-state";
 import {AuthUserInfo} from "../models/auth-info"
 import {Person} from "../models/person";
@@ -14,7 +15,8 @@ export class TWPMAuthService {
         return this.getAuthUserInfo()
             .then(pAuthInfo => {
                 AuthState.validateApiToken(pApiToken, pAuthInfo);
-                return this.getPersonInfo(pAuthInfo);
+                let twpmService = new TWPMService();
+                return twpmService.fetchPerson(pAuthInfo.userID);
             })
             .then(pPersonInfo => {
                 AuthState.persistAuthentication(pPersonInfo as Person);
@@ -47,13 +49,6 @@ export class TWPMAuthService {
                     break;
                 }
                 return Promise.reject(translatedError);
-            });
-    }
-
-    private getPersonInfo (pAuthInfo: AuthUserInfo): Promise<Person> {
-        return this.httpClient.get(`people/${pAuthInfo.userID}.json`)
-            .then(pResponse => {
-                return new Person(pResponse.content.person);
             });
     }
 
