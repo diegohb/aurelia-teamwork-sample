@@ -86,6 +86,7 @@
   <ItemGroup>
     <Content Include="app\account\login.html" />
     <Content Include="app\app.html" />
+    <Content Include="app\people\people-all.html" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
@@ -95,10 +96,12 @@
     <TypeScriptCompile Include="app\models\priority.ts" />
     <TypeScriptCompile Include="app\models\tag.ts" />
     <TypeScriptCompile Include="app\models\task.ts" />
+    <TypeScriptCompile Include="app\people\people-all.ts" />
     <TypeScriptCompile Include="app\services\auth-state.ts" />
     <TypeScriptCompile Include="app\services\twpm-auth.ts" />
     <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
+    <Content Include="app\nav-bar.html" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />

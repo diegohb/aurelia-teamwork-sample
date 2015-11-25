@@ -4,14 +4,17 @@
     lastName: string;
     email: string;
     avatarUrl: string;
+    title: string;
 
     constructor (data: any) {
         this.personID = data["id"];
         this.firstName = data["first-name"];
         this.lastName = data["last-name"];
         this.email = data["email-address"];
+        this.title = data["title"];
         this.avatarUrl = data["avatar-url"];
     }
+
 
 }
 

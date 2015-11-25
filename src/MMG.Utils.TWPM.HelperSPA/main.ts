@@ -1,5 +1,6 @@
 ﻿///<reference path="typings/aurelia/framework@0.17.0/aurelia-framework.d.ts"/>
 
+import "bootstrap";
 import {LogManager} from "aurelia-framework";
 import {ConsoleAppender} from "aurelia-logging-console";
 
@@ -11,7 +12,7 @@ export function configure (aurelia) {
 
     aurelia.use
         .defaultBindingLanguage()
-        .developmentLogging()
+        /*.developmentLogging()*/
         .defaultResources()
         .history()
         .router()
