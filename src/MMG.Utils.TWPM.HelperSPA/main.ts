@@ -6,7 +6,7 @@ import {ConsoleAppender} from "aurelia-logging-console";
 LogManager.addAppender(new ConsoleAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
 
-export function configure(aurelia) {
+export function configure (aurelia) {
     //$("#pleaseWaitDialog").modal();
 
     aurelia.use
@@ -16,7 +16,7 @@ export function configure(aurelia) {
         .history()
         .router()
         .eventAggregator();
-      /*.plugin("custom-plugin");*/
+    /*.plugin("custom-plugin");*/
 
-    aurelia.start().then(app => app.setRoot("app/tasks/mylist"));
+    aurelia.start().then(app => app.setRoot("app"));
 }

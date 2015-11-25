@@ -1,20 +1,6 @@
 ﻿<template>
-    <div class="container">
-        <div show.bind="!isAuthenticated" class="row">
-            <div class="col-sm-12">
-                <form role="form" submit.delegate="authenticate()">
-                    <fieldset>
-                        <legend>TeamworkPM Authenticate</legend>
-                        <div class="form-group">
-                            <label for="apiTokenInput">API Token</label>
-                            <input id="apiTokenInput" type="text" class="form-control" value.bind="apiToken" placeholder="e.g. summer50now" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="row" show.bind="isAuthenticated">
+    <div>
+        <div class="row">
             <div class="col-sm-12">
                 <h1>My Actionables</h1>
                 <button click.trigger="loadTasks()" type="button" class="btn btn-primary">Load Tasks</button>
@@ -24,12 +10,27 @@
                         <th>Project</th>
                         <th>Task List</th>
                         <th>Task Name</th>
+                        <th>Tags</th>
                         <th>Status</th>
                     </tr>
                     <tr repeat.for="task of myTasks">
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task["project-name"]}</a></td>
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task["todo-list-name"]}</a></td>
-                        <td><a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.content}</a> </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task.projectName}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task.taskListName}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.title}</a>
+                        </td>
+                        <td>
+                            <ul if.bind="task.tags.length">
+                                <li repeat.for="tag of task.tags">
+                                    ${tag.name}
+                                </li>
+                            </ul>
+                            <span if.bind="task.tags.length === 0">None</span>
+                        </td>
                         <td>${task.status}</td>
                     </tr>
                 </table>

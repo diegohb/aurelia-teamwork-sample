@@ -84,44 +84,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\account\login.html" />
+    <Content Include="app\app.html" />
     <Content Include="app\tasks\mylist.html" />
+    <TypeScriptCompile Include="app\account\login.ts" />
+    <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\models\account.ts" />
+    <TypeScriptCompile Include="app\models\auth-info.ts" />
+    <TypeScriptCompile Include="app\models\person.ts" />
+    <TypeScriptCompile Include="app\models\priority.ts" />
+    <TypeScriptCompile Include="app\models\tag.ts" />
+    <TypeScriptCompile Include="app\models\task.ts" />
+    <TypeScriptCompile Include="app\services\auth-state.ts" />
+    <TypeScriptCompile Include="app\services\twpm-auth.ts" />
+    <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
-    <Content Include="app\services\twpm-svc.js">
-      <DependentUpon>twpm-svc.ts</DependentUpon>
-    </Content>
-    <Content Include="app\tasks\mylist.js">
-      <DependentUpon>mylist.ts</DependentUpon>
-    </Content>
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
-    <Content Include="jspm_packages\system.js" />
-    <Content Include="jspm_packages\system.src.js">
-      <DependentUpon>system.js</DependentUpon>
-    </Content>
-    <Content Include="main.js">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="package.json" />
-    <Content Include="jspm_packages\system.js.map">
-      <DependentUpon>system.js</DependentUpon>
-    </Content>
     <Content Include="data\tasks.json" />
     <Content Include="tsd.json" />
-    <Content Include="main.js.map">
-      <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="app\services\twpm-svc.js.map">
-      <DependentUpon>twpm-svc.ts</DependentUpon>
-    </Content>
-    <Content Include="app\tasks\mylist.js.map">
-      <DependentUpon>mylist.ts</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

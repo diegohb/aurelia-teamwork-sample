@@ -1,0 +1,34 @@
+﻿<template>
+    <div show.bind="!IsAuthenticated" class="row">
+        <div class="col-sm-12">
+            <form role="form" submit.delegate="authenticate()">
+                <fieldset>
+                    <legend>TeamworkPM Authenticate</legend>
+                    <div class="form-group ${hasLoginError ? 'has-error has-feedback' : ''}">
+                        <label for="apiTokenInput">API Token</label>
+                        <input id="apiTokenInput" type="text" value.bind="apiToken" class="form-control" placeholder="e.g. summer50now" aria-describedby="ApiTokenHelp"/>
+                        <span if.bind="hasLoginError" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <p id="ApiTokenHelp" class="help-block">
+                            See <a href="http://support.teamwork.com/projects/desktop-timer-131/where-do-i-find-my-api-key" target="_blank">instructions here</a> to get your API token from TeamworkPM.
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div if.bind="IsAuthenticated" class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success" role="alert">
+                <h2>Welcome ${UserDisplayName}!</h2>
+                <p>
+                    <img class="img-responsive" src.one-time="UserImageURL" alt="user avatar image"/>
+                </p>
+                <p>&nbsp;</p>
+                <p>Check out your TeamworkPM tasks using the navigation menu above.</p>
+                <p>&nbsp;</p>
+                <button type="button" click.delegate="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,33 +1,27 @@
 ﻿import {TWPMService} from "../services/twpm-svc";
+import {AuthState} from "../services/auth-state";
+import {Task} from "../models/task";
 
-export class App {
-    apiToken: string;
+export class MyListVM {
     twpmService: TWPMService;
-    myTasks: typeof undefined[];
-    
+    myTasks: Array<Task>;
+
     isAuthenticated: boolean;
 
-    constructor() {
+    constructor () {
         this.twpmService = new TWPMService();
         this.myTasks = [];
     }
-    
-    activate() {
-       
-    }
 
-    authenticate () {
-        this.twpmService.setApiToken(this.apiToken);
-        this.isAuthenticated = true;
+    activate () {
+
     }
 
     loadTasks () {
-        return this.twpmService.fetchTasks().then(response => {
-            if (!response.isSuccess)
-                throw new Error("Bad request from TeamworkPM.");
-
-            this.myTasks = response.content["todo-items"];
+        AuthState.ensureAuthenticated();
+        return this.twpmService.fetchTasks().then(tasks => {
+            this.myTasks = tasks;
         });
     }
-    
+
 }
