@@ -37,7 +37,12 @@ export class LoginVM {
         return Promise.resolve();
     }
 
-    authenticate () {
+    authenticate (): Promise<any> {
+        if (this.apiToken.trim().length === 0) {
+            this.hasLoginError = true;
+            return Promise.reject("Api token is required!");
+        }
+
         return this.twpmService.login(this.apiToken)
             .then((pResult) => {
                 if (!pResult || pResult.Success !== true) {
