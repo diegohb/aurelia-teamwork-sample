@@ -87,6 +87,7 @@
     <Content Include="app\account\login.html" />
     <Content Include="app\app.html" />
     <Content Include="app\people\people-all.html" />
+    <Content Include="app\people\styling.css" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
@@ -112,6 +113,7 @@
     </Content>
     <Content Include="package.json" />
     <Content Include="data\tasks.json" />
+    <Content Include="styles\bt-custom-theme.css" />
     <Content Include="tsd.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
