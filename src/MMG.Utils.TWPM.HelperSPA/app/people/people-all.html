@@ -6,12 +6,12 @@
                 <div class="card">
                     <canvas class="header-bg" width="250" height="70"></canvas>
                     <div class="avatar">
-                        <img src.bind="person.avatarUrl" crossorigin/>
+                        <img src.bind="person.avatarUrl"/>
                     </div>
                     <div class="content">
                         <p class="name">${person.firstName} ${person.lastName}</p>
                         <p>
-                            <a target="_blank" class="btn btn-default" href.bind="person.personID">Contact</a>
+                            <a target="_blank" class="btn btn-default" href.bind="person.profileWebURL">View</a>
                         </p>
                     </div>
                 </div>
