@@ -24,7 +24,7 @@ export class TWPMAuthService {
                 };
             }).catch(err => {
                 //encapsulate auth error and provide app-friendly error
-                return { Success: false, ErrorMessage: err.message };
+                return { Success: false, ErrorMessage: err.message, Error: err };
             });
     }
 

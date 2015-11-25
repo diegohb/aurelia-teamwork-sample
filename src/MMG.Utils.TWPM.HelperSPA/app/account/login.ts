@@ -39,21 +39,19 @@ export class LoginVM {
 
     login (): Promise<any> {
         if (this.apiToken.trim().length === 0) {
-            this.hasLoginError = true;
-            return Promise.reject("Api token is required!");
+            let errMsg = "Api token is required!";
+            this.showUserError(errMsg);
+            return Promise.reject(errMsg);
         }
 
         return this.twpmService.authenticate(this.apiToken)
             .then((pResult) => {
                 if (!pResult || pResult.Success !== true) {
-                    this.hasLoginError = true;
-                    console.log(pResult.ErrorMessage, pResult);
-                    //TODO: toastr - show user-friendly error
+                    this.showUserError(pResult.ErrorMessage, pResult.Error);
                 }
                 return Promise.resolve();
             }).catch(err => {
-                this.hasLoginError = true;
-                throw err;
+                this.showUserError("Unexpected error!", err);
             });
     }
 
@@ -62,4 +60,13 @@ export class LoginVM {
         this.apiToken = "";
         this.twpmService.endAuthSession();
     }
+
+    private showUserError (pMessage?: string, pError?: Error): void {
+        if (pMessage) {
+            //todo: toastr - show message
+        }
+        console.error("Error occurred authenticating.", pError);
+        this.hasLoginError = true;
+    }
+
 }
