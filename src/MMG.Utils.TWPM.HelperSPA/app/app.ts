@@ -7,7 +7,8 @@ export class App {
         config.title = "Wish Teamwork Did That...";
         config.map([
             { route: ["", "account/login"], name: "account-authenticate", moduleId: "account/login", nav: true, title: "Login" },
-            { route: "tasks/mine", name: "tasks-my", moduleId: "tasks/mylist", nav: true, title: "My Tasks" }
+            { route: "tasks/mine", name: "tasks-my", moduleId: "tasks/mylist", nav: true, title: "My Tasks" },
+            { route: "people/all", name: "people-all", moduleId: "people/people-all", nav: true, title: "Peepz" }
         ]);
 
         this.router = router;

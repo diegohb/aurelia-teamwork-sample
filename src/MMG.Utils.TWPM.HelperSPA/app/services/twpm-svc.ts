@@ -19,6 +19,14 @@ export class TWPMService {
             });
     }
 
+    fetchPeople (): Promise<Array<Person>> {
+        return this.apiClient.get(`people.json`)
+            .then(pResponse => {
+                var materializedPeople = pResponse.content.people.map(pPersonRaw => new Person(pPersonRaw));
+                return materializedPeople;
+            });
+    }
+
     fetchTasks (pPartyID?: number): Promise<Array<Task>> {
 
         let partyID = pPartyID || AuthState.userInfo.personID;
