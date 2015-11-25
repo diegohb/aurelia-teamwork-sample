@@ -1,4 +1,5 @@
-﻿import {TWPMAuthService, AuthState } from "../services/twpm-auth";
+﻿import {TWPMAuthService } from "../services/twpm-auth";
+import {AuthState} from "../services/auth-state"
 import {Person} from "../models/person";
 
 export class LoginVM {

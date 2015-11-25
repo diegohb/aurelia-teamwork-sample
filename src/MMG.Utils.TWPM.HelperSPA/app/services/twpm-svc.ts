@@ -1,4 +1,6 @@
-﻿import {TWPMAuthService, AuthState, TWPMClientFactory as ApiClientFactory } from "./twpm-auth"
+﻿import {TWPMAuthService} from "../services/twpm-auth"
+import {TWPMClientFactory as ApiClientFactory} from "../services/twpm-client-factory";
+import {AuthState} from "../services/auth-state";
 import {Task} from "../models/task";
 
 export class TWPMService {

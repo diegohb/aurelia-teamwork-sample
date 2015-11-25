@@ -90,11 +90,14 @@
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\models\account.ts" />
+    <TypeScriptCompile Include="app\models\auth-info.ts" />
     <TypeScriptCompile Include="app\models\person.ts" />
     <TypeScriptCompile Include="app\models\priority.ts" />
     <TypeScriptCompile Include="app\models\tag.ts" />
     <TypeScriptCompile Include="app\models\task.ts" />
+    <TypeScriptCompile Include="app\services\auth-state.ts" />
     <TypeScriptCompile Include="app\services\twpm-auth.ts" />
+    <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />

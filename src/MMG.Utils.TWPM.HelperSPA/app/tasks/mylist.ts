@@ -1,5 +1,5 @@
 ﻿import {TWPMService} from "../services/twpm-svc";
-import {AuthState} from "../services/twpm-auth";
+import {AuthState} from "../services/auth-state";
 import {Task} from "../models/task";
 
 export class MyListVM {
