@@ -10,13 +10,15 @@ export class TWPMAuthService {
     private httpClient: HttpClient;
 
     public login (pApiToken: string): Promise<any> {
-        AuthState.apiToken = pApiToken;
-        this.httpClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
+        this.httpClient = TWPMClientFactory.createApiClient(pApiToken);
 
         return this.getAuthUserInfo()
-            .then(pAuthInfo => { return this.getPersonInfo(pAuthInfo); })
+            .then(pAuthInfo => {
+                AuthState.validateApiToken(pApiToken, pAuthInfo);
+                return this.getPersonInfo(pAuthInfo);
+            })
             .then(pPersonInfo => {
-                AuthState.userInfo = <Person>pPersonInfo.valueOf();
+                AuthState.persistAuthentication(pPersonInfo as Person);
                 return {
                     Success: true,
                     UserInfo: pPersonInfo
