@@ -11,7 +11,7 @@ export function configure (aurelia) {
 
     aurelia.use
         .defaultBindingLanguage()
-        .developmentLogging()
+        /*.developmentLogging()*/
         .defaultResources()
         .history()
         .router()
