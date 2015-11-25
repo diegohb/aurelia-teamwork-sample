@@ -1,0 +1,22 @@
+﻿<template>
+    <section>
+        <h2>All TWPM Peepz</h2>
+        <div class="row au-stagger">
+            <div class="col-sm-6 col-md-3 card-container" repeat.for="person of People">
+                <div class="card">
+                    <canvas class="header-bg" width="250" height="70"></canvas>
+                    <div class="avatar">
+                        <img src.bind="person.avatarUrl"/>
+                    </div>
+                    <div class="content">
+                        <p class="name">${person.firstName} ${person.lastName}</p>
+                        <!--<p show.bind="person.hasTitle">${person.title}</p>-->
+                        <p>
+                            <a target="_blank" class="btn btn-default" href.bind="person.profileWebURL">View</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
