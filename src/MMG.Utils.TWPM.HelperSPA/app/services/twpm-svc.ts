@@ -19,9 +19,9 @@ export class TWPMService {
             });
     }
 
-    fetchTasks (): Promise<Array<Task>> {
+    fetchTasks (pPartyID?: number): Promise<Array<Task>> {
 
-        let partyID = AuthState.userInfo.personID;
+        let partyID = pPartyID || AuthState.userInfo.personID;
         let requestURL = `tasks.json?responsible-party-ids=${partyID}&filter=today&sort=duedate`;
         return this.apiClient.get(requestURL).then(response => {
             if (!response.isSuccess)
