@@ -1,7 +1,7 @@
 ﻿<template>
     <div show.bind="!IsAuthenticated" class="row">
         <div class="col-sm-12">
-            <form role="form" submit.delegate="authenticate()">
+            <form role="form" submit.delegate="login()">
                 <fieldset>
                     <legend>TeamworkPM Authenticate</legend>
                     <div class="form-group ${hasLoginError ? 'has-error has-feedback' : ''}">
@@ -27,7 +27,7 @@
                 <p>&nbsp;</p>
                 <p>Check out your TeamworkPM tasks using the navigation menu above.</p>
                 <p>&nbsp;</p>
-                <button type="button" click.delegate="logout()" class="btn btn-danger">Logout</button>
+                <button type="button" click.delegate="endAuthSession()" class="btn btn-danger">Logout</button>
             </div>
         </div>
     </div>

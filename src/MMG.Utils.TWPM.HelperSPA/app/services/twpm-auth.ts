@@ -2,14 +2,13 @@
 import {TWPMClientFactory} from "../services/twpm-client-factory";
 import {AuthState} from "../services/auth-state";
 import {AuthUserInfo} from "../models/auth-info"
-import {Account} from "../models/account";
 import {Person} from "../models/person";
 
 
 export class TWPMAuthService {
     private httpClient: HttpClient;
 
-    public login (pApiToken: string): Promise<any> {
+    public authenticate (pApiToken: string): Promise<any> {
         this.httpClient = TWPMClientFactory.createApiClient(pApiToken);
 
         return this.getAuthUserInfo()
@@ -58,7 +57,7 @@ export class TWPMAuthService {
             });
     }
 
-    logout () {
+    endAuthSession () {
         AuthState.reset();
 
         console.log("Logged out and reset AuthState!");

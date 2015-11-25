@@ -6,7 +6,7 @@ export class App {
     configureRouter (config: RouterConfiguration, router: Router) {
         config.title = "Wish Teamwork Did That...";
         config.map([
-            { route: ["", "account/login"], name: "account-login", moduleId: "account/login", nav: true, title: "Login" },
+            { route: ["", "account/login"], name: "account-authenticate", moduleId: "account/login", nav: true, title: "Login" },
             { route: "tasks/mine", name: "tasks-my", moduleId: "tasks/mylist", nav: true, title: "My Tasks" }
         ]);
 

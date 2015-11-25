@@ -37,20 +37,19 @@ export class LoginVM {
         return Promise.resolve();
     }
 
-    authenticate (): Promise<any> {
+    login (): Promise<any> {
         if (this.apiToken.trim().length === 0) {
             this.hasLoginError = true;
             return Promise.reject("Api token is required!");
         }
 
-        return this.twpmService.login(this.apiToken)
+        return this.twpmService.authenticate(this.apiToken)
             .then((pResult) => {
                 if (!pResult || pResult.Success !== true) {
                     this.hasLoginError = true;
+                    console.log(pResult.ErrorMessage, pResult);
                     //TODO: toastr - show user-friendly error
-                } /*else
-                    return this.confirmLoggedIn(pResult.UserInfo);*/
-
+                }
                 return Promise.resolve();
             }).catch(err => {
                 this.hasLoginError = true;
@@ -61,6 +60,6 @@ export class LoginVM {
     logout () {
         this.hasLoginError = false;
         this.apiToken = "";
-        this.twpmService.logout();
+        this.twpmService.endAuthSession();
     }
 }
