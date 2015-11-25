@@ -14,7 +14,7 @@ export class MyListVM {
     }
 
     activate () {
-
+        return this.loadTasks();
     }
 
     loadTasks () {
