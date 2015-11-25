@@ -1,7 +1,7 @@
 ﻿<template>
     <div show.bind="!IsAuthenticated" class="row">
         <div class="col-sm-12">
-            <form role="form" submit.delegate="authenticate()">
+            <form role="form" submit.delegate="login()">
                 <fieldset>
                     <legend>TeamworkPM Authenticate</legend>
                     <div class="form-group ${hasLoginError ? 'has-error has-feedback' : ''}">

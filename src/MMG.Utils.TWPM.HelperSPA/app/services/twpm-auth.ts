@@ -1,29 +1,32 @@
 ﻿import {HttpClient} from "aurelia-http-client";
 import {TWPMClientFactory} from "../services/twpm-client-factory";
+import {TWPMService} from "../services/twpm-svc"
 import {AuthState} from "../services/auth-state";
 import {AuthUserInfo} from "../models/auth-info"
-import {Account} from "../models/account";
 import {Person} from "../models/person";
 
 
 export class TWPMAuthService {
     private httpClient: HttpClient;
 
-    public login (pApiToken: string): Promise<any> {
-        AuthState.apiToken = pApiToken;
-        this.httpClient = TWPMClientFactory.createApiClient(AuthState.apiToken);
+    public authenticate (pApiToken: string): Promise<any> {
+        this.httpClient = TWPMClientFactory.createApiClient(pApiToken);
 
         return this.getAuthUserInfo()
-            .then(pAuthInfo => { return this.getPersonInfo(pAuthInfo); })
+            .then(pAuthInfo => {
+                AuthState.validateApiToken(pApiToken, pAuthInfo);
+                let twpmService = new TWPMService();
+                return twpmService.fetchPerson(pAuthInfo.userID);
+            })
             .then(pPersonInfo => {
-                AuthState.userInfo = <Person>pPersonInfo.valueOf();
+                AuthState.persistAuthentication(pPersonInfo as Person);
                 return {
                     Success: true,
                     UserInfo: pPersonInfo
                 };
             }).catch(err => {
                 //encapsulate auth error and provide app-friendly error
-                return { Success: false, ErrorMessage: err.message };
+                return { Success: false, ErrorMessage: err.message, Error: err };
             });
     }
 
@@ -49,14 +52,7 @@ export class TWPMAuthService {
             });
     }
 
-    private getPersonInfo (pAuthInfo: AuthUserInfo): Promise<Person> {
-        return this.httpClient.get(`people/${pAuthInfo.userID}.json`)
-            .then(pResponse => {
-                return new Person(pResponse.content.person);
-            });
-    }
-
-    logout () {
+    endAuthSession () {
         AuthState.reset();
 
         console.log("Logged out and reset AuthState!");

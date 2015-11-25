@@ -1,20 +1,29 @@
-﻿import {TWPMAuthService} from "../services/twpm-auth"
+﻿import {HttpClient} from "aurelia-http-client";
 import {TWPMClientFactory as ApiClientFactory} from "../services/twpm-client-factory";
 import {AuthState} from "../services/auth-state";
 import {Task} from "../models/task";
+import {Person} from "../models/person";
 
 export class TWPMService {
+    apiClient: HttpClient;
 
     constructor () {
-
+        this.apiClient = ApiClientFactory.createApiClient(AuthState.apiToken);
     }
 
-    fetchTasks (): Promise<Array<Task>> {
-        AuthState.ensureAuthenticated();
-        let partyID = AuthState.userInfo.personID;
+    fetchPerson (pPersonID?: number): Promise<Person> {
+        let personID = pPersonID || AuthState.userInfo.personID;
+        return this.apiClient.get(`people/${personID}.json`)
+            .then(pResponse => {
+                return new Person(pResponse.content.person);
+            });
+    }
+
+    fetchTasks (pPartyID?: number): Promise<Array<Task>> {
+
+        let partyID = pPartyID || AuthState.userInfo.personID;
         let requestURL = `tasks.json?responsible-party-ids=${partyID}&filter=today&sort=duedate`;
-        let apiClient = ApiClientFactory.createApiClient(AuthState.apiToken);
-        return apiClient.get(requestURL).then(response => {
+        return this.apiClient.get(requestURL).then(response => {
             if (!response.isSuccess)
                 throw new Error("Bad request from TeamworkPM.");
             var tasks = response.content["todo-items"].map(pItem => {
@@ -24,4 +33,6 @@ export class TWPMService {
             return tasks;
         });
     }
+
+
 }
