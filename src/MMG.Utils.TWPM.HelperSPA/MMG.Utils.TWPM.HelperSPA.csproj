@@ -115,6 +115,8 @@
     <Content Include="data\tasks.json" />
     <Content Include="styles\bt-custom-theme.css" />
     <Content Include="tsd.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="override.jshintrc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -132,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\es6-promise\es6-promise.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\binding%400.10.2\aurelia-binding.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\bootstrapper%400.18.0\aurelia-bootstrapper.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\dependency-injection%400.11.2\aurelia-dependency-injection.d.ts" />
@@ -183,7 +186,8 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>system</TypeScriptModuleKind>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
