@@ -1,5 +1,5 @@
 import {Priority} from "priority";
-import {Tag} from "../models/tag";
+import {Tag} from "app/models/tag";
 
 export class Task {
 
