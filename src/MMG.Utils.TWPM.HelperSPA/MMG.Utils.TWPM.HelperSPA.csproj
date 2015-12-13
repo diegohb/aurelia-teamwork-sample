@@ -86,6 +86,8 @@
   <ItemGroup>
     <Content Include="app\account\login.html" />
     <Content Include="app\app.html" />
+    <Content Include="diagnostics\system.tap.js" />
+    <Content Include="diagnostics\system.yuml.js" />
     <Content Include="app\people\people-all.html" />
     <Content Include="app\people\styling.css" />
     <Content Include="app\tasks\mylist.html" />
