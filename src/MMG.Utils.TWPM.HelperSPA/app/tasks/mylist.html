@@ -31,7 +31,12 @@
                             </ul>
                             <span if.bind="task.tags.length === 0">None</span>
                         </td>
-                        <td>${task.status}</td>
+                        <td>
+                            ${task.status}
+                            <div show.bind="task.hasPredecessors">
+                                BLOCKED
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
