@@ -15,29 +15,24 @@
                     </tr>
                     <tr repeat.for="task of myTasks">
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task.projectID}">${task.projectName}</a>
+                            <a target="_blank" href.one-way="task.ProjectLinkURL">${task.ProjectName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task.taskListID}">${task.taskListName}</a>
+                            <a target="_blank" href.one-way="task.TaskListLinkURL">${task.TaskListName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.ID}">${task.title}</a>
+                            <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
                         </td>
                         <td>
                             <ul if.bind="task.tags.length">
-                                <li repeat.for="tag of task.tags">
+                                <li repeat.for="tag of task.Tags">
                                     ${tag.name}
                                 </li>
                             </ul>
                             <span if.bind="task.tags.length === 0">None</span>
                         </td>
                         <td>
-                            <span show.bind="!task.hasPredecessors">
-Ready.
-</span>
-                            <span show.bind="task.hasPredecessors">
-                                Blocked by ${task.predecessors.length} tasks
-                            </span>
+                            <span>${task.Status}</span>
                         </td>
                     </tr>
                 </table>

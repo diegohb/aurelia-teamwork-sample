@@ -1,10 +1,10 @@
 ﻿import {TWPMService} from "app/services/twpm-svc";
 import {AuthState} from "app/services/auth-state";
-import {Task} from "app/models/task";
+import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
 
 export class MyListVM {
     twpmService: TWPMService;
-    myTasks: Array<Task>;
+    myTasks: Array<TaskVM>;
 
     isAuthenticated: boolean;
 
@@ -20,7 +20,7 @@ export class MyListVM {
     loadTasks () {
         AuthState.ensureAuthenticated();
         return this.twpmService.fetchTasks().then(tasks => {
-            this.myTasks = tasks;
+            this.myTasks = tasks.map(pTask => new TaskVM(pTask));
         });
     }
 
