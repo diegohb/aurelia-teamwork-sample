@@ -15,23 +15,26 @@
                     </tr>
                     <tr repeat.for="task of myTasks">
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/projects/${task['project-id']}">${task.projectName}</a>
+                            <a target="_blank" href.one-way="task.ProjectLinkURL">${task.ProjectName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasklists/${task['todo-list-id']}">${task.taskListName}</a>
+                            <a target="_blank" href.one-way="task.TaskListLinkURL">${task.TaskListName}</a>
                         </td>
                         <td>
-                            <a target="_blank" href="https://mmgct.teamwork.com/tasks/${task.id}">${task.title}</a>
+                            <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
                         </td>
                         <td>
                             <ul if.bind="task.tags.length">
-                                <li repeat.for="tag of task.tags">
+                                <li repeat.for="tag of task.Tags">
                                     ${tag.name}
                                 </li>
                             </ul>
                             <span if.bind="task.tags.length === 0">None</span>
                         </td>
-                        <td>${task.status}</td>
+                        <td>
+                            <span>${task.Status}</span>
+                            <img src.one-way="task.createURL()"class="img img-responsive"/>
+                        </td>
                     </tr>
                 </table>
             </div>
