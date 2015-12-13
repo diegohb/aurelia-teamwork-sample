@@ -32,10 +32,12 @@
                             <span if.bind="task.tags.length === 0">None</span>
                         </td>
                         <td>
-                            ${task.status}
-                            <div show.bind="task.hasPredecessors">
-                                BLOCKED
-                            </div>
+                            <span show.bind="!task.hasPredecessors">
+Ready.
+</span>
+                            <span show.bind="task.hasPredecessors">
+                                Blocked by ${task.predecessors.length} tasks
+                            </span>
                         </td>
                     </tr>
                 </table>
