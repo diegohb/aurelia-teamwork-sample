@@ -51,4 +51,11 @@ export class ListTaskItemVM {
             return "Ready.";
         }
     }
+
+    public createURL (): string {
+        var data = this._predecessors.map(p => `[${p.id}{bg:red}]` + `->[${this._taskID}{bg:blue}]`);
+        /*var blockingTasks = taskNames.join("->");
+        var combined = blockingTasks + ;*/
+        return `http://yuml.me/diagram/scruffy/class/${data}`;
+    }
 }
