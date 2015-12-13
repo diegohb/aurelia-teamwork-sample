@@ -1,6 +1,6 @@
-﻿import {TWPMService} from "../services/twpm-svc";
-import {AuthState} from "../services/auth-state";
-import {Task} from "../models/task";
+﻿import {TWPMService} from "app/services/twpm-svc";
+import {AuthState} from "app/services/auth-state";
+import {Task} from "app/models/task";
 
 export class MyListVM {
     twpmService: TWPMService;

@@ -1,6 +1,6 @@
-﻿import {TWPMAuthService } from "../services/twpm-auth";
-import {AuthState} from "../services/auth-state"
-import {Person} from "../models/person";
+﻿import {TWPMAuthService } from "app/services/twpm-auth";
+import {AuthState} from "app/services/auth-state"
+import {Person} from "app/models/person";
 
 export class LoginVM {
     apiToken: string;

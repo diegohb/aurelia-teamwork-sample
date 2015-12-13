@@ -1,8 +1,8 @@
 ﻿import {HttpClient} from "aurelia-http-client";
-import {TWPMClientFactory as ApiClientFactory} from "../services/twpm-client-factory";
-import {AuthState} from "../services/auth-state";
-import {Task} from "../models/task";
-import {Person} from "../models/person";
+import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
+import {AuthState} from "app/services/auth-state";
+import {Task} from "app/models/task";
+import {Person} from "app/models/person";
 
 export class TWPMService {
     apiClient: HttpClient;

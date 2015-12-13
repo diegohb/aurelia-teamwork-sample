@@ -1,5 +1,5 @@
-﻿import {TWPMService} from "../services/twpm-svc";
-import {Person} from "../models/person"
+﻿import {TWPMService} from "app/services/twpm-svc";
+import {Person} from "app/models/person"
 
 export class PeopleVM {
     twpmService: TWPMService;

@@ -1,5 +1,5 @@
-﻿import {Person} from "../models/person";
-import {AuthUserInfo} from "../models/auth-info";
+﻿import {Person} from "app/models/person";
+import {AuthUserInfo} from "app/models/auth-info";
 
 export module AuthState {
 
