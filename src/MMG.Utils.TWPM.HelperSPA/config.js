@@ -11,7 +11,6 @@ System.config({
         ]
     },
     paths: {
-        "*": "/app/*",
         "github:*": "jspm_packages/github/*",
         "npm:*": "jspm_packages/npm/*"
     },

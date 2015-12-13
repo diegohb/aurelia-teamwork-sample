@@ -19,5 +19,5 @@ export function configure (aurelia) {
         .eventAggregator();
     /*.plugin("custom-plugin");*/
 
-    aurelia.start().then(app => app.setRoot("app"));
+    aurelia.start().then(app => app.setRoot("app/app"));
 }
