@@ -1,4 +1,4 @@
-﻿import {HttpClient} from "aurelia-http-client";
+﻿import {HttpClient} from "aurelia-fetch-client";
 import {TWPMClientFactory} from "app/services/twpm-client-factory";
 import {TWPMService} from "app/services/twpm-svc"
 import {AuthState} from "app/services/auth-state";
@@ -31,12 +31,12 @@ export class TWPMAuthService {
     }
 
     private getAuthUserInfo (): Promise<AuthUserInfo> {
-        return this.httpClient.get("authenticate.json")
+        return this.httpClient.fetch("authenticate.json")
             .then(pResponse => {
-                if (!pResponse.isSuccess)
+                if (!pResponse.ok)
                     throw new Error("Bad request to TeamworkPM.");
-
-                return new AuthUserInfo(pResponse.content.account);
+                let promiseData: any = pResponse.json();
+                return promiseData.then(pData => { return new AuthUserInfo(pData.account) });
 
             }).catch(err => {
                 let translatedError: any;

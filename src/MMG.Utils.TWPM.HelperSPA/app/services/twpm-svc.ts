@@ -1,4 +1,5 @@
-﻿import {HttpClient} from "aurelia-http-client";
+﻿import {HttpClient} from "aurelia-fetch-client";
+import "fetch";
 import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
 import {AuthState} from "app/services/auth-state";
 import {Task} from "app/models/task";
@@ -13,16 +14,16 @@ export class TWPMService {
 
     fetchPerson (pPersonID?: number): Promise<Person> {
         let personID = pPersonID || AuthState.userInfo.personID;
-        return this.apiClient.get(`people/${personID}.json`)
-            .then(pResponse => {
-                return new Person(pResponse.content.person);
+        return this.apiClient.fetch(`people/${personID}.json`)
+            .then(this.getJson).then(pData => {
+                return new Person(pData.person);
             });
     }
 
     fetchPeople (): Promise<Array<Person>> {
-        return this.apiClient.get(`people.json`)
-            .then(pResponse => {
-                var materializedPeople = pResponse.content.people.map(pPersonRaw => new Person(pPersonRaw));
+        return this.apiClient.fetch("people.json")
+            .then(this.getJson).then((pData: any) => {
+                let materializedPeople: Array<Person> = pData.people.map(pPersonRaw => new Person(pPersonRaw));
                 return materializedPeople;
             });
     }
@@ -31,15 +32,20 @@ export class TWPMService {
 
         let partyID = pPartyID || AuthState.userInfo.personID;
         let requestURL = `tasks.json?responsible-party-ids=${partyID}&filter=today&sort=duedate`;
-        return this.apiClient.get(requestURL).then(response => {
-            if (!response.isSuccess)
-                throw new Error("Bad request from TeamworkPM.");
-            var tasks = response.content["todo-items"].map(pItem => {
-                return new Task(pItem);
-            });
+        return this.apiClient.fetch(requestURL)
+            .then(response => {
+                if (!response.ok)
+                    throw new Error("Bad request from TeamworkPM.");
 
-            return tasks;
-        });
+                return this.getJson(response).then((pData: any) => {
+                    let items: Array<any> = pData["todo-items"];
+                    return items.map(pItem => new Task(pItem));
+                });
+            });
+    }
+
+    private getJson (pResponse: Response): any {
+        return pResponse.json();
     }
 
 
