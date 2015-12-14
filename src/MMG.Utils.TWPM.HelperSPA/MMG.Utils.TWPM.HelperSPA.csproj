@@ -89,6 +89,8 @@
     <Content Include="app\people\people-all.html" />
     <Content Include="app\people\styling.css" />
     <Content Include="app\projects\project-list.html" />
+    <TypeScriptCompile Include="app\models\company.ts" />
+    <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\projects\project-list.ts" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
