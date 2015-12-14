@@ -31,6 +31,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.34",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "core-js": "npm:core-js@1.2.6",
+    "fetch": "github:github/fetch@0.10.1",
     "gulp": "npm:gulp@3.9.0",
     "jquery": "github:components/jquery@2.1.4",
     "text": "github:systemjs/plugin-text@0.0.3",

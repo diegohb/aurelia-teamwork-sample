@@ -1,4 +1,5 @@
 ﻿import {HttpClient} from "aurelia-fetch-client";
+import "fetch";
 
 export module TWPMClientFactory {
     "use strict";

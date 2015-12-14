@@ -1,4 +1,5 @@
 ﻿import {HttpClient} from "aurelia-fetch-client";
+import "fetch";
 import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
 import {AuthState} from "app/services/auth-state";
 import {Task} from "app/models/task";
