@@ -137,10 +137,10 @@
     <TypeScriptCompile Include="typings\aurelia\bootstrapper%400.18.0\aurelia-bootstrapper.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\dependency-injection%400.11.2\aurelia-dependency-injection.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\event-aggregator%400.9.0\aurelia-event-aggregator.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\fetch-client%401.0.0-beta.1.0.1\aurelia-fetch-client.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\framework%400.17.0\aurelia-framework.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\history%400.8.0\aurelia-history.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\history-browser%400.9.0\aurelia-history-browser.d.ts" />
-    <TypeScriptCompile Include="typings\aurelia\http-client%400.12.0\aurelia-http-client.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\loader%400.10.0\aurelia-loader.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\loader-default%400.11.2\aurelia-loader-default.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\logging%400.8.0\aurelia-logging.d.ts" />
