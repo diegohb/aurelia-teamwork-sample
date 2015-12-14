@@ -1,9 +1,9 @@
-﻿import {HttpClient} from "aurelia-http-client";
+﻿import {HttpClient} from "aurelia-fetch-client";
 
 export module TWPMClientFactory {
     "use strict";
 
-    export let baseURL: string = "https://mmgct.teamwork.com";
+    export let baseURL: string = "https://mmgct.teamwork.com/";
 
     export function createApiClient (pApiToken: string): HttpClient {
         let apiClient: HttpClient = new HttpClient();
@@ -12,8 +12,13 @@ export module TWPMClientFactory {
 
         return apiClient.configure(config => {
             config.withBaseUrl(baseURL);
-            config.withHeader("Accept", "application/json");
-            config.withHeader("Authorization", "BASIC " + base64Auth);
+            config.withDefaults({
+                headers: {
+                    "Accept": "application/json",
+                    "Authorization": "BASIC " + base64Auth
+                }
+            });
+
         });
     }
 }
