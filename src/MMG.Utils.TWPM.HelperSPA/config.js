@@ -16,7 +16,7 @@ System.config({
   },
 
   map: {
-    "app": "/app/",
+    "app": "/app",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.1",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.3",
@@ -32,6 +32,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "core-js": "npm:core-js@1.2.6",
     "fetch": "github:github/fetch@0.10.1",
+    "font-awesome": "npm:font-awesome@4.5.0",
     "gulp": "npm:gulp@3.9.0",
     "jquery": "github:components/jquery@2.1.4",
     "text": "github:systemjs/plugin-text@0.0.3",
@@ -446,6 +447,9 @@ System.config({
     "npm:flagged-respawn@0.3.1": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:font-awesome@4.5.0": {
+      "css": "github:systemjs/plugin-css@0.1.20"
     },
     "npm:gaze@0.5.2": {
       "events": "github:jspm/nodelibs-events@0.1.1",
