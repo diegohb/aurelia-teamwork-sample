@@ -2,6 +2,7 @@
 import "fetch";
 import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
 import {AuthState} from "app/services/auth-state";
+import {Project} from "app/models/project";
 import {Task} from "app/models/task";
 import {Person} from "app/models/person";
 
@@ -25,6 +26,13 @@ export class TWPMService {
             .then(this.getJson).then((pData: any) => {
                 let materializedPeople: Array<Person> = pData.people.map(pPersonRaw => new Person(pPersonRaw));
                 return materializedPeople;
+            });
+    }
+
+    fetchAllProjects (): Promise<Array<Project>> {
+        return this.apiClient.fetch("projects.json").then(this.getJson)
+            .then(pData => {
+                return pData.projects.map(pItem => new Project(pItem));
             });
     }
 
