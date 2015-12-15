@@ -13,6 +13,7 @@
       "aurelia-templating-router": "npm:aurelia-templating-router@^1.0.0-beta.1.0.1",
       "bootstrap": "github:twbs/bootstrap@^3.3.6",
       "fetch": "github:github/fetch@^0.10.1",
+      "font-awesome": "npm:font-awesome@^4.5.0",
       "text": "github:systemjs/plugin-text@^0.0.3"
     },
     "devDependencies": {
@@ -23,8 +24,14 @@
   },
   "devDependencies": {
     "jspm": "^0.16.15",
-    "aurelia-bundler": "^0.1.8",
-    "aurelia-tools": "^0.1.3",
+    "aurelia-bundler": "^0.1.9",
     "gulp": "^3.9.0"
+  },
+  "scripts": {
+    "prepare-prod": "npm run bundle-core & npm run bundle-aurelia & npm run bundle-app",
+    "bundle-core": "jspm bundle babel + fetch + text dist/core.bundle.js --inject --minify",
+    "bundle-aurelia": "jspm bundle aurelia-bootstrapper + aurelia-framework + aurelia-router + aurelia-fetch-client + aurelia-loader-default + aurelia-history-browser + aurelia-templating-router + aurelia-logging-console + aurelia-templating-binding + aurelia-templating-resources dist/libs.bundle.js --inject --minify",
+    "bundle-app": "jspm bundle bootstrap + [app/**/*] - [core-js] dist/app.bundle.js --inject --minify",
+    "prepare-dev": "jspm unbundle"
   }
 }

@@ -3,7 +3,7 @@ import {AuthState} from "app/services/auth-state"
 import {Person} from "app/models/person";
 
 export class LoginVM {
-    apiToken: string;
+    apiToken: string = "";
     twpmService: TWPMAuthService;
     hasLoginError: boolean;
 
