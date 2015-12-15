@@ -28,7 +28,10 @@
     "gulp": "^3.9.0"
   },
   "scripts": {
-    "prepare-prod": "jspm bundle aurelia-bootstrapper + aurelia-framework + aurelia-router + aurelia-fetch-client + aurelia-loader-default + aurelia-history-browser + aurelia-templating-router + aurelia-logging-console + aurelia-templating-binding + aurelia-templating-resources dist/libs.bundle.js --inject --minify",
+    "prepare-prod": "npm run bundle-core & npm run bundle-aurelia & npm run bundle-app",
+    "bundle-core": "jspm bundle babel + fetch + text dist/core.bundle.js --inject --minify",
+    "bundle-aurelia": "jspm bundle aurelia-bootstrapper + aurelia-framework + aurelia-router + aurelia-fetch-client + aurelia-loader-default + aurelia-history-browser + aurelia-templating-router + aurelia-logging-console + aurelia-templating-binding + aurelia-templating-resources dist/libs.bundle.js --inject --minify",
+    "bundle-app": "jspm bundle bootstrap + [app/**/*] - [core-js] dist/app.bundle.js --inject --minify",
     "prepare-dev": "jspm unbundle"
   }
 }
