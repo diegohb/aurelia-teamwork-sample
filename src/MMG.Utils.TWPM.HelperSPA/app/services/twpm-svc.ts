@@ -52,6 +52,15 @@ export class TWPMService {
             });
     }
 
+    fetchTasksByProject (pProjectID: number): Promise<Array<Task>> {
+        let requestURL = `projects/${pProjectID}/tasks.json`;
+        return this.apiClient.fetch(requestURL).then(this.getJson)
+            .then(pData => {
+                let rawTasks: Array<any> = pData["todo-items"];
+                return rawTasks.map(pItem => new Task(pItem));
+            });
+    }
+
     private getJson (pResponse: Response): any {
         return pResponse.json();
     }
