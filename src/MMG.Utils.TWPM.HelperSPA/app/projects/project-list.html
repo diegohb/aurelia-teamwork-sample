@@ -25,7 +25,9 @@
                     <td>${prj.name}</td>
                     <td>${prj.dateCreated}</td>
                     <td>${prj.endDate}</td>
-                    <td>Tasks</td>
+                    <td>
+                        <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

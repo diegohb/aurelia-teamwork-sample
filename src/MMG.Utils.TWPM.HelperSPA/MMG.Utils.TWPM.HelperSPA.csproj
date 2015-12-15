@@ -108,6 +108,8 @@
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="app\nav-bar.html" />
     <TypeScriptCompile Include="app\tasks\viewmodels\list-task-vm.ts" />
+    <Content Include="app\tasks\project-tasks.html" />
+    <TypeScriptCompile Include="app\tasks\project-tasks.ts" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
