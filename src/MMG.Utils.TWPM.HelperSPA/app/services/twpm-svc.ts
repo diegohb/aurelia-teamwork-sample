@@ -66,7 +66,7 @@ export class TWPMService {
     }
 
     async fetchTasksByProject (pProjectID: number): Promise<Array<Task>> {
-        let requestURL = `projects/${pProjectID}/tasks.json`;
+        let requestURL = `projects/${pProjectID}/tasks.json?includeCompletedTasks=true`;
         return await this.apiClient.fetch(requestURL).then(this.getJson)
             .then(pData => {
                 let rawTasks: Array<any> = pData["todo-items"];
