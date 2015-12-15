@@ -36,6 +36,14 @@ export class TWPMService {
             });
     }
 
+    fetchProjectByID (pProjectID: number): Promise<Project> {
+        let requestURL = `projects/${pProjectID}.json`;
+        return this.apiClient.fetch(requestURL).then(this.getJson)
+            .then(pData => {
+                return new Project(pData.project);
+            });
+    }
+
     fetchTasks (pPartyID?: number): Promise<Array<Task>> {
 
         let partyID = pPartyID || AuthState.userInfo.personID;
