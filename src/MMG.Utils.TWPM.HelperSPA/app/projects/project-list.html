@@ -1,3 +1,34 @@
 ﻿<template>
-    <h1>All Projects</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>All Projects</h1>
+            <table class="table table-striped table-hover table-bordered">
+                <caption>
+                    <button click.trigger="loadProjects()" type="button" class="btn btn-primary">Refresh</button>
+                </caption>
+                <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Company</th>
+                    <th>Name</th>
+                    <th>Date Created</th>
+                    <th>End Date</th>
+                    <th>Tasks</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr repeat.for="prj of projects">
+                    <td>${prj.projectID}</td>
+                    <td>
+                        <a href="https://mmgct.teamwork.com/companies/${prj.company.companyID}" target="_blank">${prj.company.name}</a>
+                    </td>
+                    <td>${prj.name}</td>
+                    <td>${prj.dateCreated}</td>
+                    <td>${prj.endDate}</td>
+                    <td>Tasks</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>

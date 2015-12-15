@@ -1,7 +1,7 @@
-﻿import {Company} from "company";
+﻿import {Company} from "./company";
 
 export class Project {
-    ID: number;
+    projectID: number;
     name: string;
     lastModified: any;
     dateCreated: any;
@@ -9,8 +9,8 @@ export class Project {
     company: Company;
 
     constructor (pData: any) {
-        this.ID = pData.ID;
-        this.name = name;
+        this.projectID = pData.id;
+        this.name = pData.name;
         this.lastModified = pData["last-changed-on"];
         this.dateCreated = pData["created-on"];
         this.endDate = pData.endDate;

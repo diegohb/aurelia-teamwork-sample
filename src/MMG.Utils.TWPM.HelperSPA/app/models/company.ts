@@ -1,9 +1,9 @@
 ﻿export class Company {
-    ID: number;
+    companyID: number;
     name: string;
 
     constructor (pData: any) {
-        this.ID = pData.id;
+        this.companyID = pData.id;
         this.name = pData.name;
     }
 }
