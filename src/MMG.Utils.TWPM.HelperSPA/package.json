@@ -25,5 +25,9 @@
     "jspm": "^0.16.15",
     "aurelia-bundler": "^0.1.9",
     "gulp": "^3.9.0"
+  },
+  "scripts": {
+    "prepare-prod": "jspm bundle aurelia-bootstrapper + aurelia-framework + aurelia-router + aurelia-fetch-client + aurelia-loader-default + aurelia-history-browser + aurelia-templating-router + aurelia-logging-console + aurelia-templating-binding + aurelia-templating-resources dist/libs.bundle.js --inject --minify",
+    "prepare-dev": "jspm unbundle"
   }
 }
