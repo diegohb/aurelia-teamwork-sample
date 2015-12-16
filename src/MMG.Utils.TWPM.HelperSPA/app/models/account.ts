@@ -1,5 +1,4 @@
 ﻿export class Account {
-
     requireHttps: boolean;
     timeTrackingEnabled: boolean;
     name: string;
@@ -10,30 +9,41 @@
     cacheUUID: string;
     accountHolderID: number;
     logo: string;
-    UserID: number;
-    URL: string;
+    userID: number;
+    accountURL: string;
     emailNotificationEnabled: boolean;
-    companyID: string;
+    companyID: number;
     lang: string;
     code: string;
 
-    constructor (data: any) {
-        this.requireHttps = data["requirehttps"];
-        this.timeTrackingEnabled = data["time-tracking-enabled"];
-        this.name = data["name"];
-        this.dateSignedUp = data["datesignedup"];
-        this.companyname = data["companyname"];
-        this.sslEnabled = data["ssl-enabled"];
-        this.createdAt = data["created-at"];
-        this.cacheUUID = data["cacheUUID"];
-        this.accountHolderID = data["account-holder-id"];
-        this.logo = data["logo"];
-        this.UserID = data["userId"];
-        this.URL = data["URL"];
-        this.emailNotificationEnabled = data["email-notification-enabled"];
-        this.companyID = data["companyid"];
-        this.lang = data["lang"];
-        this.code = data["code"];
+    constructor () {
+
+    }
+
+    get endpointURI (): string {
+        return "account.json";
+    }
+
+    static parse (pRawData: any): Account {
+        let data = pRawData.account || pRawData;
+        let obj = new Account();
+        obj.requireHttps = data["requirehttps"] === true;
+        obj.timeTrackingEnabled = data["time-tracking-enabled"] === true;
+        obj.name = data["name"];
+        obj.dateSignedUp = data["datesignedup"]; //TODO: moment
+        obj.companyname = data["companyname"];
+        obj.sslEnabled = data["ssl-enabled"] === true;
+        obj.createdAt = data["created-at"]; //TODO: moment
+        obj.cacheUUID = data["cacheUUID"];
+        obj.accountHolderID = parseInt(data["account-holder-id"]);
+        obj.logo = data["logo"];
+        obj.userID = parseInt(data["id"]);
+        obj.accountURL = data["URL"];
+        obj.emailNotificationEnabled = data["email-notification-enabled"] === true;
+        obj.companyID = parseInt(data["companyid"]);
+        obj.lang = data["lang"];
+        obj.code = data["code"];
+        return obj;
     }
 
     /*
@@ -57,4 +67,6 @@
   }
      * 
      */
+
+
 }
