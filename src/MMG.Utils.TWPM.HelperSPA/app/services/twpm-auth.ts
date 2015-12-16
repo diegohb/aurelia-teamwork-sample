@@ -36,7 +36,7 @@ export class TWPMAuthService {
                 if (!pResponse.ok)
                     throw new Error("Bad request to TeamworkPM.");
                 let promiseData: any = pResponse.json();
-                return promiseData.then(pData => { return new AuthUserInfo(pData.account) });
+                return promiseData.then(pData => { return AuthUserInfo.parse(pData.account); });
 
             }).catch(err => {
                 let translatedError: any;

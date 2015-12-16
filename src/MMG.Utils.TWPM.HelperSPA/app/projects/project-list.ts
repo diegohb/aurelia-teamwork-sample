@@ -15,11 +15,12 @@ export class ProjectListVM {
     get projects (): Array<Project> { return this._projects; }
 
     activate (): Promise<any> {
-        AuthState.ensureAuthenticated();
         return this.loadProjects();
     }
 
     loadProjects (): Promise<void> {
+        AuthState.ensureAuthenticated();
+
         return this._twpmService.fetchAllProjects().then(pProjects => {
             this._projects = pProjects;
         });

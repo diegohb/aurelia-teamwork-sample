@@ -5,49 +5,86 @@
     email: string;
     avatarUrl: string;
     title: string;
+    companyID: number;
+    isAdmin: boolean;
+    lastLogin: any;
 
-    constructor (data: any) {
-        this.personID = data["id"];
-        this.firstName = data["first-name"];
-        this.lastName = data["last-name"];
-        this.email = data["email-address"];
-        this.title = data["title"];
-        this.avatarUrl = data["avatar-url"];
+    constructor () {
+
     }
 
+    get endpointURI (): string {
+        return `people/${this.personID}.json`;
+    }
 
+    static parse (pRawData: any): Person {
+        let data = pRawData.person || pRawData;
+        let obj = new Person();
+        obj.personID = parseInt(data["id"]);
+        obj.firstName = data["first-name"];
+        obj.lastName = data["last-name"];
+        obj.email = data["email-address"];
+        obj.title = data["title"];
+        obj.avatarUrl = data["avatar-url"];
+        obj.companyID = parseInt(data["company-id"]);
+        obj.isAdmin = data.administrator === true;
+        obj.lastLogin = data["last-login"]; //TODO: moment
+        return obj;
+    }
 }
 
 /*
-  * {
-        "id": "999", // integer
-        "user-type": "account", // 'acccount' or 'contact' default:'account'
-        "first-name": "Demo",
-        "last-name": "User",
-        "title": "",
-        "email-address": "me@demo1company.com",
-        "im-handle": "",
-        "im-service": "",
-        "notes": "",
-        "phone-number-office": "",
-        "phone-number-office-ext": "",
-        "phone-number-mobile": "",
+ * {
+    "person": {
+        "administrator": true,
+        "pid": "",
+        "site-owner": false,
+        "twitter": "",
         "phone-number-home": "",
-        "phone-number-fax": "",     
-        "last-login": "2014-04-01T11:32:12Z", // datetime
-        "company-id": "999", // integer
+        "last-name": "User",
+        "email-address": "d@demo1company.com",
+        "profile": "",
+        "userUUID": "",
+        "private-notes": "",
+        "user-name": "demo",
+        "id": "999",
         "company-name": "Demo 1 Company",
-        "in-owner-company": "1", // boolean
-        "created-at": "2013-10-21T18:01:39Z", // datetime
-        "last-changed-on": "2014-03-31T10:23:46Z", // datetime
-        "avatar-url": "https://s3.amazonaws.com/TWFiles/2/users/999.avatar",
-        "user-name": "test",
-        "deleted": false, // boolean
-        "has-access-to-new-projects": false, // boolean
-        "administrator": true, // boolean
+        "last-changed-on": "2014-04-01T11:13:12Z",
+        "phone-number-office": "",
+        "deleted": false,
+        "notes": "",
+        "phone-number-mobile": "",
+        "first-name": "Demo",
+        "user-type": "account",
         "permissions": {
-            "can-manage-people": true, // boolean
-            "can-add-projects": true // boolean
-        }
-    }
-  */
+            "can-manage-people": true,
+            "can-add-projects": true
+        },
+        "im-service": "",
+        "address": {
+            "zipcode": "",
+            "countrycode": "",
+            "state": "",
+            "line1": "",
+            "country": "",
+            "line2": "",
+            "city": ""
+        },
+        "im-handle": "",
+        "created-at": "2013-10-21T18:01:39Z",
+        "phone-number-office-ext": "",
+        "company-id": "999",
+        "has-access-to-new-projects": false,
+        "phone-number-fax": "",
+        "avatar-url": "http://demo1company.teamwork.com/images/avatar.jpg",
+        "in-owner-company": "1",
+        "last-login": "2014-04-01T11:32:12Z",
+        "email-alt-1": "",
+        "email-alt-2": "",
+        "email-alt-3": "",
+        "companyId": "999",
+        "title": ""
+    },
+    "STATUS": "OK"
+}
+ */

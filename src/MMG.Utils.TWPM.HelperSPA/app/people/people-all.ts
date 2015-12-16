@@ -1,9 +1,10 @@
-﻿import {TWPMService} from "app/services/twpm-svc";
-import {Person} from "app/models/person"
+﻿import {Person} from "app/models/person"
+import {TWPMService} from "app/services/twpm-svc";
+import {AuthState} from "app/services/auth-state";
 
 export class PeopleVM {
-    twpmService: TWPMService;
-    people: Array<PersonVM> = [];
+    private twpmService: TWPMService;
+    private people: Array<PersonVM> = [];
 
     constructor () {
         this.twpmService = new TWPMService();
@@ -18,6 +19,8 @@ export class PeopleVM {
     }
 
     loadPeople (): Promise<void> {
+        AuthState.ensureAuthenticated();
+
         return this.twpmService.fetchPeople().then(pPeople => {
             this.people = pPeople.map(pBasePerson => new PersonVM(pBasePerson, "https://mmgct.teamwork.com/people"));
         });
