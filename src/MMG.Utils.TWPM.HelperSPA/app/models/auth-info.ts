@@ -2,24 +2,35 @@
 export class AuthUserInfo {
     installURL: string;
     userID: number;
-    ID: number;
+    accountID: number;
     dateFormat: string;
     companyName: string;
     companyID: number;
 
-    constructor (data: any) {
-        this.installURL = data["URL"];
-        this.companyID = data["companyid"];
-        this.companyName = data["companyname"];
-        this.dateFormat = data["dateFormat"];
-        this.ID = data["id"];
-        this.userID = data["userId"];
+    constructor () {
+
+    }
+
+    get endpointURI (): string {
+        return "authenticate.json";
+    }
+
+    static parse (pRawData: any): AuthUserInfo {
+        let data = pRawData.account || pRawData;
+        let obj = new AuthUserInfo();
+        obj.installURL = data["URL"];
+        obj.companyID = parseInt(data["companyid"]);
+        obj.companyName = data["companyname"];
+        obj.dateFormat = data["dateFormat"];
+        obj.accountID = parseInt(data["id"]);
+        obj.userID = parseInt(data["userId"]);
+        return obj;
     }
 
     /*
      * 
      * STATUS: "OK"
-account: {userIsMemberOfOwnerCompany: true, tagsLockedToAdmins: true, firstname: "Diego", dateSeperator: "/",…}
+account: {
 URL: "https://mmgct.teamwork.com/"
 avatar-url: "https://tw-webserver1.teamworkpm.net/sites/mmgct/images/users/c07e4e246a3b4817706b440f8882dd84%2Ejpg"
 canManagePeople: "1"
@@ -49,6 +60,7 @@ timeFormat: "h:mmtt"
 userId: "22762"
 userIsAdmin: true
 userIsMemberOfOwnerCompany: true
+}
      */
 
 }
