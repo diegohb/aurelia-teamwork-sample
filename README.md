@@ -39,8 +39,8 @@ switch to task001 and look at the commit history to review changes and comments.
 ## roadmap
 1. Add JavaScript testing - unit and specs using Wallaby 
 - Implement BreezeJS for data management and querying. Possibly leverage local storage to "cache" TWPM 
-projects->tasklists->tasks object graphs for a given project.
-
+projects->tasklists->tasks object graphs for a given project. (Reference [Northwind aurelia-breeze](https://github.com/jdanyow/aurelia-breeze-northwind) example)
+- aurelia-validation implementation (Reference [github repo](https://github.com/aurelia/validation))
 
 
 ## current problems
