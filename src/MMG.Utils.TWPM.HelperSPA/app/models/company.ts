@@ -13,7 +13,7 @@
     static parse (pRawData: any): Company {
         let data = pRawData.company || pRawData;
         let obj = new Company();
-        obj.companyID = data.id;
+        obj.companyID = parseInt(data.id);
         obj.name = data.name;
         return obj;
     }

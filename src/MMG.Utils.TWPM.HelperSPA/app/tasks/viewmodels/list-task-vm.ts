@@ -18,7 +18,7 @@ export class ListTaskItemVM {
         this._projectName = pTask.projectName;
         this._taskListID = pTask.taskListID;
         this._taskListName = pTask.taskListName;
-        this._taskID = pTask.ID;
+        this._taskID = pTask.taskID;
         this._taskName = pTask.title;
         this._predecessors = pTask.predecessors || [];
         this._tags = pTask.tags;

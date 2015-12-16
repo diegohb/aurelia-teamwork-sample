@@ -17,14 +17,14 @@ export class TWPMService {
         let personID = pPersonID || AuthState.userInfo.personID;
         return this.apiClient.fetch(`people/${personID}.json`)
             .then(this.getJson).then(pData => {
-                return new Person(pData.person);
+                return Person.parse(pData);
             });
     }
 
     async fetchPeople (): Promise<Array<Person>> {
         return this.apiClient.fetch("people.json")
             .then(this.getJson).then((pData: any) => {
-                let materializedPeople: Array<Person> = pData.people.map(pPersonRaw => new Person(pPersonRaw));
+                let materializedPeople: Array<Person> = pData.people.map(pPersonRaw => Person.parse(pPersonRaw));
                 return materializedPeople;
             });
     }
@@ -37,7 +37,7 @@ export class TWPMService {
                 return Promise.reject(pResponse.error());
             })
             .then(pData => {
-                return pData.projects.map(pItem => new Project(pItem));
+                return pData.projects.map(pItem => Project.parse(pItem));
             });
     }
 
@@ -45,7 +45,7 @@ export class TWPMService {
         let requestURL = `projects/${pProjectID}.json`;
         return await this.apiClient.fetch(requestURL).then(this.getJson)
             .then(pData => {
-                return new Project(pData.project);
+                return Project.parse(pData.project);
             });
     }
 
