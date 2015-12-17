@@ -26,15 +26,22 @@ switch to task001 and look at the commit history to review changes and comments.
 ## tools
 - Plastic SCM for source control (sync to this github repo)
 - Visual Studio 2013 Pro/Ultimate
+	- Microsoft ASP.NET and Web Tools v12.5.60612.0
+	- Resharper Ultimate v10.1
+	- Web Essentials 2013.5 (v2.6.36)
+	- [Node.js Tools 1.1 for VS2013](https://visualstudiogallery.msdn.microsoft.com/b0da18c5-24da-4fe2-9fe4-8c5525971f48)
+	- [Grunt Launcher](https://visualstudiogallery.msdn.microsoft.com/dcbc5325-79ef-4b72-960e-0a51ee33a0ff)
+	- [Package Intellisense](https://visualstudiogallery.msdn.microsoft.com/65748cdb-4087-497e-a394-2e3449c8e61e)
 - Typescript 1.7.x
-- NodeJS 2.14.7
+- NodeJS 4.2.3
+- NPM 2.14.7
 
-## how to run code
+## how to setup environment and run code
 1. Install [NodeJS v4.2.x](https://nodejs.org/en/) and verify by opening command prompt and running `node -v`
 - Install JSPM npm package globally by running `npm install jspm -g` 
 - Configure [github API credentials](http://stackoverflow.com/a/30995041/1240322) to avoid rate-limiting 
 errors, run `jspm registry config github` -> yes -> github username & paste in token.
-- Install [git client](http://git-scm.com/download/win) (if not already installed)
+- Install [git client](http://git-scm.com/download/win) (if not already installed) and ensure you select "Use Git from the windows command prompt", all other defaults are fine.
 - git clone this repository
 - `cd` into the project directory (~\src\MMG.Utils.TWPM.HelperSPA\) and run `npm install` and `jspm install` to install all dependencies locally.
 - Run the website in Visual Studio and browse to http://localhost:6187/
