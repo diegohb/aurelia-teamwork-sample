@@ -34,6 +34,7 @@ switch to task001 and look at the commit history to review changes and comments.
 - Install JSPM npm package globally by running `npm install jspm -g` 
 - Configure [github API credentials](http://stackoverflow.com/a/30995041/1240322) to avoid rate-limiting 
 errors, run `jspm registry config github` -> yes -> github username & paste in token.
+- Install [git client](http://git-scm.com/download/win) (if not already installed)
 - git clone this repository
 - `cd` into the project directory (~\src\MMG.Utils.TWPM.HelperSPA\) and run `npm install` and `jspm install` to install all dependencies locally.
 - Run the website in Visual Studio and browse to http://localhost:6187/
