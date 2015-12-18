@@ -23,7 +23,7 @@
     }
   },
   "devDependencies": {
-    "jspm": "^0.16.15",
+    "jspm": "~0.16.19",
     "aurelia-bundler": "^0.1.9",
     "gulp": "^3.9.0"
   },
