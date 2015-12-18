@@ -1,5 +1,6 @@
 ﻿import {Person} from "app/models/person";
 import {AuthUserInfo} from "app/models/auth-info";
+import {TWPMClientFactory} from "app/services/twpm-client-factory";
 
 export module AuthState {
 
@@ -18,6 +19,7 @@ export module AuthState {
 
         apiToken = pApiToken;
         authenticatedUser = pAuthUser;
+        TWPMClientFactory.baseURL = pAuthUser.installURL;
     }
 
     export function persistAuthentication (pPersonInfo: Person): void {
@@ -40,6 +42,7 @@ export module AuthState {
 
         apiToken = "";
         userInfo = null;
+        TWPMClientFactory.baseURL = "";
     }
 
     function isApiTokenValid (pApiToken: string): boolean {

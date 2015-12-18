@@ -4,7 +4,7 @@ import "fetch";
 export module TWPMClientFactory {
     "use strict";
 
-    export let baseURL: string = "https://mmgct.teamwork.com/";
+    export let baseURL: string = "";
 
     export function createApiClient (pApiToken: string): HttpClient {
         let apiClient: HttpClient = new HttpClient();
@@ -12,7 +12,10 @@ export module TWPMClientFactory {
         let base64Auth = btoa(authKey);
 
         return apiClient.configure(config => {
-            config.withBaseUrl(baseURL);
+
+            if (baseURL)
+                config.withBaseUrl(baseURL);
+
             config.withDefaults({
                 headers: {
                     "Accept": "application/json",

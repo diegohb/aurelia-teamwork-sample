@@ -31,7 +31,7 @@ export class TWPMAuthService {
     }
 
     private getAuthUserInfo (): Promise<AuthUserInfo> {
-        return this.httpClient.fetch("authenticate.json")
+        return this.httpClient.fetch("https://authenticate.teamwork.com/authenticate.json")
             .then(pResponse => {
                 if (!pResponse.ok)
                     throw new Error("Bad request to TeamworkPM.");
