@@ -16,7 +16,9 @@ export module AuthState {
     export function validateApiToken (pApiToken: string, pAuthUser: AuthUserInfo): void {
         if (!isApiTokenValid(pApiToken))
             throw new Error("Api token cannot be empty!");
-
+        if (!pAuthUser || !pAuthUser.installURL)
+            throw new Error("A valid AuthUserInfo object with a valid installURL must be provided!");
+        
         apiToken = pApiToken;
         authenticatedUser = pAuthUser;
         TWPMClientFactory.baseURL = pAuthUser.installURL;
