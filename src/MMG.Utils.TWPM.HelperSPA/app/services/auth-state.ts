@@ -44,7 +44,12 @@ export module AuthState {
 
         apiToken = "";
         userInfo = null;
+        authenticatedUser = null;
         TWPMClientFactory.baseURL = "";
+    }
+
+    export function getInstallUrl () {
+        return authenticatedUser.installURL;
     }
 
     function isApiTokenValid (pApiToken: string): boolean {
