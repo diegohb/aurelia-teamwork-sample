@@ -32,22 +32,22 @@ export class AuthUserInfo {
      * STATUS: "OK"
 account: {
 URL: "https://mycompany.teamwork.com/"
-avatar-url: "https://tw-webserver1.teamworkpm.net/sites/mmgct/images/users/c07e4e246a3b4817706b440f8882dd84%2Ejpg"
+avatar-url: "https://tw-webserver1.teamworkpm.net/sites/mycompany/images/users/c07e4e246a3b4817f706b440f8882dd84%2Ejpg"
 canManagePeople: "1"
 canaddprojects: "1"
 chatEnabled: true
-code: "mmgct"
-companyid: "12173"
+code: "myabc"
+companyid: "65656"
 companyname: "MMG, Inc."
 dateFormat: "mm/dd/yyyy"
 dateSeperator: "/"
 deskEnabled: true
 firstname: "Diego"
-id: "69265"
+id: "99999"
 lang: "EN"
 lastname: "Bustamante"
 likesEnabled: true
-logo: "https://tw-webserver2.teamworkpm.net/sites/mmgct/images/54007%2D0%5Fmmg%5Flogo%2Ejpg"
+logo: "https://tw-webserver2.teamworkpm.net/sites/mycompany/images/5400f7%2D0%5Fmmg%5Flogo%2Ejpg"
 name: "MMG, Inc."
 plan-id: "1"
 projectsEnabled: true
@@ -57,7 +57,7 @@ startonsundays: false
 tagsEnabled: true
 tagsLockedToAdmins: true
 timeFormat: "h:mmtt"
-userId: "22762"
+userId: "78748"
 userIsAdmin: true
 userIsMemberOfOwnerCompany: true
 }
