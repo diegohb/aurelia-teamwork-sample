@@ -4,7 +4,6 @@ import {AuthUserInfo} from "app/models/auth-info";
 export module AuthState {
 
     "use strict";
-    export let installBaseURL: string = "";
     export let apiToken: string = "";
     export let userInfo: Person;
     let authenticatedUser: AuthUserInfo;
@@ -41,7 +40,6 @@ export module AuthState {
 
         apiToken = "";
         userInfo = null;
-        installBaseURL = "";
     }
 
     function isApiTokenValid (pApiToken: string): boolean {
