@@ -31,7 +31,7 @@ export class AuthUserInfo {
      * 
      * STATUS: "OK"
 account: {
-URL: "https://mmgct.teamwork.com/"
+URL: "https://mycompany.teamwork.com/"
 avatar-url: "https://tw-webserver1.teamworkpm.net/sites/mmgct/images/users/c07e4e246a3b4817706b440f8882dd84%2Ejpg"
 canManagePeople: "1"
 canaddprojects: "1"
