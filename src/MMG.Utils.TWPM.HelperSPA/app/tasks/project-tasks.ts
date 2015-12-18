@@ -46,7 +46,7 @@ export class TasksByProjectVM {
         function getTasks () {
             return self._twpmService.fetchTasksByProject(pProjectID)
                 .then(tasks => {
-                    self._tasks = tasks.map(pTask => new TaskVM(pTask));
+                    self._tasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
                 })
                 .then(pTasks => {
                     return Promise.resolve();

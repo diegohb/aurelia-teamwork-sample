@@ -20,7 +20,7 @@ export class MyListVM {
     loadTasks () {
         AuthState.ensureAuthenticated();
         return this.twpmService.fetchTasks().then(tasks => {
-            this.myTasks = tasks.map(pTask => new TaskVM(pTask));
+            this.myTasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
         });
     }
 
