@@ -12,8 +12,8 @@ export class ListTaskItemVM {
     private _predecessors: Array<any>;
     private _twpmBaseURL: string;
 
-    constructor (pTask: Task) {
-        this._twpmBaseURL = "https://mmgct.teamwork.com";
+    constructor (pTask: Task, pBaseUrl:string) {
+        this._twpmBaseURL = pBaseUrl;
         this._projectID = pTask.projectID;
         this._projectName = pTask.projectName;
         this._taskListID = pTask.taskListID;
@@ -27,19 +27,19 @@ export class ListTaskItemVM {
     get ProjectName (): string { return this._projectName; }
 
     get ProjectLinkURL (): string {
-        return `${this._twpmBaseURL}/projects/${this._projectID}`;
+        return `${this._twpmBaseURL}projects/${this._projectID}`;
     }
 
     get TaskListName (): string { return this._taskListName; }
 
     get TaskListLinkURL (): string {
-        return `${this._twpmBaseURL}/tasklists/${this._taskListID}`;
+        return `${this._twpmBaseURL}tasklists/${this._taskListID}`;
     }
 
     get TaskName (): string { return this._taskName; }
 
     get TaskLinkURL (): string {
-        return `${this._twpmBaseURL}/tasks/${this._taskID}`;
+        return `${this._twpmBaseURL}tasks/${this._taskID}`;
     }
 
     get Tags (): Array<Tag> { return this._tags; }

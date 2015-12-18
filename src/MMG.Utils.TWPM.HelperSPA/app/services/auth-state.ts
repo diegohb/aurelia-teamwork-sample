@@ -1,5 +1,6 @@
 ﻿import {Person} from "app/models/person";
 import {AuthUserInfo} from "app/models/auth-info";
+import {TWPMClientFactory} from "app/services/twpm-client-factory";
 
 export module AuthState {
 
@@ -15,9 +16,12 @@ export module AuthState {
     export function validateApiToken (pApiToken: string, pAuthUser: AuthUserInfo): void {
         if (!isApiTokenValid(pApiToken))
             throw new Error("Api token cannot be empty!");
-
+        if (!pAuthUser || !pAuthUser.installURL)
+            throw new Error("A valid AuthUserInfo object with a valid installURL must be provided!");
+        
         apiToken = pApiToken;
         authenticatedUser = pAuthUser;
+        TWPMClientFactory.baseURL = pAuthUser.installURL;
     }
 
     export function persistAuthentication (pPersonInfo: Person): void {
@@ -40,6 +44,12 @@ export module AuthState {
 
         apiToken = "";
         userInfo = null;
+        authenticatedUser = null;
+        TWPMClientFactory.baseURL = "";
+    }
+
+    export function getInstallUrl () {
+        return authenticatedUser.installURL;
     }
 
     function isApiTokenValid (pApiToken: string): boolean {

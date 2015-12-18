@@ -20,7 +20,7 @@
                 <tr repeat.for="prj of projects">
                     <td>${prj.projectID}</td>
                     <td>
-                        <a href="https://mmgct.teamwork.com/companies/${prj.company.companyID}" target="_blank">${prj.company.name}</a>
+                        <a href.one-time="getCompanyUrl(prj.company.companyID)" target="_blank">${prj.company.name}</a>
                     </td>
                     <td>${prj.name}</td>
                     <td>${prj.dateCreated}</td>

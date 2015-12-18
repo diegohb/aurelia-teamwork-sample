@@ -12,8 +12,8 @@ export class ProjectListVM {
         this._twpmService = new TWPMService();
     }
 
-    get projects (): Array<Project> { return this._projects; }
-
+    get projects(): Array<Project> { return this._projects; }
+    
     activate (): Promise<any> {
         return this.loadProjects();
     }
@@ -25,4 +25,10 @@ export class ProjectListVM {
             this._projects = pProjects;
         });
     }
+
+    getCompanyUrl(pCompanyID: number) {
+        var base = AuthState.getInstallUrl() + "companies";
+        return base + "/" + pCompanyID;
+    }
+
 }
