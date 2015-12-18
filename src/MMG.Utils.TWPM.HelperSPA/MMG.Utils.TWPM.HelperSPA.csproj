@@ -161,11 +161,8 @@
     <TypeScriptCompile Include="typings\aurelia\templating%400.16.0\aurelia-templating.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\templating-binding%400.16.1\aurelia-templating-binding.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
-    <TypeScriptCompile Include="typings\gulp\gulp.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
-    <TypeScriptCompile Include="typings\orchestrator\orchestrator.d.ts" />
-    <TypeScriptCompile Include="typings\q\Q.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
   </ItemGroup>
   <ItemGroup />
@@ -189,8 +186,20 @@
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+  <!--TypeScript settings: https://github.com/aurelia/skeleton-navigation-typescript/blob/master/tsconfig.json-->
+  <!-- https://github.com/Microsoft/TypeScript/wiki/Setting-Compiler-Options-in-MSBuild-projects -->
+  <PropertyGroup>
     <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
+    <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
