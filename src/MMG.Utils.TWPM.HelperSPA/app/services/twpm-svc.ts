@@ -1,4 +1,5 @@
-﻿import {HttpClient} from "aurelia-fetch-client";
+﻿import {autoinject} from "aurelia-framework"
+import {HttpClient} from "aurelia-fetch-client";
 import "fetch";
 import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
 import {AuthState} from "app/services/auth-state";
@@ -6,15 +7,16 @@ import {Project} from "app/models/project";
 import {Task} from "app/models/task";
 import {Person} from "app/models/person";
 
+@autoinject()
 export class TWPMService {
     apiClient: HttpClient;
 
-    constructor () {
-        this.apiClient = ApiClientFactory.createApiClient(AuthState.apiToken);
+    constructor(pClientFactory: ApiClientFactory, private authState: AuthState) {
+        this.apiClient = pClientFactory.createApiClient(this.authState.apiToken);
     }
 
     async fetchPerson (pPersonID?: number): Promise<Person> {
-        let personID = pPersonID || AuthState.userInfo.personID;
+        let personID = pPersonID || this.authState.userInfo.userID;
         return this.apiClient.fetch(`people/${personID}.json`)
             .then(this.getJson).then(pData => {
                 return Person.parse(pData);
@@ -51,7 +53,7 @@ export class TWPMService {
 
     async fetchTasks (pPartyID?: number): Promise<Array<Task>> {
 
-        let partyID = pPartyID || AuthState.userInfo.personID;
+        let partyID = pPartyID || this.authState.userInfo.userID;
         let requestURL = `tasks.json?responsible-party-ids=${partyID}&filter=today&sort=duedate`;
         return await this.apiClient.fetch(requestURL)
             .then(response => {

@@ -1,20 +1,24 @@
-﻿import {HttpClient} from "aurelia-fetch-client";
+﻿import {singleton} from "aurelia-framework";
+import {HttpClient} from "aurelia-fetch-client";
 import "fetch";
 
-export module TWPMClientFactory {
+@singleton()
+export class TWPMClientFactory {
     "use strict";
 
-    export let baseURL: string = "";
+    private _baseURL: string = "";
 
-    export function createApiClient (pApiToken: string): HttpClient {
-        let apiClient: HttpClient = new HttpClient();
-        let authKey = `${pApiToken}:password`;
-        let base64Auth = btoa(authKey);
+    constructor(private apiClient: HttpClient) {}
 
-        return apiClient.configure(config => {
+    get baseURL (): string { return this._baseURL; }
+    set baseURL (value: string) { this._baseURL = value; }
 
-            if (baseURL)
-                config.withBaseUrl(baseURL);
+    createApiClient (pApiToken: string): HttpClient {
+        let base64Auth = this.getEncodedAuthString(pApiToken);
+        return this.apiClient.configure(config => {
+
+            if (this.baseURL)
+                config.withBaseUrl(this.baseURL);
 
             config.withDefaults({
                 headers: {
@@ -24,5 +28,10 @@ export module TWPMClientFactory {
             });
 
         });
+    }
+
+    private getEncodedAuthString (pApiToken: string) {
+        let authKey = `${pApiToken}:password`;
+        return btoa(authKey);
     }
 }
