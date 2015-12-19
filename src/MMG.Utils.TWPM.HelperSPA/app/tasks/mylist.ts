@@ -1,15 +1,17 @@
-﻿import {TWPMService} from "app/services/twpm-svc";
+﻿import {autoinject} from "aurelia-framework";
+import {TWPMService} from "app/services/twpm-svc";
 import {AuthState} from "app/services/auth-state";
 import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
 
+@autoinject()
 export class MyListVM {
     twpmService: TWPMService;
     myTasks: Array<TaskVM>;
 
     isAuthenticated: boolean;
 
-    constructor () {
-        this.twpmService = new TWPMService();
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
+        this.twpmService = pTWPMService;
         this.myTasks = [];
     }
 
@@ -18,9 +20,9 @@ export class MyListVM {
     }
 
     loadTasks () {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
         return this.twpmService.fetchTasks().then(tasks => {
-            this.myTasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
+            this.myTasks = tasks.map(pTask => new TaskVM(pTask, this.authState.getInstallUrl()));
         });
     }
 

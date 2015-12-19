@@ -6,6 +6,9 @@ export class AuthUserInfo {
     dateFormat: string;
     companyName: string;
     companyID: number;
+    firstName: string;
+    lastName: string;
+    avatarUrl: string;
 
     constructor () {
 
@@ -24,8 +27,13 @@ export class AuthUserInfo {
         obj.dateFormat = data["dateFormat"];
         obj.accountID = parseInt(data["id"]);
         obj.userID = parseInt(data["userId"]);
+        obj.firstName = data.firstname;
+        obj.lastName = data.lastname;
+        obj.avatarUrl = data["avatar-url"];
         return obj;
     }
+}
+
 
     /*
      * 
@@ -62,5 +70,3 @@ userIsAdmin: true
 userIsMemberOfOwnerCompany: true
 }
      */
-
-}

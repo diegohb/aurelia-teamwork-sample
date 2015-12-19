@@ -1,17 +1,18 @@
-﻿import {Task} from "app/models/task";
+﻿import {autoinject} from "aurelia-framework";
+import {Task} from "app/models/task";
 import {Project} from "app/models/project";
 import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
 import {TWPMService} from "app/services/twpm-svc";
 import {AuthState} from "app/services/auth-state";
 
-
+@autoinject()
 export class TasksByProjectVM {
     private _twpmService: TWPMService;
     private _project: Project;
     private _tasks: Array<TaskVM>;
 
-    constructor () {
-        this._twpmService = new TWPMService();
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
+        this._twpmService = pTWPMService;
         this._tasks = [];
     }
 
@@ -32,7 +33,7 @@ export class TasksByProjectVM {
     }
 
     async loadProject (pProjectID: number): Promise<void> {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
         var self = this;
 
         function getProject () {
@@ -46,7 +47,7 @@ export class TasksByProjectVM {
         function getTasks () {
             return self._twpmService.fetchTasksByProject(pProjectID)
                 .then(tasks => {
-                    self._tasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
+                    self._tasks = tasks.map(pTask => new TaskVM(pTask, self.authState.getInstallUrl()));
                 })
                 .then(pTasks => {
                     return Promise.resolve();
