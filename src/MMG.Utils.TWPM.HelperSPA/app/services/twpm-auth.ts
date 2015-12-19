@@ -10,7 +10,7 @@ export class TWPMAuthService {
     private clientFactory: TWPMClientFactory;
     private httpClient: HttpClient;
 
-    constructor(pClientFactory: TWPMClientFactory) {
+    constructor(pClientFactory: TWPMClientFactory, private authState: AuthState) {
         this.clientFactory = pClientFactory;
     }
 
@@ -19,7 +19,7 @@ export class TWPMAuthService {
 
         return this.getAuthUserInfo()
             .then(pAuthInfo => {
-                AuthState.validateApiToken(pApiToken, pAuthInfo);
+                this.authState.validateApiToken(pApiToken, pAuthInfo);
                 return {
                     Success: true,
                     Account: pAuthInfo
@@ -53,7 +53,7 @@ export class TWPMAuthService {
     }
 
     endAuthSession () {
-        AuthState.reset();
+        this.authState.reset();
 
         console.log("Logged out and reset AuthState!");
     }

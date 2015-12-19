@@ -8,7 +8,7 @@ export class PeopleVM {
     private twpmService: TWPMService;
     private people: Array<PersonVM> = [];
 
-    constructor(pTWPMService: TWPMService) {
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
         this.twpmService = pTWPMService;
     }
 
@@ -21,10 +21,10 @@ export class PeopleVM {
     }
 
     loadPeople (): Promise<void> {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
 
         return this.twpmService.fetchPeople().then(pPeople => {
-            this.people = pPeople.map(pBasePerson => new PersonVM(pBasePerson));
+            this.people = pPeople.map(pBasePerson => new PersonVM(pBasePerson, this.authState.getInstallUrl()));
         });
     }
 }
@@ -38,12 +38,12 @@ export class PersonVM {
     title: string;
     hasTitle: boolean;
 
-    constructor (pData: Person) {
+    constructor(pData: Person, pInstallURL: string) {
         this.personID = pData.personID;
         this.firstName = pData.firstName;
         this.lastName = pData.lastName;
         this.avatarUrl = pData.avatarUrl;
-        this.profileWebURL = `${AuthState.getInstallUrl()}${pData.endpointURI.replace(".json", "")}`;
+        this.profileWebURL = `${pInstallURL}${pData.endpointURI.replace(".json", "")}`;
         this.hasTitle = pData.title && pData.title.length > 0;
         if (this.hasTitle)
             this.title = pData.title;

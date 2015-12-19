@@ -9,7 +9,7 @@ export class LoginVM {
     twpmService: TWPMAuthService;
     hasLoginError: boolean;
 
-    constructor(pTWPMService: TWPMAuthService) {
+    constructor(pTWPMService: TWPMAuthService, private authState: AuthState) {
         this.twpmService = pTWPMService;
 
     }
@@ -20,17 +20,17 @@ export class LoginVM {
         if (!this.IsAuthenticated)
             return "";
 
-        return `${AuthState.userInfo.firstName} ${AuthState.userInfo.lastName}`;
+        return `${this.authState.userInfo.firstName} ${this.authState.userInfo.lastName}`;
     }
 
     get UserImageURL (): string {
         if (!this.IsAuthenticated)
             return "";
 
-        return AuthState.userInfo.avatarUrl;
+        return this.authState.userInfo.avatarUrl;
     }
 
-    get IsAuthenticated (): boolean { return AuthState && AuthState.isAuthenticated(); }
+    get IsAuthenticated (): boolean { return this.authState && this.authState.isAuthenticated(); }
 
     //#endregion
 

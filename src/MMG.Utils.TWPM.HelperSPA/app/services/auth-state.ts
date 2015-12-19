@@ -1,49 +1,55 @@
-﻿import {Container} from "aurelia-dependency-injection";
+﻿import {autoinject, singleton} from "aurelia-dependency-injection";
 import {Person} from "app/models/person";
 import {AuthUserInfo} from "app/models/auth-info";
 import {TWPMClientFactory} from "app/services/twpm-client-factory";
 
-export module AuthState {
-
+@singleton()
+@autoinject()
+export class AuthState {
     "use strict";
-    export let apiToken: string = "";
-    export let userInfo: AuthUserInfo;
-    let clientFactory = Container.instance.get(TWPMClientFactory);
 
-    export function isAuthenticated (): boolean {
-        return userInfo != null;
+    public apiToken: string = "";
+    public userInfo: AuthUserInfo;
+    private clientFactory: TWPMClientFactory;
+
+    constructor (pClientFactory: TWPMClientFactory) {
+        this.clientFactory = pClientFactory;
+    }
+
+    isAuthenticated (): boolean {
+        return this.userInfo != null;
     }
     
-    export function validateApiToken(pApiToken: string, pAuthUser: AuthUserInfo): void {
-        if (!isApiTokenValid(pApiToken))
+    validateApiToken(pApiToken: string, pAuthUser: AuthUserInfo): void {
+        if (!this.isApiTokenValid(pApiToken))
             throw new Error("Api token cannot be empty!");
         if (!pAuthUser || !pAuthUser.installURL)
             throw new Error("A valid AuthUserInfo object with a valid installURL must be provided!");
         
-        apiToken = pApiToken;
-        userInfo = pAuthUser;
-        clientFactory.baseURL = pAuthUser.installURL;
+        this.apiToken = pApiToken;
+        this.userInfo = pAuthUser;
+        this.clientFactory.baseURL = pAuthUser.installURL;
     }
     
-    export function ensureAuthenticated (): void {
-        if (!isAuthenticated())
+    ensureAuthenticated (): void {
+        if (!this.isAuthenticated())
             throw new Error("Not authenticated with TeamworkPM!");
     }
 
-    export function reset(): void {
-        if (!isAuthenticated())
+    reset(): void {
+        if (!this.isAuthenticated())
             return;
 
-        apiToken = "";
-        userInfo = null;
-        clientFactory.baseURL = "";
+        this.apiToken = "";
+        this.userInfo = null;
+        this.clientFactory.baseURL = "";
     }
 
-    export function getInstallUrl () {
-        return userInfo.installURL;
+    getInstallUrl () {
+        return this.userInfo.installURL;
     }
 
-    function isApiTokenValid (pApiToken: string): boolean {
+    private isApiTokenValid (pApiToken: string): boolean {
         return pApiToken && pApiToken.trim().length >= 0;
     }
 

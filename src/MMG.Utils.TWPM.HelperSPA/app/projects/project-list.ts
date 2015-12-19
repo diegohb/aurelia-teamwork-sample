@@ -10,7 +10,7 @@ export class ProjectListVM {
 
     /*private _projects: Array<Project>;*/
 
-    constructor(pTWPMService: TWPMService) {
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
         this._twpmService = pTWPMService;
     }
 
@@ -21,7 +21,7 @@ export class ProjectListVM {
     }
 
     loadProjects (): Promise<void> {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
 
         return this._twpmService.fetchAllProjects().then(pProjects => {
             this._projects = pProjects;
@@ -29,7 +29,7 @@ export class ProjectListVM {
     }
 
     getCompanyUrl(pCompanyID: number) {
-        var base = AuthState.getInstallUrl() + "companies";
+        var base = this.authState.getInstallUrl() + "companies";
         return base + "/" + pCompanyID;
     }
 

@@ -11,7 +11,7 @@ export class TasksByProjectVM {
     private _project: Project;
     private _tasks: Array<TaskVM>;
 
-    constructor(pTWPMService: TWPMService) {
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
         this._twpmService = pTWPMService;
         this._tasks = [];
     }
@@ -33,7 +33,7 @@ export class TasksByProjectVM {
     }
 
     async loadProject (pProjectID: number): Promise<void> {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
         var self = this;
 
         function getProject () {
@@ -47,7 +47,7 @@ export class TasksByProjectVM {
         function getTasks () {
             return self._twpmService.fetchTasksByProject(pProjectID)
                 .then(tasks => {
-                    self._tasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
+                    self._tasks = tasks.map(pTask => new TaskVM(pTask, self.authState.getInstallUrl()));
                 })
                 .then(pTasks => {
                     return Promise.resolve();

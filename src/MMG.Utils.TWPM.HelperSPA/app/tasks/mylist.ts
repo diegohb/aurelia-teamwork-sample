@@ -10,7 +10,7 @@ export class MyListVM {
 
     isAuthenticated: boolean;
 
-    constructor(pTWPMService: TWPMService) {
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
         this.twpmService = pTWPMService;
         this.myTasks = [];
     }
@@ -20,9 +20,9 @@ export class MyListVM {
     }
 
     loadTasks () {
-        AuthState.ensureAuthenticated();
+        this.authState.ensureAuthenticated();
         return this.twpmService.fetchTasks().then(tasks => {
-            this.myTasks = tasks.map(pTask => new TaskVM(pTask, AuthState.getInstallUrl()));
+            this.myTasks = tasks.map(pTask => new TaskVM(pTask, this.authState.getInstallUrl()));
         });
     }
 
