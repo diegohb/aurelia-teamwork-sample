@@ -1,14 +1,16 @@
-﻿import {TWPMAuthService } from "app/services/twpm-auth";
+﻿import {autoinject} from "aurelia-framework";
+import {TWPMAuthService} from "app/services/twpm-auth";
 import {AuthState} from "app/services/auth-state"
 import {Person} from "app/models/person";
 
+@autoinject()
 export class LoginVM {
     apiToken: string = "";
     twpmService: TWPMAuthService;
     hasLoginError: boolean;
 
-    constructor () {
-        this.twpmService = new TWPMAuthService();
+    constructor(pTWPMService: TWPMAuthService) {
+        this.twpmService = pTWPMService;
 
     }
 

@@ -1,13 +1,15 @@
-﻿import {Person} from "app/models/person"
+﻿import {autoinject} from "aurelia-framework";
+import {Person} from "app/models/person"
 import {TWPMService} from "app/services/twpm-svc";
 import {AuthState} from "app/services/auth-state";
 
+@autoinject()
 export class PeopleVM {
     private twpmService: TWPMService;
     private people: Array<PersonVM> = [];
 
-    constructor () {
-        this.twpmService = new TWPMService();
+    constructor(pTWPMService: TWPMService) {
+        this.twpmService = pTWPMService;
     }
 
     get People (): Array<PersonVM> {

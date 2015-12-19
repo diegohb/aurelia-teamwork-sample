@@ -1,28 +1,28 @@
-﻿import {HttpClient} from "aurelia-fetch-client";
+﻿import {autoinject} from "aurelia-framework"
+import {HttpClient} from "aurelia-fetch-client";
 import {TWPMClientFactory} from "app/services/twpm-client-factory";
-import {TWPMService} from "app/services/twpm-svc"
 import {AuthState} from "app/services/auth-state";
 import {AuthUserInfo} from "app/models/auth-info"
 import {Person} from "app/models/person";
 
-
+@autoinject()
 export class TWPMAuthService {
+    private clientFactory: TWPMClientFactory;
     private httpClient: HttpClient;
 
+    constructor(pClientFactory: TWPMClientFactory) {
+        this.clientFactory = pClientFactory;
+    }
+
     public authenticate (pApiToken: string): Promise<any> {
-        this.httpClient = TWPMClientFactory.createApiClient(pApiToken);
+        this.httpClient = this.clientFactory.createApiClient(pApiToken);
 
         return this.getAuthUserInfo()
             .then(pAuthInfo => {
                 AuthState.validateApiToken(pApiToken, pAuthInfo);
-                let twpmService = new TWPMService();
-                return twpmService.fetchPerson(pAuthInfo.userID);
-            })
-            .then(pPersonInfo => {
-                AuthState.persistAuthentication(pPersonInfo as Person);
                 return {
                     Success: true,
-                    UserInfo: pPersonInfo
+                    Account: pAuthInfo
                 };
             }).catch(err => {
                 //encapsulate auth error and provide app-friendly error

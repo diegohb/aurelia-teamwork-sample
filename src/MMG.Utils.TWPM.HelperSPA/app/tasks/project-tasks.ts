@@ -1,17 +1,18 @@
-﻿import {Task} from "app/models/task";
+﻿import {autoinject} from "aurelia-framework";
+import {Task} from "app/models/task";
 import {Project} from "app/models/project";
 import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
 import {TWPMService} from "app/services/twpm-svc";
 import {AuthState} from "app/services/auth-state";
 
-
+@autoinject()
 export class TasksByProjectVM {
     private _twpmService: TWPMService;
     private _project: Project;
     private _tasks: Array<TaskVM>;
 
-    constructor () {
-        this._twpmService = new TWPMService();
+    constructor(pTWPMService: TWPMService) {
+        this._twpmService = pTWPMService;
         this._tasks = [];
     }
 
