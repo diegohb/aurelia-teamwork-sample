@@ -1,4 +1,4 @@
-﻿import {autoinject} from "aurelia-framework"
+﻿import {autoinject, transient} from "aurelia-framework"
 import {HttpClient} from "aurelia-fetch-client";
 import "fetch";
 import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
@@ -7,6 +7,7 @@ import {Project} from "app/models/project";
 import {Task} from "app/models/task";
 import {Person} from "app/models/person";
 
+@transient()
 @autoinject()
 export class TWPMService {
     apiClient: HttpClient;
