@@ -121,7 +121,6 @@
     <Content Include="package.json" />
     <Content Include="data\tasks.json" />
     <Content Include="styles\bt-custom-theme.css" />
-    <Content Include="tsd.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -156,7 +155,7 @@
     <TypeScriptCompile Include="typings\aurelia\pal-browser%400.2.0\aurelia-pal-browser.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\path%400.10.0\aurelia-path.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\route-recognizer%400.8.0\aurelia-route-recognizer.d.ts" />
-    <TypeScriptCompile Include="typings\aurelia\router%400.13.0\aurelia-router.d.ts" />
+    <TypeScriptCompile Include="typings\aurelia\aurelia-router%401.0.0-beta.1\aurelia-router.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\task-queue%400.8.0\aurelia-task-queue.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\templating%400.16.0\aurelia-templating.d.ts" />
     <TypeScriptCompile Include="typings\aurelia\templating-binding%400.16.1\aurelia-templating-binding.d.ts" />
