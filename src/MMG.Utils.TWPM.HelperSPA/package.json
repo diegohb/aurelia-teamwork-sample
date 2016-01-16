@@ -14,7 +14,7 @@
       "bootstrap": "github:twbs/bootstrap@^3.3.6",
       "fetch": "github:github/fetch@^0.10.1",
       "font-awesome": "npm:font-awesome@^4.5.0",
-      "text": "github:systemjs/plugin-text@^0.1.0"
+      "text": "github:systemjs/plugin-text@^0.0.1"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
@@ -23,9 +23,9 @@
     }
   },
   "devDependencies": {
-    "jspm": "~0.16.19",
-    "aurelia-bundler": "^0.1.9",
-    "gulp": "^3.9.0"
+    "aurelia-bundler": "^0.2.1",
+    "gulp": "^3.9.0",
+    "jspm": "~0.16.19"
   },
   "scripts": {
     "prepare-prod": "npm run bundle-core & npm run bundle-aurelia & npm run bundle-app",
