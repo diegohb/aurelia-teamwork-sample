@@ -23,9 +23,9 @@
     }
   },
   "devDependencies": {
-    "jspm": "~0.16.19",
-    "aurelia-bundler": "^0.1.9",
-    "gulp": "^3.9.0"
+    "aurelia-bundler": "^0.2.1",
+    "gulp": "^3.9.0",
+    "jspm": "~0.16.19"
   },
   "scripts": {
     "prepare-prod": "npm run bundle-core & npm run bundle-aurelia & npm run bundle-app",
