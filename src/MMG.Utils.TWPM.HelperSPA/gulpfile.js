@@ -1,6 +1,5 @@
 ﻿var gulp = require("gulp");
-var bundle = require("aurelia-bundler").bundle;
-var unbundle = require("aurelia-bundler").unbundle;
+var bundler = require("aurelia-bundler");
 
 var config = {
     force: true,
@@ -9,9 +8,9 @@ var config = {
     bundles: {
         "dist/app-build": {
             includes: [
-                "[*]",
+                "[*.js]" /*,
                 "*.html!text",
-                "*.css!text",
+                "*.css!text"*/
             ],
             options: {
                 inject: true,
@@ -29,8 +28,8 @@ var config = {
                 "aurelia-templating-router",
                 "aurelia-loader-default",
                 "aurelia-history-browser",
-                "aurelia-logging-console",
-                "bootstrap/css/bootstrap.css!text"
+                "aurelia-logging-console" /*,
+                "bootstrap/css/bootstrap.css!text"*/
             ],
             options: {
                 inject: true,
@@ -40,12 +39,12 @@ var config = {
     }
 };
 
-gulp.task("bundle", function() {
-    return bundle(config);
+gulp.task("bundle", ["unbundle"], function() {
+    return bundler.bundle(config);
 });
 
 gulp.task("unbundle", function() {
-    return unbundle(config);
+    return bundler.unbundle(config);
 });
 
 /**
