@@ -8,7 +8,7 @@ var config = {
     bundles: {
         "dist/app-build": {
             includes: [
-                "[*.js]" /*,
+                "[app/**/*.js]" /*,
                 "*.html!text",
                 "*.css!text"*/
             ],
@@ -28,7 +28,9 @@ var config = {
                 "aurelia-templating-router",
                 "aurelia-loader-default",
                 "aurelia-history-browser",
-                "aurelia-logging-console" /*,
+                "aurelia-logging-console",
+                "core-js",
+                "babel" /*,
                 "bootstrap/css/bootstrap.css!text"*/
             ],
             options: {
