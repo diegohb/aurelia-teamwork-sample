@@ -1,4 +1,5 @@
 ﻿import {Company} from "./company";
+import * as moment from "moment";
 
 export class Project {
     projectID: number;
@@ -22,8 +23,8 @@ export class Project {
         obj.projectID = parseInt(data.id);
         obj.name = data.name;
         obj.lastModified = data["last-changed-on"]; //TODO: moment
-        obj.dateCreated = data["created-on"]; //TODO: moment
-        obj.endDate = data.endDate;
+        obj.dateCreated = moment(data["created-on"]); //TODO: moment
+        obj.endDate = moment(data.endDate);
         if (data.company) {
             obj.company = Company.parse(data.company);
         }
