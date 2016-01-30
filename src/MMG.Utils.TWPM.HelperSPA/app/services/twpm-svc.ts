@@ -80,10 +80,11 @@ export class TWPMService {
 
     async fetchFilesByProject (pProjectID: number): Promise<Array<TWFile>> {
         let requestURL = `projects/${pProjectID}/files.json`;
+        let installURL = this.authState.getInstallUrl();
         return await this.apiClient.fetch(requestURL).then(this.getJson)
             .then(pData => {
                 let rawFiles: Array<any> = pData.project.files;
-                return rawFiles.map(pItem => TWFile.parse(pItem));
+                return rawFiles.map(pItem => TWFile.parse(pItem, installURL));
             });
     }
 

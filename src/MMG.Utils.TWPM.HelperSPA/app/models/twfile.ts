@@ -4,12 +4,13 @@
     projectID: number;
     categoryName: string;
     downloadURL: string;
+    teamworkFileURL: string;
 
     get endpointURI (): string {
         return `files/${this.fileID}`;
     }
 
-    static parse (pRawData: any): TWFile {
+    static parse (pRawData: any, pBaseURL?: string): TWFile {
         let data = pRawData.file || pRawData;
         let obj = new TWFile();
         obj.fileID = parseInt(data["id"]);
@@ -17,6 +18,11 @@
         obj.projectID = data["project-id"];
         obj.categoryName = data["category-name"];
         obj.downloadURL = data["download-URL"];
+        if (pBaseURL) {
+            if (!pBaseURL.endsWith("/"))
+                pBaseURL += "/";
+            obj.teamworkFileURL = `${pBaseURL}${obj.endpointURI}`;
+        }
         return obj;
     }
 }
