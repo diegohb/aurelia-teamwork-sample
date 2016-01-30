@@ -1,35 +1,36 @@
 ﻿var gulp = require("gulp");
-/*var bundler = require("aurelia-bundler");*/
-var bundler = require("./node_modules/aurelia-bundler/dist/bundler");
+var bundle = require("aurelia-bundler").bundle;
+var unbundle = require("aurelia-bundler").unbundle;
 
 var config = {
     force: true,
-    packagePath: ".",
+    baseURL: ".", // baseURL of the application
+    configPath: "./config.js", // config.js file. Must be within `baseURL`
     bundles: {
         "dist/app-build": {
             includes: [
-                "*",
+                "[*]",
                 "*.html!text",
                 "*.css!text",
-                "bootstrap/css/bootstrap.css!text"
             ],
             options: {
                 inject: true,
                 minify: true
             }
         },
-        "dist/aurelia": {
+        "dist/vendor-build": {
             includes: [
-                "aurelia-binding",
-                "aurelia-dependency-injection",
-                "aurelia-loader",
-                "aurelia-logging",
-                "aurelia-metadata",
-                "aurelia-pal",
-                "aurelia-path",
-                "aurelia-task-queue",
-                "aurelia-templating",
-                "core-js"
+                "aurelia-bootstrapper",
+                "aurelia-fetch-client",
+                "aurelia-router",
+                /*"aurelia-animator-css",*/
+                "aurelia-templating-binding",
+                "aurelia-templating-resources",
+                "aurelia-templating-router",
+                "aurelia-loader-default",
+                "aurelia-history-browser",
+                "aurelia-logging-console",
+                "bootstrap/css/bootstrap.css!text"
             ],
             options: {
                 inject: true,
@@ -40,11 +41,11 @@ var config = {
 };
 
 gulp.task("bundle", function() {
-    return bundler.bundle(config);
+    return bundle(config);
 });
 
 gulp.task("unbundle", function() {
-    return bundler.unbundle(config);
+    return unbundle(config);
 });
 
 /**
