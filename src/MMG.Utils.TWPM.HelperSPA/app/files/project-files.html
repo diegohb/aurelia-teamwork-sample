@@ -3,6 +3,14 @@
         <div class="col-sm-12">
             <h1>Files By Project</h1>
             <h2>${ProjectTitle}</h2>
+            <ul>
+                <li repeat.for="file of ProjectFiles">
+
+                    <strong if.bind="file.categoryName != ''">${file.categoryName}:&nbsp;</strong>
+
+                    <a href.one-time="file.downloadURL">${file.fileName}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </template>

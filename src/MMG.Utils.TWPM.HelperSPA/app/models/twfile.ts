@@ -6,7 +6,7 @@
     downloadURL: string;
 
     get endpointURI (): string {
-        return `tags/${this.fileID}`;
+        return `files/${this.fileID}`;
     }
 
     static parse (pRawData: any): TWFile {
