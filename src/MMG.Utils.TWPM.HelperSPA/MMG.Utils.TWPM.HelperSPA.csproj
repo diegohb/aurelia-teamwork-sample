@@ -86,9 +86,11 @@
   <ItemGroup>
     <Content Include="app\account\login.html" />
     <Content Include="app\app.html" />
+    <Content Include="app\files\project-files.html" />
     <Content Include="app\people\people-all.html" />
     <Content Include="app\people\styling.css" />
     <Content Include="app\projects\project-list.html" />
+    <TypeScriptCompile Include="app\files\project-files.ts" />
     <TypeScriptCompile Include="app\models\company.ts" />
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\projects\project-list.ts" />
