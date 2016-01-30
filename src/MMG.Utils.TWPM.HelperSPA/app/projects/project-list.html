@@ -26,7 +26,8 @@
                     <td>${prj.dateCreated}</td>
                     <td>${prj.endDate}</td>
                     <td>
-                        <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a>
+                        <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a><br/>
+                        <a route-href="route: files-by-project; params.bind: {ProjectID: prj.projectID}">View Files</a>
                     </td>
                 </tr>
                 </tbody>

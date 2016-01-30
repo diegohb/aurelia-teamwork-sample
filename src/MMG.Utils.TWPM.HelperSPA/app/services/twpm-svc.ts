@@ -6,13 +6,14 @@ import {AuthState} from "app/services/auth-state";
 import {Project} from "app/models/project";
 import {Task} from "app/models/task";
 import {Person} from "app/models/person";
+import {TWFile} from "app/models/twfile";
 
 @transient()
 @autoinject()
 export class TWPMService {
     apiClient: HttpClient;
 
-    constructor(pClientFactory: ApiClientFactory, private authState: AuthState) {
+    constructor (pClientFactory: ApiClientFactory, private authState: AuthState) {
         this.apiClient = pClientFactory.createApiClient(this.authState.apiToken);
     }
 
@@ -74,6 +75,16 @@ export class TWPMService {
             .then(pData => {
                 let rawTasks: Array<any> = pData["todo-items"];
                 return rawTasks.map(pItem => new Task(pItem));
+            });
+    }
+
+    async fetchFilesByProject (pProjectID: number): Promise<Array<TWFile>> {
+        let requestURL = `projects/${pProjectID}/files.json`;
+        let installURL = this.authState.getInstallUrl();
+        return await this.apiClient.fetch(requestURL).then(this.getJson)
+            .then(pData => {
+                let rawFiles: Array<any> = pData.project.files;
+                return rawFiles.map(pItem => TWFile.parse(pItem, installURL));
             });
     }
 
