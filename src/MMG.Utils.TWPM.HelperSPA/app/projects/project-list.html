@@ -23,8 +23,8 @@
                         <a href.one-time="getCompanyUrl(prj.company.companyID)" target="_blank">${prj.company.name}</a>
                     </td>
                     <td>${prj.name}</td>
-                    <td>${prj.dateCreated}</td>
-                    <td>${prj.endDate}</td>
+                    <td>${prj.dateCreated.format("MMM dd, YYYY")}</td>
+                    <td>${prj.endDate.format("MMM dd, YYYY")}</td>
                     <td>
                         <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a><br/>
                         <a route-href="route: files-by-project; params.bind: {ProjectID: prj.projectID}">View Files</a>

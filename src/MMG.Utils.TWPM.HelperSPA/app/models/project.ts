@@ -4,8 +4,8 @@ import * as moment from "moment";
 export class Project {
     projectID: number;
     name: string;
-    lastModified: any;
-    dateCreated: any;
+    lastModified: moment.Moment;
+    dateCreated: moment.Moment;
     endDate: any;
     company: Company;
 
