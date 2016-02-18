@@ -22,9 +22,9 @@ export class Project {
         let obj = new Project();
         obj.projectID = parseInt(data.id);
         obj.name = data.name;
-        obj.lastModified = data["last-changed-on"]; //TODO: moment
-        obj.dateCreated = moment(data["created-on"]); //TODO: moment
-        obj.endDate = moment(data.endDate);
+        obj.lastModified = data["last-changed-on"];
+        obj.dateCreated = moment.constructor(data["created-on"]);
+        obj.endDate = moment.constructor(data.endDate);
         if (data.company) {
             obj.company = Company.parse(data.company);
         }
