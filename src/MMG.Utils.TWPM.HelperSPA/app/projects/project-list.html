@@ -25,8 +25,10 @@
                         <a href.one-time="getCompanyUrl(prj.company.companyID)" target="_blank">${prj.company.name}</a>
                     </td>
                     <td>${prj.name}</td>
-                    <td>${prj.dateCreated | dateFormat:'MMMM Mo YYYY'}</td>
-                    <td>${prj.endDate | dateFormat}</td>
+                    <td>
+                        ${prj.dateCreated | dateFormat:'MMMM Mo YYYY'}
+                    </td>
+                    <td>${prj.endDate | dateFormat:'MMMM Mo YYYY':'Uknown'}</td>
                     <td>
                         <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a><br/>
                         <a route-href="route: files-by-project; params.bind: {ProjectID: prj.projectID}">View Files</a>

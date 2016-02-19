@@ -95,6 +95,7 @@
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\models\twfile.ts" />
     <TypeScriptCompile Include="app\projects\project-list.ts" />
+    <Content Include="app\shared\date-format.js" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
@@ -114,7 +115,6 @@
     <Content Include="app\tasks\project-tasks.html" />
     <TypeScriptCompile Include="app\tasks\project-tasks.ts" />
     <Content Include="gulpfile.js" />
-    <TypeScriptCompile Include="app\shared\date-format.ts" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\services\twpm-svc.ts" />
     <Content Include="config.js" />
