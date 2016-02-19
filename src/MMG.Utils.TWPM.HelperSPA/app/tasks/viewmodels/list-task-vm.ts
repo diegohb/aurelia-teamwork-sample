@@ -11,8 +11,9 @@ export class ListTaskItemVM {
     private _tags: Array<Tag>;
     private _predecessors: Array<any>;
     private _twpmBaseURL: string;
+    private _dueDate: string;
 
-    constructor (pTask: Task, pBaseUrl:string) {
+    constructor (pTask: Task, pBaseUrl: string) {
         this._twpmBaseURL = pBaseUrl;
         this._projectID = pTask.projectID;
         this._projectName = pTask.projectName;
@@ -22,6 +23,7 @@ export class ListTaskItemVM {
         this._taskName = pTask.title;
         this._predecessors = pTask.predecessors || [];
         this._tags = pTask.tags;
+        this._dueDate = pTask.dueDate;
     }
 
     get ProjectName (): string { return this._projectName; }
@@ -50,6 +52,10 @@ export class ListTaskItemVM {
         } else {
             return "Ready.";
         }
+    }
+
+    get DueDate (): string {
+        return this._dueDate; //TODO: convert to DATE
     }
 
     public createURL (): string {
