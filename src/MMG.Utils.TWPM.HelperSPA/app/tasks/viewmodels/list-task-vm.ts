@@ -12,7 +12,7 @@ export class ListTaskItemVM {
     private _predecessors: Array<any>;
     private _twpmBaseURL: string;
 
-    constructor (pTask: Task, pBaseUrl:string) {
+    constructor (pTask: Task, pBaseUrl: string) {
         this._twpmBaseURL = pBaseUrl;
         this._projectID = pTask.projectID;
         this._projectName = pTask.projectName;
@@ -50,6 +50,10 @@ export class ListTaskItemVM {
         } else {
             return "Ready.";
         }
+    }
+
+    get TaskPDF (): string {
+        return `https://tw-pdf.teamworkpm.net/?tw_i=69265&tw_u=22762&tw_key=EC836043B06FC0DE005F95515F8D2747&action=Task_DownloadPrintPDF&id=${this._taskID}&includeSubTasks=1`;
     }
 
     public createURL (): string {
