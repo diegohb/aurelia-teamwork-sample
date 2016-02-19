@@ -26,9 +26,14 @@
                     </td>
                     <td>${prj.name}</td>
                     <td>
-                        ${prj.dateCreated | dateFormat:'MMMM Mo YYYY'}
+                        ${prj.dateCreated | dateFormat:'MMMM Mo YYYY'}<br/>
+                        (${prj.dateCreated | dateAge})
+
                     </td>
-                    <td>${prj.endDate | dateFormat:'MMMM Mo YYYY':'Uknown'}</td>
+                    <td>
+                        ${prj.endDate | dateFormat:'MMMM Mo YYYY':'Unknown'}<br/>
+                        (${prj.endDate | dateAge})
+                    </td>
                     <td>
                         <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a><br/>
                         <a route-href="route: files-by-project; params.bind: {ProjectID: prj.projectID}">View Files</a>
