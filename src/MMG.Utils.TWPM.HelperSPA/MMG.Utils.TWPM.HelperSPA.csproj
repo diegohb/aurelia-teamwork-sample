@@ -95,6 +95,7 @@
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\models\twfile.ts" />
     <TypeScriptCompile Include="app\projects\project-list.ts" />
+    <Content Include="app\tasks\training.html" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
@@ -108,6 +109,7 @@
     <TypeScriptCompile Include="app\services\auth-state.ts" />
     <TypeScriptCompile Include="app\services\twpm-auth.ts" />
     <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
+    <TypeScriptCompile Include="app\tasks\training.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="app\nav-bar.html" />
     <TypeScriptCompile Include="app\tasks\viewmodels\list-task-vm.ts" />

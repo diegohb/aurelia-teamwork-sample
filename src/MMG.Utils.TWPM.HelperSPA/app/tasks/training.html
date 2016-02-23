@@ -1,0 +1,44 @@
+﻿<template>
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Training Tasks</h1>
+                <button click.trigger="loadTasks()" type="button" class="btn btn-primary">Load Tasks</button>
+                <table class="table table-striped table-hover table-bordered">
+                    <caption>There are ${myTasks.length} tasks!</caption>
+                    <tr>
+                        <th>Project</th>
+                        <th>Task List</th>
+                        <th>Task Name</th>
+                        <th>Tags</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr repeat.for="task of myTasks">
+                        <td>
+                            <a target="_blank" href.one-way="task.ProjectLinkURL">${task.ProjectName}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href.one-way="task.TaskListLinkURL">${task.TaskListName}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
+                            (<a target="_blank" href.one-way="task.TaskPDF">PDF</a>)
+                        </td>
+                        <td>
+                            <ul if.bind="task.tags.length">
+                                <li repeat.for="tag of task.Tags">
+                                    ${tag.name}
+                                </li>
+                            </ul>
+                            <span if.bind="task.tags.length === 0">None</span>
+                        </td>
+                        <td>
+                            <span>${task.Status}</span>
+                            <img src.one-way="task.createURL()"class="img img-responsive"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
