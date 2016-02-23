@@ -69,6 +69,21 @@ export class TWPMService {
             });
     }
 
+    async fetchTasksByTag (pTags: string): Promise<Array<Task>> {
+
+        let requestURL = `tasks.json?tag-ids=${pTags}&sort=duedate`;
+        return await this.apiClient.fetch(requestURL)
+            .then(response => {
+                if (!response.ok)
+                    throw new Error("Bad request from TeamworkPM.");
+
+                return this.getJson(response).then((pData: any) => {
+                    let items: Array<any> = pData["todo-items"];
+                    return items.map(pItem => new Task(pItem));
+                });
+            });
+    }
+
     async fetchTasksByProject (pProjectID: number): Promise<Array<Task>> {
         let requestURL = `projects/${pProjectID}/tasks.json?includeCompletedTasks=true`;
         return await this.apiClient.fetch(requestURL).then(this.getJson)
