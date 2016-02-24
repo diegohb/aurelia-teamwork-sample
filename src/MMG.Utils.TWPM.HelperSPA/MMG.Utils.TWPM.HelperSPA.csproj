@@ -169,6 +169,7 @@
     <TypeScriptCompile Include="typings\aurelia\aurelia-templating-router%401.0.0-beta.1.0.5\aurelia-templating-router.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\kendo-ui\kendo-ui.d.ts" />
     <TypeScriptCompile Include="typings\moment\moment-node.d.ts" />
     <TypeScriptCompile Include="typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
