@@ -7,29 +7,16 @@
                 <table class="table table-striped table-hover table-bordered">
                     <caption>There are ${myTasks.length} tasks!</caption>
                     <tr>
-                        <th>Project</th>
-                        <th>Task List</th>
+                        <th>Assignee</th>
                         <th>Task Name</th>
-                        <th>Tags</th>
                         <th>Status</th>
                     </tr>
                     <tr repeat.for="task of myTasks">
                         <td>
-                            <a target="_blank" href.one-way="task.ProjectLinkURL">${task.ProjectName}</a>
-                        </td>
-                        <td>
-                            <a target="_blank" href.one-way="task.TaskListLinkURL">${task.TaskListName}</a>
+                            <span>${task.AssigneeDisplay}</span>
                         </td>
                         <td>
                             <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
-                        </td>
-                        <td>
-                            <ul if.bind="task.tags.length">
-                                <li repeat.for="tag of task.Tags">
-                                    ${tag.name}
-                                </li>
-                            </ul>
-                            <span if.bind="task.tags.length === 0">None</span>
                         </td>
                         <td>
                             <span if.bind="task.Status !== 'Ready.'">${task.Status}<br /></span>

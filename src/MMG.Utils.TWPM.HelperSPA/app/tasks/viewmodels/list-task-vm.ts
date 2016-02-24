@@ -11,6 +11,8 @@ export class ListTaskItemVM {
     private _tags: Array<Tag>;
     private _predecessors: Array<any>;
     private _twpmBaseURL: string;
+    private _isCompleted: boolean;
+    private _assigneeDescription: string;
 
     constructor (pTask: Task, pBaseUrl: string) {
         this._twpmBaseURL = pBaseUrl;
@@ -22,6 +24,8 @@ export class ListTaskItemVM {
         this._taskName = pTask.title;
         this._predecessors = pTask.predecessors || [];
         this._tags = pTask.tags;
+        this._isCompleted = pTask.isCompleted;
+        this._assigneeDescription = pTask.assigneeSummary;
     }
 
     get ProjectName (): string { return this._projectName; }
@@ -47,9 +51,15 @@ export class ListTaskItemVM {
     get Status (): string {
         if (this._predecessors.length > 0) {
             return `Blocked by ${this._predecessors.length} tasks.`;
-        } else {
+        } else if (this._isCompleted)
+            return "Completed.";
+        else {
             return "Ready.";
         }
+    }
+
+    get AssigneeDisplay (): string {
+        return this._assigneeDescription;
     }
 
     get TaskPDF (): string {
