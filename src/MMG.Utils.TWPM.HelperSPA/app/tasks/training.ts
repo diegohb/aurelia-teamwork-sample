@@ -21,7 +21,8 @@ export class MyListVM {
 
     loadTasks () {
         this.authState.ensureAuthenticated();
-        return this.twpmService.fetchTasksByTag("hr-training").then(tasks => {
+        //tag 'hr-training' id = 800
+        return this.twpmService.fetchTasksByTag([800]).then(tasks => {
             this.myTasks = tasks.map(pTask => new TaskVM(pTask, this.authState.getInstallUrl()));
         });
     }

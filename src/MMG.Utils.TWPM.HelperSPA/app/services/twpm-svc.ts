@@ -69,9 +69,9 @@ export class TWPMService {
             });
     }
 
-    async fetchTasksByTag (pTags: string): Promise<Array<Task>> {
+    async fetchTasksByTag (pTags: Array<number>): Promise<Array<Task>> {
 
-        let requestURL = `tasks.json?tag-ids=${pTags}&sort=duedate`;
+        let requestURL = `tasks.json?tag-ids=${pTags.join(",")}&sort=duedate`;
         return await this.apiClient.fetch(requestURL)
             .then(response => {
                 if (!response.ok)
