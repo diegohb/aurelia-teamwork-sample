@@ -1,5 +1,14 @@
 ﻿<template>
-    <div>
+    <require from="kendo-ui/styles/kendo.common.core.min.css!"></require>
+    <require from="kendo-ui/styles/kendo.bootstrap.min.css!"></require>
+
+    <k-tree-list k-data-source.bind="kendoTaskSource" k-height.bind="540">
+        <k-tree-col field="AssigneeDisplay"></k-tree-col>
+        <k-tree-col field="TaskName"></k-tree-col>
+        <k-tree-col field="Status"></k-tree-col>
+    </k-tree-list>
+
+    <div style="margin-top: 5em">
         <div class="row">
             <div class="col-sm-12">
                 <h1>Training Tasks</h1>
