@@ -1,4 +1,6 @@
 ﻿<template>
+    <require from="../shared/date-format"></require>
+
     <div class="row">
         <div class="col-sm-12">
             <h1>All Projects</h1>
@@ -23,8 +25,15 @@
                         <a href.one-time="getCompanyUrl(prj.company.companyID)" target="_blank">${prj.company.name}</a>
                     </td>
                     <td>${prj.name}</td>
-                    <td>${prj.dateCreated}</td>
-                    <td>${prj.endDate}</td>
+                    <td>
+                        ${prj.dateCreated | dateFormat:'MMMM Mo YYYY'}<br/>
+                        (${prj.dateCreated | dateAge})
+
+                    </td>
+                    <td>
+                        ${prj.endDate | dateFormat:'MMMM Mo YYYY':'Unknown'}<br/>
+                        (${prj.endDate | dateAge})
+                    </td>
                     <td>
                         <a route-href="route: tasks-by-project; params.bind: {ProjectID: prj.projectID}">View Tasks</a><br/>
                         <a route-href="route: files-by-project; params.bind: {ProjectID: prj.projectID}">View Files</a>

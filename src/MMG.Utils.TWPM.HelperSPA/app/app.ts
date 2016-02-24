@@ -12,6 +12,7 @@ export class App {
             { route: ["", "account/login"], name: "account-authenticate", moduleId: "app/account/login", nav: true, title: "Login", auth: false },
             { route: "projects/all", name: "project-all", moduleId: "app/projects/project-list", nav: true, title: "All Projects", auth: true },
             { route: "tasks/mine", name: "tasks-my", moduleId: "app/tasks/mylist", nav: true, title: "My Tasks", auth: true },
+            { route: "tasks/training", name: "tasks-training", moduleId: "app/tasks/training", nav: true, title: "Training Tasks", auth: true },
             { route: "tasks/by-project", name: "tasks-by-project", moduleId: "app/tasks/project-tasks", nav: false, title: "Project Tasks", auth: true },
             { route: "people/all", name: "people-all", moduleId: "app/people/people-all", nav: true, title: "Peepz", auth: true },
             { route: "files/by-project", name: "files-by-project", moduleId: "app/files/project-files", nav: false, title: "Project Files", auth: true }
