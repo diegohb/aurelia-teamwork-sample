@@ -20,6 +20,7 @@ System.config({
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.1.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.1.3",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.1.2",
+    "aurelia-kendoui-bridge": "npm:aurelia-kendoui-bridge@0.2.3",
     "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-beta.1.1.2",
     "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0-beta.1.1.4",
     "aurelia-router": "npm:aurelia-router@1.0.0-beta.1.1.1",
@@ -30,10 +31,12 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "core-js": "npm:core-js@1.2.6",
+    "css": "github:systemjs/plugin-css@0.1.20",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
     "gulp": "npm:gulp@3.9.0",
     "jquery": "github:components/jquery@2.1.4",
+    "kendo-ui": "github:kendo-labs/bower-kendo-ui@2016.1.217",
     "moment": "npm:moment@2.11.1",
     "text": "github:systemjs/plugin-text@0.0.1",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -160,6 +163,15 @@ System.config({
       "aurelia-history": "npm:aurelia-history@1.0.0-beta.1.1.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.1.1",
       "core-js": "npm:core-js@2.1.1"
+    },
+    "npm:aurelia-kendoui-bridge@0.2.3": {
+      "aurelia-binding": "npm:aurelia-binding@1.0.0-beta.1.1.3",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.1.3",
+      "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1.1.1",
+      "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.1.4",
+      "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.1.1",
+      "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.1.1",
+      "jquery": "github:components/jquery@2.1.4"
     },
     "npm:aurelia-loader-default@1.0.0-beta.1.1.2": {
       "aurelia-loader": "npm:aurelia-loader@1.0.0-beta.1.1.1",
