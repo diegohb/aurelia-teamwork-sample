@@ -42,6 +42,8 @@ export class ListTaskItemVM {
         return `${this._twpmBaseURL}tasklists/${this._taskListID}`;
     }
 
+    get TaskID (): number { return this._taskID; }
+
     get TaskName (): string { return this._taskName; }
 
     get TaskLinkURL (): string {
