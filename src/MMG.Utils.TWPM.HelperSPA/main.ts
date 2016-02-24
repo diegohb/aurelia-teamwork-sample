@@ -14,8 +14,8 @@ export function configure (aurelia) {
         .defaultResources()
         .history()
         .router()
-        .eventAggregator();
-    /*.plugin("custom-plugin");*/
+        .eventAggregator()
+        .plugin("aurelia-kendoui-bridge", (kendo) => kendo.core());
 
     aurelia.start().then(app => app.setRoot("app/app"));
 }
