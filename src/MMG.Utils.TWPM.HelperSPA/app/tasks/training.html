@@ -22,7 +22,6 @@
                         </td>
                         <td>
                             <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
-                            (<a target="_blank" href.one-way="task.TaskPDF">PDF</a>)
                         </td>
                         <td>
                             <ul if.bind="task.tags.length">
@@ -33,8 +32,8 @@
                             <span if.bind="task.tags.length === 0">None</span>
                         </td>
                         <td>
-                            <span>${task.Status}</span>
-                            <img src.one-way="task.createURL()"class="img img-responsive"/>
+                            <span if.bind="task.Status !== 'Ready.'">${task.Status}<br /></span>
+                            <a target="_blank" href.one-way="task.TaskPDF">View Report</a>
                         </td>
                     </tr>
                 </table>
