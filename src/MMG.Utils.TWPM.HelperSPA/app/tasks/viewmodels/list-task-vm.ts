@@ -11,8 +11,11 @@ export class ListTaskItemVM {
     private _tags: Array<Tag>;
     private _predecessors: Array<any>;
     private _twpmBaseURL: string;
+    private _dueDate: string;
+    private _isCompleted: boolean;
+    private _assigneeDescription: string;
 
-    constructor (pTask: Task, pBaseUrl:string) {
+    constructor (pTask: Task, pBaseUrl: string) {
         this._twpmBaseURL = pBaseUrl;
         this._projectID = pTask.projectID;
         this._projectName = pTask.projectName;
@@ -22,6 +25,9 @@ export class ListTaskItemVM {
         this._taskName = pTask.title;
         this._predecessors = pTask.predecessors || [];
         this._tags = pTask.tags;
+        this._dueDate = pTask.dueDate;
+        this._isCompleted = pTask.isCompleted;
+        this._assigneeDescription = pTask.assigneeSummary;
     }
 
     get ProjectName (): string { return this._projectName; }
@@ -45,11 +51,25 @@ export class ListTaskItemVM {
     get Tags (): Array<Tag> { return this._tags; }
 
     get Status (): string {
-        if (this._predecessors.length > 0) {
+        if (this._isCompleted) {
+            return "Completed";
+        } else if (this._predecessors.length > 0) {
             return `Blocked by ${this._predecessors.length} tasks.`;
         } else {
-            return "Ready.";
+            return "Incomplete";
         }
+    }
+
+    get AssigneeDisplay (): string {
+        return this._assigneeDescription;
+    }
+
+    get TaskPDF (): string {
+        return `https://tw-pdf.teamworkpm.net/?tw_i=69265&tw_u=22762&tw_key=EC836043B06FC0DE005F95515F8D2747&action=Task_DownloadPrintPDF&id=${this._taskID}&includeSubTasks=1`;
+    }
+
+    get DueDate (): string {
+        return this._dueDate; //TODO: convert to DATE
     }
 
     public createURL (): string {
