@@ -19,7 +19,7 @@
                             <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
                         </td>
                         <td>
-                            <span if.bind="task.Status !== 'Ready.'">${task.Status}<br /></span>
+                            <span css="color: ${task.Status !== 'Completed' ? 'red': 'default'}">${task.Status}</span><br/>
                             <a target="_blank" href.one-way="task.TaskPDF">View Report</a>
                         </td>
                     </tr>

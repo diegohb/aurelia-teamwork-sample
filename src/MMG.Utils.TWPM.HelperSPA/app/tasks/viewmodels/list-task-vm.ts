@@ -49,12 +49,12 @@ export class ListTaskItemVM {
     get Tags (): Array<Tag> { return this._tags; }
 
     get Status (): string {
-        if (this._predecessors.length > 0) {
+        if (this._isCompleted) {
+            return "Completed";
+        } else if (this._predecessors.length > 0) {
             return `Blocked by ${this._predecessors.length} tasks.`;
-        } else if (this._isCompleted)
-            return "Completed.";
-        else {
-            return "Ready.";
+        } else {
+            return "Incomplete";
         }
     }
 
