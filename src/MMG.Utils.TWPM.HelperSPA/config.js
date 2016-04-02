@@ -34,6 +34,7 @@ System.config({
     "font-awesome": "npm:font-awesome@4.5.0",
     "gulp": "npm:gulp@3.9.0",
     "jquery": "github:components/jquery@2.1.4",
+    "moment": "npm:moment@2.11.1",
     "text": "github:systemjs/plugin-text@0.0.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -723,6 +724,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "minimist": "npm:minimist@0.0.8",
       "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:moment@2.11.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:multipipe@0.1.2": {

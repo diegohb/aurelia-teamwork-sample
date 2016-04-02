@@ -3,8 +3,8 @@
 export class Project {
     projectID: number;
     name: string;
-    lastModified: any;
-    dateCreated: any;
+    lastModified: string;
+    dateCreated: string;
     endDate: any;
     company: Company;
 
@@ -21,8 +21,8 @@ export class Project {
         let obj = new Project();
         obj.projectID = parseInt(data.id);
         obj.name = data.name;
-        obj.lastModified = data["last-changed-on"]; //TODO: moment
-        obj.dateCreated = data["created-on"]; //TODO: moment
+        obj.lastModified = data["last-changed-on"];
+        obj.dateCreated = data["created-on"];
         obj.endDate = data.endDate;
         if (data.company) {
             obj.company = Company.parse(data.company);

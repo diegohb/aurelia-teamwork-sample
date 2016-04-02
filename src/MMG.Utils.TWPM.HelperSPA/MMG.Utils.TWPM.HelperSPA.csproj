@@ -95,6 +95,8 @@
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\models\twfile.ts" />
     <TypeScriptCompile Include="app\projects\project-list.ts" />
+    <Content Include="app\shared\date-format.js" />
+    <Content Include="app\tasks\training.html" />
     <Content Include="app\tasks\mylist.html" />
     <TypeScriptCompile Include="app\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
@@ -108,6 +110,7 @@
     <TypeScriptCompile Include="app\services\auth-state.ts" />
     <TypeScriptCompile Include="app\services\twpm-auth.ts" />
     <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
+    <TypeScriptCompile Include="app\tasks\training.ts" />
     <TypeScriptCompile Include="app\tasks\mylist.ts" />
     <Content Include="app\nav-bar.html" />
     <TypeScriptCompile Include="app\tasks\viewmodels\list-task-vm.ts" />
@@ -166,6 +169,8 @@
     <TypeScriptCompile Include="typings\aurelia\aurelia-templating-router%401.0.0-beta.1.0.5\aurelia-templating-router.d.ts" />
     <TypeScriptCompile Include="typings\bootstrap\bootstrap.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\moment\moment-node.d.ts" />
+    <TypeScriptCompile Include="typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
   </ItemGroup>

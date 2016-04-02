@@ -1,4 +1,6 @@
 ﻿<template>
+    <require from="../shared/date-format"></require>
+
     <div>
         <div class="row">
             <div class="col-sm-12">
@@ -10,7 +12,7 @@
                         <th>Project</th>
                         <th>Task List</th>
                         <th>Task Name</th>
-                        <th>Tags</th>
+                        <th>Due Date</th>
                         <th>Status</th>
                     </tr>
                     <tr repeat.for="task of myTasks">
@@ -24,12 +26,14 @@
                             <a target="_blank" href.one-way="task.TaskLinkURL">${task.TaskName}</a>
                         </td>
                         <td>
-                            <ul if.bind="task.tags.length">
+                            ${task.DueDate | dateFormat:"L":"None"}<br/>
+                            ${task.DueDate | dateAge}
+                            <!--<ul if.bind="task.tags.length">
                                 <li repeat.for="tag of task.Tags">
                                     ${tag.name}
                                 </li>
                             </ul>
-                            <span if.bind="task.tags.length === 0">None</span>
+                            <span if.bind="task.tags.length === 0">None</span>-->
                         </td>
                         <td>
                             <span>${task.Status}</span>
