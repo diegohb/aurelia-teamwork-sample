@@ -26,7 +26,7 @@
   "devDependencies": {
     "aurelia-bundler": "^0.3.0",
     "gulp": "^3.9.0",
-    "jspm": "~0.16.19"
+    "jspm": "^0.16.34"
   },
   "scripts": {
     "prepare-prod": "npm run bundle-core & npm run bundle-aurelia & npm run bundle-app",
