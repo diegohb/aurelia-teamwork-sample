@@ -4,7 +4,6 @@
     "src": "https://raw.githubusercontent.com/aurelia/templating/master/typings.json",
     "raw": "github:aurelia/templating",
     "main": "dist/aurelia-templating.d.ts",
-    "global": false,
     "name": "aurelia-templating",
     "type": "typings"
   }

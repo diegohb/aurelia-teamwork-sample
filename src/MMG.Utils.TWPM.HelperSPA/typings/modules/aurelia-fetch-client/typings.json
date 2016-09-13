@@ -4,7 +4,6 @@
     "src": "https://raw.githubusercontent.com/aurelia/fetch-client/master/typings.json",
     "raw": "github:aurelia/fetch-client",
     "main": "dist/aurelia-fetch-client.d.ts",
-    "global": false,
     "name": "aurelia-fetch-client",
     "type": "typings"
   }
