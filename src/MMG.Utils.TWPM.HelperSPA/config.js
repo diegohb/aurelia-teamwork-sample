@@ -34,7 +34,7 @@ System.config({
     "font-awesome": "npm:font-awesome@4.6.3",
     "gulp": "npm:gulp@3.9.0",
     "jquery": "github:components/jquery@2.1.4",
-    "moment": "npm:moment@2.14.1",
+    "moment": "npm:moment@2.15.0",
     "text": "github:systemjs/plugin-text@0.0.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
