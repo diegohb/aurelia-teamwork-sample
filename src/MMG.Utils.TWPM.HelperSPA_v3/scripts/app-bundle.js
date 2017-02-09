@@ -1,12 +1,219 @@
-define('app',["require", "exports"], function (require, exports) {
+define('models/person',["require", "exports"], function (require, exports) {
+    "use strict";
+    var Person = (function () {
+        function Person() {
+        }
+        Object.defineProperty(Person.prototype, "endpointURI", {
+            get: function () {
+                return "people/" + this.personID + ".json";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Person.parse = function (pRawData) {
+            var data = pRawData.person || pRawData;
+            var obj = new Person();
+            obj.personID = parseInt(data["id"]);
+            obj.firstName = data["first-name"];
+            obj.lastName = data["last-name"];
+            obj.email = data["email-address"];
+            obj.title = data["title"];
+            obj.avatarUrl = data["avatar-url"];
+            obj.companyID = parseInt(data["company-id"]);
+            obj.isAdmin = data.administrator === true;
+            obj.lastLogin = data["last-login"];
+            return obj;
+        };
+        return Person;
+    }());
+    exports.Person = Person;
+});
+
+define('models/auth-info',["require", "exports"], function (require, exports) {
+    "use strict";
+    var AuthUserInfo = (function () {
+        function AuthUserInfo() {
+        }
+        Object.defineProperty(AuthUserInfo.prototype, "endpointURI", {
+            get: function () {
+                return "authenticate.json";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        AuthUserInfo.parse = function (pRawData) {
+            var data = pRawData.account || pRawData;
+            var obj = new AuthUserInfo();
+            obj.installURL = data["URL"];
+            obj.companyID = parseInt(data["companyid"]);
+            obj.companyName = data["companyname"];
+            obj.dateFormat = data["dateFormat"];
+            obj.accountID = parseInt(data["id"]);
+            obj.userID = parseInt(data["userId"]);
+            obj.firstName = data.firstname;
+            obj.lastName = data.lastname;
+            obj.avatarUrl = data["avatar-url"];
+            return obj;
+        };
+        return AuthUserInfo;
+    }());
+    exports.AuthUserInfo = AuthUserInfo;
+});
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('twpm/twpm-client-factory',["require", "exports", "aurelia-framework", "aurelia-fetch-client"], function (require, exports, aurelia_framework_1, aurelia_fetch_client_1) {
+    "use strict";
+    var TWPMClientFactory = (function () {
+        function TWPMClientFactory(apiClient) {
+            this.apiClient = apiClient;
+            this._baseURL = "";
+        }
+        Object.defineProperty(TWPMClientFactory.prototype, "baseURL", {
+            get: function () { return this._baseURL; },
+            set: function (value) { this._baseURL = value; },
+            enumerable: true,
+            configurable: true
+        });
+        TWPMClientFactory.prototype.createApiClient = function (pApiToken) {
+            var _this = this;
+            var base64Auth = this.getEncodedAuthString(pApiToken);
+            return this.apiClient.configure(function (config) {
+                if (_this.baseURL)
+                    config.withBaseUrl(_this.baseURL);
+                config.withDefaults({
+                    headers: {
+                        "Accept": "application/json",
+                        "Authorization": "BASIC " + base64Auth
+                    }
+                });
+            });
+        };
+        TWPMClientFactory.prototype.getEncodedAuthString = function (pApiToken) {
+            var authKey = pApiToken + ":password";
+            return btoa(authKey);
+        };
+        return TWPMClientFactory;
+    }());
+    TWPMClientFactory = __decorate([
+        aurelia_framework_1.singleton(),
+        __metadata("design:paramtypes", [aurelia_fetch_client_1.HttpClient])
+    ], TWPMClientFactory);
+    exports.TWPMClientFactory = TWPMClientFactory;
+});
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('twpm/auth-state',["require", "exports", "aurelia-dependency-injection", "./twpm-client-factory"], function (require, exports, aurelia_dependency_injection_1, twpm_client_factory_1) {
+    "use strict";
+    var AuthState = (function () {
+        function AuthState(pClientFactory) {
+            this.apiToken = "";
+            this.clientFactory = pClientFactory;
+        }
+        AuthState.prototype.isAuthenticated = function () {
+            return this.userInfo != null;
+        };
+        AuthState.prototype.validateApiToken = function (pApiToken, pAuthUser) {
+            if (!this.isApiTokenValid(pApiToken))
+                throw new Error("Api token cannot be empty!");
+            if (!pAuthUser || !pAuthUser.installURL)
+                throw new Error("A valid AuthUserInfo object with a valid installURL must be provided!");
+            this.apiToken = pApiToken;
+            this.userInfo = pAuthUser;
+            this.clientFactory.baseURL = pAuthUser.installURL;
+        };
+        AuthState.prototype.ensureAuthenticated = function () {
+            if (!this.isAuthenticated())
+                throw new Error("Not authenticated with TeamworkPM!");
+        };
+        AuthState.prototype.reset = function () {
+            if (!this.isAuthenticated())
+                return;
+            this.apiToken = "";
+            this.userInfo = null;
+            this.clientFactory.baseURL = "";
+        };
+        AuthState.prototype.getInstallUrl = function () {
+            return this.userInfo.installURL;
+        };
+        AuthState.prototype.isApiTokenValid = function (pApiToken) {
+            return pApiToken && pApiToken.trim().length >= 0;
+        };
+        return AuthState;
+    }());
+    AuthState = __decorate([
+        aurelia_dependency_injection_1.singleton(),
+        aurelia_dependency_injection_1.autoinject(),
+        __metadata("design:paramtypes", [twpm_client_factory_1.TWPMClientFactory])
+    ], AuthState);
+    exports.AuthState = AuthState;
+});
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('app',["require", "exports", "aurelia-router", "aurelia-framework", "./twpm/auth-state"], function (require, exports, aurelia_router_1, aurelia_framework_1, auth_state_1) {
     "use strict";
     var App = (function () {
         function App() {
-            this.message = 'Hello World!';
         }
+        App.prototype.configureRouter = function (config, router) {
+            config.title = "Wish Teamwork Did That...";
+            config.addPipelineStep("authorize", AuthorizeStep);
+            config.map([
+                { route: ["", "account/login"], name: "account-authenticate", moduleId: "modules/account/login", nav: true, title: "Login", auth: false },
+                { route: "projects/all", name: "project-all", moduleId: "modules/projects/project-list", nav: true, title: "All Projects", auth: true },
+                { route: "tasks/mine", name: "tasks-my", moduleId: "modules/tasks/mylist", nav: true, title: "My Tasks", auth: true },
+                { route: "tasks/training", name: "tasks-training", moduleId: "modules/tasks/training", nav: true, title: "Training Tasks", auth: true },
+                { route: "tasks/by-project", name: "tasks-by-project", moduleId: "modules/tasks/project-tasks", nav: false, title: "Project Tasks", auth: true },
+                { route: "people/all", name: "people-all", moduleId: "modules/people/people-all", nav: true, title: "Peepz", auth: true },
+                { route: "files/by-project", name: "files-by-project", moduleId: "modules/files/project-files", nav: false, title: "Project Files", auth: true }
+            ]);
+            this.router = router;
+        };
         return App;
     }());
     exports.App = App;
+    var AuthorizeStep = (function () {
+        function AuthorizeStep(authState) {
+            this.authState = authState;
+        }
+        AuthorizeStep.prototype.run = function (navigationInstruction, next) {
+            if (navigationInstruction.getAllInstructions().some(function (i) { return i.config["auth"]; })) {
+                var isLoggedIn = this.authState.isAuthenticated();
+                if (!isLoggedIn) {
+                    return next.cancel(new aurelia_router_1.Redirect("account/login"));
+                }
+            }
+            return next();
+        };
+        return AuthorizeStep;
+    }());
+    AuthorizeStep = __decorate([
+        aurelia_framework_1.autoinject(),
+        __metadata("design:paramtypes", [auth_state_1.AuthState])
+    ], AuthorizeStep);
 });
 
 define('environment',["require", "exports"], function (require, exports) {
@@ -28,6 +235,7 @@ define('main',["require", "exports", "./environment"], function (require, export
     function configure(aurelia) {
         aurelia.use
             .standardConfiguration()
+            .plugin('aurelia-bootstrap')
             .feature('resources');
         if (environment_1.default.debug) {
             aurelia.use.developmentLogging();
@@ -78,37 +286,6 @@ define('models/account',["require", "exports"], function (require, exports) {
     exports.Account = Account;
 });
 
-define('models/auth-info',["require", "exports"], function (require, exports) {
-    "use strict";
-    var AuthUserInfo = (function () {
-        function AuthUserInfo() {
-        }
-        Object.defineProperty(AuthUserInfo.prototype, "endpointURI", {
-            get: function () {
-                return "authenticate.json";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        AuthUserInfo.parse = function (pRawData) {
-            var data = pRawData.account || pRawData;
-            var obj = new AuthUserInfo();
-            obj.installURL = data["URL"];
-            obj.companyID = parseInt(data["companyid"]);
-            obj.companyName = data["companyname"];
-            obj.dateFormat = data["dateFormat"];
-            obj.accountID = parseInt(data["id"]);
-            obj.userID = parseInt(data["userId"]);
-            obj.firstName = data.firstname;
-            obj.lastName = data.lastname;
-            obj.avatarUrl = data["avatar-url"];
-            return obj;
-        };
-        return AuthUserInfo;
-    }());
-    exports.AuthUserInfo = AuthUserInfo;
-});
-
 define('models/company',["require", "exports"], function (require, exports) {
     "use strict";
     var Company = (function () {
@@ -131,37 +308,6 @@ define('models/company',["require", "exports"], function (require, exports) {
         return Company;
     }());
     exports.Company = Company;
-});
-
-define('models/person',["require", "exports"], function (require, exports) {
-    "use strict";
-    var Person = (function () {
-        function Person() {
-        }
-        Object.defineProperty(Person.prototype, "endpointURI", {
-            get: function () {
-                return "people/" + this.personID + ".json";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Person.parse = function (pRawData) {
-            var data = pRawData.person || pRawData;
-            var obj = new Person();
-            obj.personID = parseInt(data["id"]);
-            obj.firstName = data["first-name"];
-            obj.lastName = data["last-name"];
-            obj.email = data["email-address"];
-            obj.title = data["title"];
-            obj.avatarUrl = data["avatar-url"];
-            obj.companyID = parseInt(data["company-id"]);
-            obj.isAdmin = data.administrator === true;
-            obj.lastLogin = data["last-login"];
-            return obj;
-        };
-        return Person;
-    }());
-    exports.Person = Person;
 });
 
 define('models/priority',["require", "exports"], function (require, exports) {
@@ -320,110 +466,6 @@ define('resources/index',["require", "exports"], function (require, exports) {
     function configure(config) {
     }
     exports.configure = configure;
-});
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('twpm/twpm-client-factory',["require", "exports", "aurelia-framework", "aurelia-fetch-client"], function (require, exports, aurelia_framework_1, aurelia_fetch_client_1) {
-    "use strict";
-    var TWPMClientFactory = (function () {
-        function TWPMClientFactory(apiClient) {
-            this.apiClient = apiClient;
-            this._baseURL = "";
-        }
-        Object.defineProperty(TWPMClientFactory.prototype, "baseURL", {
-            get: function () { return this._baseURL; },
-            set: function (value) { this._baseURL = value; },
-            enumerable: true,
-            configurable: true
-        });
-        TWPMClientFactory.prototype.createApiClient = function (pApiToken) {
-            var _this = this;
-            var base64Auth = this.getEncodedAuthString(pApiToken);
-            return this.apiClient.configure(function (config) {
-                if (_this.baseURL)
-                    config.withBaseUrl(_this.baseURL);
-                config.withDefaults({
-                    headers: {
-                        "Accept": "application/json",
-                        "Authorization": "BASIC " + base64Auth
-                    }
-                });
-            });
-        };
-        TWPMClientFactory.prototype.getEncodedAuthString = function (pApiToken) {
-            var authKey = pApiToken + ":password";
-            return btoa(authKey);
-        };
-        return TWPMClientFactory;
-    }());
-    TWPMClientFactory = __decorate([
-        aurelia_framework_1.singleton(),
-        __metadata("design:paramtypes", [aurelia_fetch_client_1.HttpClient])
-    ], TWPMClientFactory);
-    exports.TWPMClientFactory = TWPMClientFactory;
-});
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('twpm/auth-state',["require", "exports", "aurelia-dependency-injection", "./twpm-client-factory"], function (require, exports, aurelia_dependency_injection_1, twpm_client_factory_1) {
-    "use strict";
-    var AuthState = (function () {
-        function AuthState(pClientFactory) {
-            this.apiToken = "";
-            this.clientFactory = pClientFactory;
-        }
-        AuthState.prototype.isAuthenticated = function () {
-            return this.userInfo != null;
-        };
-        AuthState.prototype.validateApiToken = function (pApiToken, pAuthUser) {
-            if (!this.isApiTokenValid(pApiToken))
-                throw new Error("Api token cannot be empty!");
-            if (!pAuthUser || !pAuthUser.installURL)
-                throw new Error("A valid AuthUserInfo object with a valid installURL must be provided!");
-            this.apiToken = pApiToken;
-            this.userInfo = pAuthUser;
-            this.clientFactory.baseURL = pAuthUser.installURL;
-        };
-        AuthState.prototype.ensureAuthenticated = function () {
-            if (!this.isAuthenticated())
-                throw new Error("Not authenticated with TeamworkPM!");
-        };
-        AuthState.prototype.reset = function () {
-            if (!this.isAuthenticated())
-                return;
-            this.apiToken = "";
-            this.userInfo = null;
-            this.clientFactory.baseURL = "";
-        };
-        AuthState.prototype.getInstallUrl = function () {
-            return this.userInfo.installURL;
-        };
-        AuthState.prototype.isApiTokenValid = function (pApiToken) {
-            return pApiToken && pApiToken.trim().length >= 0;
-        };
-        return AuthState;
-    }());
-    AuthState = __decorate([
-        aurelia_dependency_injection_1.singleton(),
-        aurelia_dependency_injection_1.autoinject(),
-        __metadata("design:paramtypes", [twpm_client_factory_1.TWPMClientFactory])
-    ], AuthState);
-    exports.AuthState = AuthState;
 });
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -690,5 +732,6 @@ define('twpm/twpm-svc',["require", "exports", "aurelia-framework", "./twpm-clien
     exports.TWPMService = TWPMService;
 });
 
-define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1></template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template><require from=\"bootstrap/css/bootstrap.css\"></require><require from=\"/styles/bt-custom-theme.css\"></require><require from=\"./nav-bar.html\"></require><nav-bar router.bind=\"router\"></nav-bar><div class=\"page-host container\"><router-view></router-view></div></template>"; });
+define('text!nav-bar.html', ['module'], function(module) { module.exports = "<template bindable=\"router\"><nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\"><div class=\"navbar-header\"><button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\"><span class=\"sr-only\">Toggle Navigation</span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span></button> <a class=\"navbar-brand\" href=\"#\"><i class=\"fa fa-home\"></i> <span>${router.title}</span></a></div><div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\"><ul class=\"nav navbar-nav\"><li repeat.for=\"row of router.navigation\" class=\"${row.isActive ? 'active' : ''}\"><a href.bind=\"row.href\">${row.title}</a></li></ul><ul class=\"nav navbar-nav navbar-right\"><li class=\"loader\" if.bind=\"router.isNavigating\"><i class=\"fa fa-spinner fa-spin fa-2x\"></i></li></ul></div></nav></template>"; });
 //# sourceMappingURL=app-bundle.js.map

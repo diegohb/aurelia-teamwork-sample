@@ -11,6 +11,7 @@ import environment from './environment';
 export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
+    .plugin('aurelia-bootstrap')
     .feature('resources');
 
   if (environment.debug) {
