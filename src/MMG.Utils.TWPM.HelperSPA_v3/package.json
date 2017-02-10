@@ -13,6 +13,7 @@
     "aurelia-bootstrapper": "^1.0.0",
     "aurelia-fetch-client": "^1.1.0",
     "bluebird": "^3.4.1",
+    "bootstrap-css-only": "^3.3.7",
     "requirejs": "^2.3.2",
     "tether": "^1.4.0",
     "text": "github:requirejs/text#latest",
@@ -23,7 +24,7 @@
   "devDependencies": {
     "aurelia-cli": "^0.24.0",
     "aurelia-testing": "^1.0.0-beta.2.0.0",
-    "aurelia-tools": "^0.2.2",
+    "aurelia-tools": "^1.0.0",
     "browser-sync": "^2.13.0",
     "connect-history-api-fallback": "^1.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
