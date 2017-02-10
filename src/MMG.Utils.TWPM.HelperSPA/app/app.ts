@@ -1,6 +1,6 @@
 ﻿import {RouterConfiguration, Router, Redirect, NavigationInstruction, PipelineStep } from "aurelia-router";
 import {autoinject} from "aurelia-framework";
-import {AuthState} from "app/services/auth-state";
+import {AuthState} from "./twpm/auth-state";
 
 export class App {
     router: Router;

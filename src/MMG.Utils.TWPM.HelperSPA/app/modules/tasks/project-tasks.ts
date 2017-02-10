@@ -2,8 +2,8 @@
 import {Task} from "app/models/task";
 import {Project} from "app/models/project";
 import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 
 @autoinject()
 export class TasksByProjectVM {

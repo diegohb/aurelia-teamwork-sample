@@ -1,7 +1,7 @@
 ﻿import {autoinject, singleton} from "aurelia-dependency-injection";
 import {Person} from "app/models/person";
 import {AuthUserInfo} from "app/models/auth-info";
-import {TWPMClientFactory} from "app/services/twpm-client-factory";
+import {TWPMClientFactory} from "./twpm-client-factory";
 
 @singleton()
 @autoinject()

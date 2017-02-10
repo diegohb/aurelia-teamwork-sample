@@ -1,7 +1,7 @@
 ﻿import {autoinject} from "aurelia-framework";
 import {Person} from "app/models/person"
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 
 @autoinject()
 export class PeopleVM {

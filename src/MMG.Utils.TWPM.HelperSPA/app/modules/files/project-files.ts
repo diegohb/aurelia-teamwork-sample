@@ -1,8 +1,8 @@
 ﻿import {autoinject} from "aurelia-framework";
 import {Project} from "app/models/project";
 import {TWFile} from "app/models/twfile";
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 
 @autoinject()
 export class FilesByProjectVM {

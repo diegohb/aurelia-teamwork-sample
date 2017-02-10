@@ -1,8 +1,8 @@
 ﻿import {autoinject, transient} from "aurelia-framework"
 import {HttpClient} from "aurelia-fetch-client";
 import "fetch";
-import {TWPMClientFactory as ApiClientFactory} from "app/services/twpm-client-factory";
-import {AuthState} from "app/services/auth-state";
+import {TWPMClientFactory as ApiClientFactory} from "./twpm-client-factory";
+import {AuthState} from "./auth-state";
 import {Project} from "app/models/project";
 import {Task} from "app/models/task";
 import {Person} from "app/models/person";

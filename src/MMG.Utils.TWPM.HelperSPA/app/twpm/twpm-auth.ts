@@ -1,7 +1,7 @@
 ﻿import {autoinject} from "aurelia-framework"
 import {HttpClient} from "aurelia-fetch-client";
-import {TWPMClientFactory} from "app/services/twpm-client-factory";
-import {AuthState} from "app/services/auth-state";
+import {TWPMClientFactory} from "./twpm-client-factory";
+import {AuthState} from "./auth-state";
 import {AuthUserInfo} from "app/models/auth-info"
 import {Person} from "app/models/person";
 

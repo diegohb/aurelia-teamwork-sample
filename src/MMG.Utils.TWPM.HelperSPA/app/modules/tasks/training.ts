@@ -1,6 +1,6 @@
 ﻿import {autoinject} from "aurelia-framework";
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
 
 @autoinject()
