@@ -31,6 +31,6 @@
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "moment": "registry:dt/moment#2.11.1+20160829143156",
     "url": "github:aurelia/fetch-client/doc/url.d.ts#bbe0777ef710d889a05759a65fa2c9c3865fc618",
-    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160829180742"
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20161120230953"
   }
 }
