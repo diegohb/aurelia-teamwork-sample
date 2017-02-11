@@ -99,7 +99,7 @@
     <TypeScriptCompile Include="app\modules\projects\project-list.ts" />
     <Content Include="app\modules\projects\projects-section.html" />
     <Content Include="app\modules\tasks\tasks-section.html" />
-    <Content Include="app\shared\date-format.js" />
+    <TypeScriptCompile Include="app\resources\value-converters\date-format.ts" />
     <Content Include="app\modules\tasks\training.html" />
     <Content Include="app\modules\tasks\mylist.html" />
     <TypeScriptCompile Include="app\modules\account\login.ts" />
@@ -113,6 +113,8 @@
     <TypeScriptCompile Include="app\modules\people\people-all.ts" />
     <TypeScriptCompile Include="app\modules\projects\projects-section.ts" />
     <TypeScriptCompile Include="app\modules\tasks\tasks-section.ts" />
+    <TypeScriptCompile Include="app\resources\index.ts" />
+    <TypeScriptCompile Include="app\resources\value-converters\date-age.ts" />
     <TypeScriptCompile Include="app\twpm\auth-state.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-auth.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-client-factory.ts" />
@@ -122,7 +124,7 @@
     <TypeScriptCompile Include="app\modules\tasks\viewmodels\list-task-vm.ts" />
     <Content Include="app\modules\tasks\project-tasks.html" />
     <TypeScriptCompile Include="app\modules\tasks\project-tasks.ts" />
-    <Content Include="app\shared\nav-lv2.html" />
+    <Content Include="app\resources\elements\nav-lv2.html" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-svc.ts" />
@@ -211,7 +213,10 @@
     <TypeScriptCompile Include="typings\modules\aurelia-templating\index.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="app\resources\attributes\" />
+    <Folder Include="app\resources\binding-behaviors\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
