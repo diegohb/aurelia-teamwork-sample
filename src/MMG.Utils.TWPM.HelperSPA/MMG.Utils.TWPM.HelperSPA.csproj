@@ -229,6 +229,7 @@
   <PropertyGroup>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptModuleKind>System</TypeScriptModuleKind>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
