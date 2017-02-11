@@ -86,15 +86,19 @@
   <ItemGroup>
     <Content Include="app\modules\account\login.html" />
     <Content Include="app\app.html" />
+    <Content Include="app\modules\account\account-section.html" />
     <Content Include="app\modules\files\project-files.html" />
     <Content Include="app\modules\people\people-all.html" />
     <Content Include="app\modules\people\styling.css" />
     <Content Include="app\modules\projects\project-list.html" />
+    <TypeScriptCompile Include="app\modules\account\account-section.ts" />
     <TypeScriptCompile Include="app\modules\files\project-files.ts" />
     <TypeScriptCompile Include="app\models\company.ts" />
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\models\twfile.ts" />
     <TypeScriptCompile Include="app\modules\projects\project-list.ts" />
+    <Content Include="app\modules\projects\projects-section.html" />
+    <Content Include="app\modules\tasks\tasks-section.html" />
     <Content Include="app\shared\date-format.js" />
     <Content Include="app\modules\tasks\training.html" />
     <Content Include="app\modules\tasks\mylist.html" />
@@ -107,6 +111,8 @@
     <TypeScriptCompile Include="app\models\tag.ts" />
     <TypeScriptCompile Include="app\models\task.ts" />
     <TypeScriptCompile Include="app\modules\people\people-all.ts" />
+    <TypeScriptCompile Include="app\modules\projects\projects-section.ts" />
+    <TypeScriptCompile Include="app\modules\tasks\tasks-section.ts" />
     <TypeScriptCompile Include="app\twpm\auth-state.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-auth.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-client-factory.ts" />
@@ -116,6 +122,7 @@
     <TypeScriptCompile Include="app\modules\tasks\viewmodels\list-task-vm.ts" />
     <Content Include="app\modules\tasks\project-tasks.html" />
     <TypeScriptCompile Include="app\modules\tasks\project-tasks.ts" />
+    <Content Include="app\shared\nav-lv2.html" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-svc.ts" />
