@@ -1,0 +1,9 @@
+﻿<template bindable="router">
+    <nav>
+        <ul class="well nav nav-pills nav-stacked">
+            <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+                <a href.bind="row.href">${row.title}</a>
+            </li>
+        </ul>
+    </nav>
+</template>

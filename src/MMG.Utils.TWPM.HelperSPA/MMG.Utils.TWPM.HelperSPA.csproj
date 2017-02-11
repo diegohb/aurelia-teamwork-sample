@@ -122,6 +122,7 @@
     <TypeScriptCompile Include="app\modules\tasks\viewmodels\list-task-vm.ts" />
     <Content Include="app\modules\tasks\project-tasks.html" />
     <TypeScriptCompile Include="app\modules\tasks\project-tasks.ts" />
+    <Content Include="app\shared\nav-lv2.html" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="app\twpm\twpm-svc.ts" />
