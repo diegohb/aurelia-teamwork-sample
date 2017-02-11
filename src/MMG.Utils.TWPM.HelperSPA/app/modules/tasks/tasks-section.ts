@@ -10,7 +10,7 @@ export class TaskSection {
             { route: "", redirect: "mine" },
             { name:"mytasks", route: "mine", moduleId: "./mylist", nav: true, title: "My Tasks" },
             { route: "training", moduleId: "./training", nav: true, title: "Training Tasks" },
-            { route: "by-project", name: "tasks-by-project", moduleId: "./project-tasks", nav: false, title: "Project Tasks" },
+            { route: "by-project/:ProjectID", name: "tasks-by-project", moduleId: "./project-tasks", nav: false, title: "Project Tasks" },
             /*{ route: ":id", moduleId: "./task", nav: false, title: "" }*/
         ]);
 
