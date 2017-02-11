@@ -1,12 +1,19 @@
-﻿/**
-* The shell for the projects  section of the application.  Will contain either
-* the project-list or project page.
-*/
+﻿import {Router, RouterConfiguration} from "aurelia-router";
+
 export class ProjectSection {
-    configureRouter(config, router) {
-        config.map([
-            { route: "", moduleId: "./project-list", nav: false, title: "" },
-            { route: ":id", moduleId: "./project", nav: false, title: "" }
+
+    private _router: Router;
+
+    configureRouter(pConfig: RouterConfiguration, pRouter: Router) {
+        pConfig.map([
+            { route: "", redirect: "project-list" },
+            { route: "project-list", moduleId: "./project-list", nav: true, title: "All Projects" },
+            /*{ route: ":id", moduleId: "./project", nav: false, title: "" }*/
         ]);
+
+        this._router = pRouter;
     }
+
+    get Router(): Router { return this._router; }
+
 }

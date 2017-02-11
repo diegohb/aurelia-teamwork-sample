@@ -10,8 +10,8 @@ export class App {
         config.addPipelineStep("authorize", AuthorizeStep);
         config.map([
             { route: [""], name: "account-authenticate", moduleId: "./modules/account/account-section", nav: true, title: "Login", auth: false },
-            { route: "projects/all", name: "project-all", moduleId: "./modules/projects/project-list", nav: true, title: "All Projects", auth: true },
-            { route: "tasks", moduleId: "./modules/tasks/tasks-section", nav: true, title: "Tasks", auth: true },
+            { route: "projects", name: "projects", moduleId: "./modules/projects/projects-section", nav: true, title: "All Projects", auth: true },
+            { route: "tasks", name:"tasks", moduleId: "./modules/tasks/tasks-section", nav: true, title: "Tasks", auth: true },
             /*{ route: "tasks/mine", name: "tasks-my", moduleId: "./modules/tasks/mylist", nav: true, title: "My Tasks", auth: true },
             { route: "tasks/training", name: "tasks-training", moduleId: "./modules/tasks/training", nav: true, title: "Training Tasks", auth: true },
             { route: "tasks/by-project", name: "tasks-by-project", moduleId: "./modules/tasks/project-tasks", nav: false, title: "Project Tasks", auth: true },*/
