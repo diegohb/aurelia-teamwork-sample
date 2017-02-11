@@ -1,4 +1,4 @@
-﻿import {RouterConfiguration, Router, Redirect, NavigationInstruction, PipelineStep } from "aurelia-router";
+﻿import {RouterConfiguration, Router, RedirectToRoute, NavigationInstruction, PipelineStep } from "aurelia-router";
 import {autoinject} from "aurelia-framework";
 import {AuthState} from "./twpm/auth-state";
 
@@ -33,7 +33,7 @@ class AuthorizeStep {
 
             // ReSharper disable once TsNotResolved
             if (!isLoggedIn) {
-                return (<any>next).cancel(new Redirect("modules/account/login"));
+                return (<any>next).cancel(new RedirectToRoute("account-authenticate"));
             }
         }
 
