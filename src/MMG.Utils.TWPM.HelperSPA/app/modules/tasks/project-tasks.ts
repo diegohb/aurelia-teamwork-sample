@@ -1,20 +1,19 @@
 ﻿import {autoinject} from "aurelia-framework";
+import {Task} from "app/models/task";
 import {Project} from "app/models/project";
-import {TWFile} from "app/models/twfile";
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 
 @autoinject()
-export class FilesByProjectVM {
+export class TasksByProjectVM {
     private _twpmService: TWPMService;
-    private authState: AuthState;
     private _project: Project;
-    private _files: Array<TWFile>;
+    private _tasks: Array<TaskVM>;
 
-    constructor (pTWPMService: TWPMService, pAuthState: AuthState) {
+    constructor(pTWPMService: TWPMService, private authState: AuthState) {
         this._twpmService = pTWPMService;
-        this.authState = pAuthState;
-        this._files = [];
+        this._tasks = [];
     }
 
     get ProjectTitle (): string {
@@ -24,8 +23,8 @@ export class FilesByProjectVM {
         return `${this._project.company.name} - ${this._project.name}`;
     }
 
-    get ProjectFiles (): Array<TWFile> {
-        return this._files;
+    get ProjectTasks (): Array<TaskVM> {
+        return this._tasks;
     }
 
     activate (pActivationData: any) {
@@ -45,10 +44,12 @@ export class FilesByProjectVM {
                 });
         }
 
-        function getFiles () {
-            return self._twpmService.fetchFilesByProject(pProjectID)
-                .then(pFiles => {
-                    self._files = pFiles;
+        function getTasks () {
+            return self._twpmService.fetchTasksByProject(pProjectID)
+                .then(tasks => {
+                    self._tasks = tasks.map(pTask => new TaskVM(pTask, self.authState.getInstallUrl()));
+                })
+                .then(pTasks => {
                     return Promise.resolve();
                 });
         }
@@ -58,6 +59,7 @@ export class FilesByProjectVM {
         return await Promise.all(promises);
         */
 
-        return getProject().then(getFiles);
+        return getProject().then(getTasks);
     }
+
 }

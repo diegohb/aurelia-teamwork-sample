@@ -25,7 +25,6 @@
     <SccAuxPath>Plastic SCM</SccAuxPath>
     <SccProvider>Plastic SCM Source Control Service:{774e58ba-f1b9-40a7-b676-834fa2c220fe}</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -84,21 +83,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\account\login.html" />
+    <Content Include="app\modules\account\login.html" />
     <Content Include="app\app.html" />
-    <Content Include="app\files\project-files.html" />
-    <Content Include="app\people\people-all.html" />
-    <Content Include="app\people\styling.css" />
-    <Content Include="app\projects\project-list.html" />
-    <TypeScriptCompile Include="app\files\project-files.ts" />
+    <Content Include="app\modules\account\account-section.html" />
+    <Content Include="app\modules\files\project-files.html" />
+    <Content Include="app\modules\people\people-all.html" />
+    <Content Include="app\modules\people\styling.css" />
+    <Content Include="app\modules\projects\project-list.html" />
+    <TypeScriptCompile Include="app\modules\account\account-section.ts" />
+    <TypeScriptCompile Include="app\modules\files\project-files.ts" />
     <TypeScriptCompile Include="app\models\company.ts" />
     <TypeScriptCompile Include="app\models\project.ts" />
     <TypeScriptCompile Include="app\models\twfile.ts" />
-    <TypeScriptCompile Include="app\projects\project-list.ts" />
-    <Content Include="app\shared\date-format.js" />
-    <Content Include="app\tasks\training.html" />
-    <Content Include="app\tasks\mylist.html" />
-    <TypeScriptCompile Include="app\account\login.ts" />
+    <TypeScriptCompile Include="app\modules\projects\project-list.ts" />
+    <Content Include="app\modules\projects\projects-section.html" />
+    <Content Include="app\modules\tasks\tasks-section.html" />
+    <TypeScriptCompile Include="app\resources\value-converters\date-format.ts" />
+    <Content Include="app\modules\tasks\training.html" />
+    <Content Include="app\modules\tasks\mylist.html" />
+    <TypeScriptCompile Include="app\modules\account\login.ts" />
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\models\account.ts" />
     <TypeScriptCompile Include="app\models\auth-info.ts" />
@@ -106,19 +109,24 @@
     <TypeScriptCompile Include="app\models\priority.ts" />
     <TypeScriptCompile Include="app\models\tag.ts" />
     <TypeScriptCompile Include="app\models\task.ts" />
-    <TypeScriptCompile Include="app\people\people-all.ts" />
-    <TypeScriptCompile Include="app\services\auth-state.ts" />
-    <TypeScriptCompile Include="app\services\twpm-auth.ts" />
-    <TypeScriptCompile Include="app\services\twpm-client-factory.ts" />
-    <TypeScriptCompile Include="app\tasks\training.ts" />
-    <TypeScriptCompile Include="app\tasks\mylist.ts" />
+    <TypeScriptCompile Include="app\modules\people\people-all.ts" />
+    <TypeScriptCompile Include="app\modules\projects\projects-section.ts" />
+    <TypeScriptCompile Include="app\modules\tasks\tasks-section.ts" />
+    <TypeScriptCompile Include="app\resources\index.ts" />
+    <TypeScriptCompile Include="app\resources\value-converters\date-age.ts" />
+    <TypeScriptCompile Include="app\twpm\auth-state.ts" />
+    <TypeScriptCompile Include="app\twpm\twpm-auth.ts" />
+    <TypeScriptCompile Include="app\twpm\twpm-client-factory.ts" />
+    <TypeScriptCompile Include="app\modules\tasks\training.ts" />
+    <TypeScriptCompile Include="app\modules\tasks\mylist.ts" />
     <Content Include="app\nav-bar.html" />
-    <TypeScriptCompile Include="app\tasks\viewmodels\list-task-vm.ts" />
-    <Content Include="app\tasks\project-tasks.html" />
-    <TypeScriptCompile Include="app\tasks\project-tasks.ts" />
+    <TypeScriptCompile Include="app\modules\tasks\viewmodels\list-task-vm.ts" />
+    <Content Include="app\modules\tasks\project-tasks.html" />
+    <TypeScriptCompile Include="app\modules\tasks\project-tasks.ts" />
+    <Content Include="app\resources\elements\nav-lv2.html" />
     <Content Include="gulpfile.js" />
     <TypeScriptCompile Include="main.ts" />
-    <TypeScriptCompile Include="app\services\twpm-svc.ts" />
+    <TypeScriptCompile Include="app\twpm\twpm-svc.ts" />
     <Content Include="config.js" />
     <Content Include="Index.html" />
     <Content Include="packages.config">
@@ -156,6 +164,7 @@
     <Content Include="typings\globals\bootstrap\typings.json" />
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\moment\typings.json" />
+    <Content Include="typings\modules\bluebird\typings.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -173,6 +182,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="typings\ad-hoc\missing.d.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
@@ -202,15 +212,22 @@
     <TypeScriptCompile Include="typings\modules\aurelia-templating-resources\index.d.ts" />
     <TypeScriptCompile Include="typings\modules\aurelia-templating-router\index.d.ts" />
     <TypeScriptCompile Include="typings\modules\aurelia-templating\index.d.ts" />
+    <TypeScriptCompile Include="typings\modules\bluebird\index.d.ts" />
     <TypeScriptCompile Include="typings\node\node.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="app\resources\attributes\" />
+    <Folder Include="app\resources\binding-behaviors\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+  <!-- TypeScript settings: https://github.com/aurelia/skeleton-navigation/blob/master/skeleton-typescript/tsconfig.json -->
+  <!-- http://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html -->
+  <PropertyGroup>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <TypeScriptTarget>ES6</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
@@ -224,11 +241,6 @@
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
-  </PropertyGroup>
-  <!--TypeScript settings: https://github.com/aurelia/skeleton-navigation-typescript/blob/master/tsconfig.json-->
-  <!-- https://github.com/Microsoft/TypeScript/wiki/Setting-Compiler-Options-in-MSBuild-projects -->
-  <PropertyGroup>
-    <TypeScriptTarget>ES6</TypeScriptTarget>
     <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
   </PropertyGroup>

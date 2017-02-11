@@ -1,11 +1,11 @@
 ﻿import "bootstrap";
-import {LogManager} from "aurelia-framework";
+import {LogManager, Aurelia} from "aurelia-framework";
 import {ConsoleAppender} from "aurelia-logging-console";
 
 LogManager.addAppender(new ConsoleAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
 
-export function configure (aurelia) {
+export function configure(aurelia: Aurelia) {
     //$("#pleaseWaitDialog").modal();
 
     aurelia.use
@@ -14,7 +14,8 @@ export function configure (aurelia) {
         .defaultResources()
         .history()
         .router()
-        .eventAggregator();
+        .eventAggregator()
+        .feature("app/resources");
     /*.plugin("custom-plugin");*/
 
     aurelia.start().then(app => app.setRoot("app/app"));

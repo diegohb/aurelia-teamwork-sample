@@ -1,19 +1,20 @@
 ﻿import {autoinject} from "aurelia-framework";
-import {Task} from "app/models/task";
 import {Project} from "app/models/project";
-import {ListTaskItemVM as TaskVM} from "./viewmodels/list-task-vm";
-import {TWPMService} from "app/services/twpm-svc";
-import {AuthState} from "app/services/auth-state";
+import {TWFile} from "app/models/twfile";
+import {TWPMService} from "app/twpm/twpm-svc";
+import {AuthState} from "app/twpm/auth-state";
 
 @autoinject()
-export class TasksByProjectVM {
+export class FilesByProjectVM {
     private _twpmService: TWPMService;
+    private authState: AuthState;
     private _project: Project;
-    private _tasks: Array<TaskVM>;
+    private _files: Array<TWFile>;
 
-    constructor(pTWPMService: TWPMService, private authState: AuthState) {
+    constructor (pTWPMService: TWPMService, pAuthState: AuthState) {
         this._twpmService = pTWPMService;
-        this._tasks = [];
+        this.authState = pAuthState;
+        this._files = [];
     }
 
     get ProjectTitle (): string {
@@ -23,8 +24,8 @@ export class TasksByProjectVM {
         return `${this._project.company.name} - ${this._project.name}`;
     }
 
-    get ProjectTasks (): Array<TaskVM> {
-        return this._tasks;
+    get ProjectFiles (): Array<TWFile> {
+        return this._files;
     }
 
     activate (pActivationData: any) {
@@ -44,12 +45,10 @@ export class TasksByProjectVM {
                 });
         }
 
-        function getTasks () {
-            return self._twpmService.fetchTasksByProject(pProjectID)
-                .then(tasks => {
-                    self._tasks = tasks.map(pTask => new TaskVM(pTask, self.authState.getInstallUrl()));
-                })
-                .then(pTasks => {
+        function getFiles () {
+            return self._twpmService.fetchFilesByProject(pProjectID)
+                .then(pFiles => {
+                    self._files = pFiles;
                     return Promise.resolve();
                 });
         }
@@ -59,7 +58,6 @@ export class TasksByProjectVM {
         return await Promise.all(promises);
         */
 
-        return getProject().then(getTasks);
+        return getProject().then(getFiles);
     }
-
 }

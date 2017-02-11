@@ -22,7 +22,16 @@
     text-align: center;
 }
 
-div.page-host { padding-top: 5em; }
+div.page-host { padding-top: 7em; }
+
+.navbar-nav > li > a {
+    margin-bottom: 1px !important;
+}
+
+div.inner-container {
+    padding-left: 1em;
+    padding-top: 1em;
+}
 
 
 /* animate page transitions */
