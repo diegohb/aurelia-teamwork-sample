@@ -22,7 +22,11 @@
     text-align: center;
 }
 
-div.page-host { padding-top: 5em; }
+div.page-host { padding-top: 7em; }
+
+.navbar-nav > li > a {
+    margin-bottom: 1px !important;
+}
 
 
 /* animate page transitions */
